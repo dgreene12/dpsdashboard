@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visualizing Durham Public Schools</title>
+<title>Visualizing Durham Public School Communities</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <style>
 .header {
   text-align: center;
-  padding: 50px;
   background-color: #fff; /* main color white */
 }
 
 .header-image {
-  max-width: 100%;
+  max-width: 60%; /* Adjust image size */
   height: auto;
+  margin: 20px auto; /* center the image */
+  display: block; /* Added to ensure the image properly responds to margin settings */
 }
 
 h1 {
@@ -31,10 +32,9 @@ h1 {
 
 /* Style the tab */
 .tab {
-    display: flex; /* Changed from overflow: hidden; uses flexbox */
+  display: flex; /* Changed from overflow: hidden; uses flexbox */
   justify-content: center; /* Centers the flex items on the main axis */
   flex-wrap: wrap; /* Allows the items to wrap onto multiple lines if there's not enough space */
-  border-bottom: 1px solid #001f3f; /* navy blue */
   background-color: #fff; /* main color white */
 }
 
@@ -69,6 +69,11 @@ h1 {
   background-color: #f7f7f7; /* lighter shade of white for content */
   border: 1px solid #001f3f; /* navy blue */
   border-top: none;
+}
+
+.tab-container {
+  border-top: 1px solid #001f3f; /* navy blue */
+  border-bottom: 1px solid #001f3f; /* navy blue */
 }
 
 .statistics {
@@ -112,22 +117,24 @@ h1 {
 
 <div class="header">
   <h1>Visualizing Durham Public Schools</h1>
-  <p class="description">This dashboard is dedicated to visualizing various metrics and performance indicators of Durham Public Schools.</p>
-  <img src="your-image.png" alt="Top Image" class="header-image">
 </div>
 
-<div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Tab1')">Tab 1</button>
-  <button class="tablinks" onclick="openTab(event, 'Tab2')">Tab 2</button>
-  <button class="tablinks" onclick="openTab(event, 'Tab3')">Tab 3</button>
-  <button class="tablinks" onclick="openTab(event, 'Tab4')">Tab 4</button>
-  <button class="tablinks" onclick="openTab(event, 'Tab5')">Tab 5</button>
-  <button class="tablinks" onclick="openTab(event, 'Tab6')">Tab 6</button>
-  <button class="tablinks" onclick="openTab(event, 'Tab7')">Tab 7</button>
-  <button class="tablinks" onclick="openTab(event, 'Tab8')">Tab 8</button>
-  <button class="tablinks" onclick="openTab(event, 'Tab9')">Tab 9</button>
-  <button class="tablinks" onclick="openTab(event, 'Tab10')">Tab 10</button>
-</div>
+<div class="tab-container">
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Tab1')">Tab 1</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab2')">Tab 2</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab3')">Tab 3</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab4')">Tab 4</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab5')">Tab 5</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab6')">Tab 6</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab7')">Tab 7</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab8')">Tab 8</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab9')">Tab 9</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab10')">Tab 10</button>
+        </div>
+    </div>
+
+<img src="your-image.png" alt="Top Image" class="header-image">
 
 <div class="statistics">
   <div class="stat">
