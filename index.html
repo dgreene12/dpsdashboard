@@ -113,6 +113,57 @@ h1 {
   margin: 20px auto; /* center the image */
 }
 
+.column-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px; /* adjust as needed for space between columns */
+}
+
+.left-column,
+.right-column {
+  flex: 1; /* makes both columns take up equal space */
+  padding: 10px; /* adjust as needed for inner spacing */
+}
+
+.text-container, .full-width-text-container {
+  background-color: #fff; /* white background */
+  border: 1px solid #e0e0e0; /* light grey border */
+  border-radius: 5px; /* rounded corners for a modern look */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+  padding: 20px; /* internal spacing */
+  margin-bottom: 20px; /* space between boxes and other elements */
+}
+
+.full-width-text-container {
+  margin-top: 20px; /* Additional top spacing for full-width box */
+}
+
+.full-width-text-container {
+  margin-top: 20px; /* Additional top spacing for full-width box */
+}
+
+#map-placeholder {
+  width: 100%; /* full width of the container */
+  height: 400px; /* specific height for the map placeholder */
+  background-color: #e0e0e0; /* neutral color indicating placeholder area */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px; /* consistency with other elements */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); /* similar shadow as the text container */
+}
+
+.column-container {
+  display: flex;
+  gap: 20px; /* space between the two columns */
+  padding: 20px;
+}
+
+.left-column, .right-column {
+  flex: 1; /* divide space equally */
+}
+
 </style>
 
 <div class="header">
@@ -150,6 +201,23 @@ h1 {
     <p>Centralized Web Application</p>
   </div>
 </div>
+
+<div class="column-container">
+    <div class="left-column">
+      <!-- Static text container -->
+      <div class="text-container">
+        <p>Will copy over text from dashboard, but don't want code to be too long yet</p>
+      </div>
+    </div>
+    <div class="right-column">
+      <div id="map-placeholder">Leaflet map will be placed here</div>
+    </div>
+  </div>
+
+  <div class="full-width-text-container">
+    <p>THIS IS WHERE I'LL PROBABLY PUT PARTNERS— WILL CHANGE FORMAT TO IMAGES</p>
+  </div>
+  
 
 <script src="script.js">
     function openTab(evt, tabName) {
