@@ -1,88 +1,85 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visualizing Durham Public School Communities</title>
 <link rel="stylesheet" href="styles.css">
-</head>
-<body>
 <style>
-.header {
-  text-align: center;
-  background-color: #fff; /* main color white */
-}
+    body, h1, p {
+        margin: 0;
+        padding: 0;
+    }
 
-.header-image {
-  max-width: 60%; /* Adjust image size */
-  height: auto;
-  margin: 20px auto; /* center the image */
-  display: block; /* Added to ensure the image properly responds to margin settings */
-}
+    .header {
+    position: relative; /* add relative position */
+    text-align: center;
+    padding: 70px 20px; /* Increase padding to make header taller */
+    background: url('https://i.imgur.com/s2Lmhpy.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    }
 
-h1 {
-    font-size: 70px;
-    margin: 20px 0;
-    color: #000; /* black color for contrast */
-}
+    h1 {
+        font-size: 70px;
+        color: white;
+    }
 
-.description {
-  color: #333; /* dark grey for subtle contrast */
-}
+    .hero-overlay {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 51, 102, 0.7);
+            z-index: 1;
+        }
 
-/* Style the tab */
-.tab {
-  display: flex; /* Changed from overflow: hidden; uses flexbox */
-  justify-content: center; /* Centers the flex items on the main axis */
-  flex-wrap: wrap; /* Allows the items to wrap onto multiple lines if there's not enough space */
-  background-color: #fff; /* main color white */
-}
+    .header h1 {
+        position: relative; /* Add this to allow z-index to function */
+        z-index: 2;
+        font-size: 90px;
+    }
 
-/* Style the buttons inside the tab */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-  color: #001f3f; /* navy blue */
-}
+    .tab-strip {
+        background-color: #001f3f; /* navy blue */
+    }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd; /* light gray */
-}
+    .tab {
+        display: flex;
+        justify-content: center;
+        padding: 14px 0;
+        list-style: none;
+    }
 
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #001f3f; /* navy blue */
-  color: white;
-}
+    .tab button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+        color: white; /* changed to white for visibility against the navy strip */
+    }
 
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  background-color: #f7f7f7; /* lighter shade of white for content */
-  border: 1px solid #001f3f; /* navy blue */
-  border-top: none;
-}
+    .tab button:hover {
+        background-color: #ddd; /* light gray */
+        color: black; /* Color change for contrast */
+    }
 
-.tab-container {
-  border-top: 1px solid #001f3f; /* navy blue */
-  border-bottom: 1px solid #001f3f; /* navy blue */
-}
+    .tab button.active {
+        background-color: #4CAF50; /* Example active color, change as needed */
+    }
 
-.statistics {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 20px;
-  background-color: #001f3f; /* navy blue */
-}
+    .statistics {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 20px;
+        background-color: #001f3f; /* navy blue */
+        color: white; /* Text color change for visibility */
+    }
 
 .stat {
   background-color: #fff; /* white */
@@ -135,13 +132,21 @@ h1 {
   margin-bottom: 20px; /* space between boxes and other elements */
 }
 
-.full-width-text-container {
-  margin-top: 20px; /* Additional top spacing for full-width box */
-}
+    .image-container {
+        display: inline-block; /* Aligns images next to each other */
+        white-space: nowrap; /* Prevents images from wrapping to the next line */
+        overflow-x: auto; /* Enables horizontal scrolling if images overflow */
+        padding-bottom: 10px; /* Space between images and potential text or bottom border */
+    }
 
-.full-width-text-container {
-  margin-top: 20px; /* Additional top spacing for full-width box */
-}
+    .partner-image {
+        height: auto; /* Maintains aspect ratio */
+        width: auto; /* Image width can adjust to fixed height */
+        max-width: 40%; /* Ensures image doesn't overflow container */
+        height: 80px; /* Example fixed height, adjust as needed */
+        margin: 0 10px; /* Provides space between images */
+        vertical-align: middle; /* Aligns images to the middle of the line */
+    }
 
 #map-placeholder {
   width: 100%; /* full width of the container */
@@ -164,13 +169,28 @@ h1 {
   flex: 1; /* divide space equally */
 }
 
-</style>
+.white-space {
+        background-color: #FFFFFF; /* This sets the background color to white */
+        height: 50px; /* Adjust the height as needed to create the desired "margin" effect */
+        width: 100%; /* This ensures the div takes full width */
+    }
 
+</style>
+<body>
 <div class="header">
+    <div class="hero-overlay"></div>
   <h1>Visualizing Durham Public Schools</h1>
 </div>
 
-<div class="tab-container">
+    <div class="image-container">
+        <img src="https://i.imgur.com/I9fuMgb.png" alt="DPS" class="partner-image">
+        <img src="https://i.imgur.com/vZUxTfh.jpg" alt="DPSF" class="partner-image">
+        <img src="https://i.imgur.com/212Qpl3.jpg" alt="Duke" class="partner-image">
+        <img src="https://i.imgur.com/frNW9Xy.png" alt="NCCU" class="partner-image">
+        <img src="https://i.imgur.com/6Pmaiir.png" alt="SRCUACS" class="partner-image">
+    </div>
+  
+<div class="tab-strip">
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'Tab1')">Tab 1</button>
         <button class="tablinks" onclick="openTab(event, 'Tab2')">Tab 2</button>
@@ -185,8 +205,8 @@ h1 {
         </div>
     </div>
 
-<img src="your-image.png" alt="Top Image" class="header-image">
-
+    <img src="https://i.imgur.com/SYijUmk.jpg" alt="Top Image" class="header-image">
+    
 <div class="statistics">
   <div class="stat">
     <h2>17</h2>
@@ -202,6 +222,7 @@ h1 {
   </div>
 </div>
 
+
 <div class="column-container">
     <div class="left-column">
       <!-- Static text container -->
@@ -214,9 +235,6 @@ h1 {
     </div>
   </div>
 
-  <div class="full-width-text-container">
-    <p>THIS IS WHERE I'LL PROBABLY PUT PARTNERS— WILL CHANGE FORMAT TO IMAGES</p>
-  </div>
   
 
 <script src="script.js">
