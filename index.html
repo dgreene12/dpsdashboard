@@ -28,12 +28,12 @@
     }
 
     .header {
-    position: relative; /* add relative position */
-    text-align: center;
-    padding: 70px 20px; /* Increase padding to make header taller */
-    background: url('https://i.imgur.com/s2Lmhpy.jpg') no-repeat center center;
-    background-size: cover;
-    color: white;
+        position: relative; /* add relative position */
+        text-align: center;
+        padding: 70px 20px; /* Increase padding to make header taller */
+        background: url('https://i.imgur.com/s2Lmhpy.jpg') no-repeat center center;
+        background-size: cover;
+        color: white;
     }
 
     h1 {
@@ -48,7 +48,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 51, 102, 0.7);
+            background-color: rgba(0, 0, 0, 0.7);
             z-index: 1;
         }
 
@@ -61,7 +61,7 @@
     .navigation {
         display: flex;
         justify-content: center;
-        background-color: #002855; /* Darker shade for a more polished look */
+        background-color: #DFC5FE; /* Darker shade for a more polished look */
         position: sticky;
         top: 0;
         z-index: 10;
@@ -70,7 +70,7 @@
     }
 
     .navigation a {
-        color: #FFFFFF;
+        color: #000000;
         text-align: center;
         padding: 20px 24px; /* Adjusted padding for balance */
         text-decoration: none;
@@ -81,12 +81,12 @@
 
     .navigation a:hover, 
     .navigation a:focus { /* Added focus for accessibility */
-        background-color: #335588; /* Adjusted color for subtle contrast */
+        background-color: #663399; /* Adjusted color for subtle contrast */
         color: #FFFFFF; /* Consistent white color on hover */
     }
 
     .navigation .current {
-        background-color: #335588; /* Adjusted color to match hover effect */
+        background-color: #FFFFFF /* Adjusted color to match hover effect */
         color: #FFFFFF; /* White color for active state */
     }
 
@@ -95,7 +95,7 @@
         justify-content: space-around;
         align-items: center;
         padding: 20px;
-        background-color: #001f3f; /* navy blue */
+        background-color: #663399; /* navy blue */
         color: white; /* Text color change for visibility */
     }
 
@@ -163,7 +163,7 @@
         width: auto; /* Image width can adjust to fixed height */
         max-width: 40%; /* Ensures image doesn't overflow container */
         height: 80px; /* Example fixed height, adjust as needed */
-        margin: 0 20px; /* Provides space between images */
+        margin: 0 40px; /* Provides space between images */
         vertical-align: middle; /* Aligns images to the middle of the line */
     }
 
@@ -190,7 +190,7 @@
 
     .white-space {
         background-color: #FFFFFF; /* This sets the background color to white */
-        height: 50px; /* Adjust the height as needed to create the desired "margin" effect */
+        height: 30px; /* Adjust the height as needed to create the desired "margin" effect */
         width: 100%; /* This ensures the div takes full width */
     }
 
@@ -200,6 +200,12 @@
         width: 100%;
         z-index: 1000; /* Make sure it stays above other content */
     }
+    .section-divider {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(270deg, transparent, #000000, transparent);            margin: 30px auto;
+        width: 80%;
+    }
 
 </style>
 <body>
@@ -207,14 +213,6 @@
     <div class="hero-overlay"></div>
   <h1>Visualizing Durham Public Schools</h1>
 </div>
-
-    <div class="image-container">
-        <img src="https://i.imgur.com/I9fuMgb.png" alt="DPS" class="partner-image">
-        <img src="https://i.imgur.com/W4Y9hYx.jpg" alt="DPSF" class="partner-image">
-        <img src="https://i.imgur.com/212Qpl3.jpg" alt="Duke" class="partner-image">
-        <img src="https://i.imgur.com/frNW9Xy.png" alt="NCCU" class="partner-image">
-        <img src="https://i.imgur.com/D6zZpDj.png" alt="SRCUACS" class="partner-image">
-    </div>
   
     <div class="navigation">
         <a href="index.html" class="current">Home</a>
@@ -230,23 +228,27 @@
     </div>
 
 <div class="tab-strip-placeholder"></div>
-    
-    <img src="https://i.imgur.com/SYijUmk.jpg" alt="Top Image" class="header-image">
+
+<div class="white-space"></div>
 
 <div class="statistics">
-  <div class="stat">
-    <h2>17</h2>
-    <p>Geospatial Variables</p>
+    <div class="stat">
+      <h2>17</h2>
+      <p>Geospatial Variables</p>
+    </div>
+    <div class="stat">
+      <h2>41</h2>
+      <p>School-Specific Variables</p>
+    </div>
+    <div class="stat">
+      <h2>1</h2>
+      <p>Centralized Web App</p>
+    </div>
   </div>
-  <div class="stat">
-    <h2>41</h2>
-    <p>School-Specific Variables</p>
-  </div>
-  <div class="stat">
-    <h2>1</h2>
-    <p>Centralized Web App</p>
-  </div>
-</div>
+    
+  <img src="https://i.imgur.com/SYijUmk.jpg" alt="Top Image" class="header-image">
+
+<div class="section-divider"></div>
 
 
 <div class="column-container">
@@ -261,7 +263,12 @@
     </div>
   </div>
 
-  
+    <div class="image-container">
+        <img src="https://i.imgur.com/I9fuMgb.png" alt="DPS" class="partner-image">
+        <img src="https://i.imgur.com/W4Y9hYx.jpg" alt="DPSF" class="partner-image">
+        <img src="https://i.imgur.com/frNW9Xy.png" alt="NCCU" class="partner-image">
+        <img src="https://i.imgur.com/212Qpl3.jpg" alt="Duke" class="partner-image">
+    </div>
 
   <script>
     function openTab(evt, tabName) {
