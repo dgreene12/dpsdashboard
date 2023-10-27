@@ -1,5 +1,6 @@
 <html lang="en">
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visualizing Durham Public School Communities</title>
@@ -8,6 +9,22 @@
     body, h1, p {
         margin: 0;
         padding: 0;
+    }
+
+    body, h1, h2, p, a {
+    font-family: 'Lato', sans-serif;
+    }
+
+    h1 {
+        font-weight: 700; /* bold */
+    }
+
+    p, .navigation a {
+        font-weight: 400; /* regular */
+    }
+
+    .stat h2 {
+        font-weight: 500; /* medium */
     }
 
     .header {
@@ -41,40 +58,36 @@
         font-size: 90px;
     }
 
-    .tab-strip {
-        background-color: #001f3f; /* navy blue */
-    }
-
-    .tab {
+    .navigation {
         display: flex;
         justify-content: center;
-        padding: 14px 0;
-        list-style: none;
+        background-color: #002855; /* Darker shade for a more polished look */
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slightly larger shadow for depth */
+        transition: box-shadow 0.3s ease; /* Smooth transition for shadow effects */
     }
 
-    .tab button {
-        background-color: transparent;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        transition: 0.3s;
-        font-size: 17px;
-        color: white; /* changed to white for visibility against the navy strip */
+    .navigation a {
+        color: #FFFFFF;
+        text-align: center;
+        padding: 20px 24px; /* Adjusted padding for balance */
+        text-decoration: none;
+        font-size: 18px; /* Slightly larger font size for better readability */
+        font-weight: 500; /* Slightly bolder font for emphasis */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for hover effects */
     }
 
-    .tab button:hover {
-        background-color: #ddd; /* light gray */
-        color: black; /* Color change for contrast */
+    .navigation a:hover, 
+    .navigation a:focus { /* Added focus for accessibility */
+        background-color: #335588; /* Adjusted color for subtle contrast */
+        color: #FFFFFF; /* Consistent white color on hover */
     }
 
-    .tab button.active {
-        background-color: #4CAF50; /* Example active color, change as needed */
-    }
-
-    .tab-strip-placeholder {
-        display: none;
-        height: 68px; /* Approximate height of the tab-strip */
+    .navigation .current {
+        background-color: #335588; /* Adjusted color to match hover effect */
+        color: #FFFFFF; /* White color for active state */
     }
 
     .statistics {
@@ -110,9 +123,10 @@
 
 /* Adjust header image style */
 .header-image {
-  max-width: 60%; /* Adjust image size */
-  height: auto;
-  margin: 20px auto; /* center the image */
+    max-width: 55%;
+    height: auto;
+    margin: 20px 0 20px 20px;
+    border: 2px solid #333;
 }
 
 .column-container {
@@ -202,19 +216,17 @@
         <img src="https://i.imgur.com/D6zZpDj.png" alt="SRCUACS" class="partner-image">
     </div>
   
-<div class="tab-strip">
-    <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'Tab1')">Tab 1</button>
-        <button class="tablinks" onclick="openTab(event, 'Tab2')">Tab 2</button>
-        <button class="tablinks" onclick="openTab(event, 'Tab3')">Tab 3</button>
-        <button class="tablinks" onclick="openTab(event, 'Tab4')">Tab 4</button>
-        <button class="tablinks" onclick="openTab(event, 'Tab5')">Tab 5</button>
-        <button class="tablinks" onclick="openTab(event, 'Tab6')">Tab 6</button>
-        <button class="tablinks" onclick="openTab(event, 'Tab7')">Tab 7</button>
-        <button class="tablinks" onclick="openTab(event, 'Tab8')">Tab 8</button>
-        <button class="tablinks" onclick="openTab(event, 'Tab9')">Tab 9</button>
-        <button class="tablinks" onclick="openTab(event, 'Tab10')">Tab 10</button>
-        </div>
+    <div class="navigation">
+        <a href="index.html" class="current">Home</a>
+        <a href="maps.html">Maps</a>
+        <a href="schoolstats.html">School Statistics</a>
+        <a href="datainsights.html">Data Insights</a>
+        <a href="courses.html">Courses</a>
+        <a href="sports.html">Sports</a>
+        <a href="arts.html">Arts</a>
+        <a href="engagement.html">Duke/NCCU Engagement</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="team.html">Meet the Team</a>
     </div>
 
 <div class="tab-strip-placeholder"></div>
@@ -232,7 +244,7 @@
   </div>
   <div class="stat">
     <h2>1</h2>
-    <p>Centralized Web Application</p>
+    <p>Centralized Web App</p>
   </div>
 </div>
 
