@@ -222,6 +222,118 @@
       font-size: 18px;
       cursor: pointer;
     }
+
+    #map-placeholder {
+        position: relative; /* Positioning for the text overlay */
+    }
+
+    .text-over-map {
+        position: absolute;
+        top: 10px; /* Adjust based on where you want the text */
+        left: 10px;
+        color: white;
+        z-index: 10; /* Ensures the text is above the map */
+    }
+
+    .context-block {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .three-boxes-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .box {
+        background-color: #fff;
+        flex-basis: calc(33.333% - 20px); /* subtracting gap size */
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    .sleek-dropdown {
+        -webkit-appearance: none;  /* Removes default Chrome and Safari styling */
+        -moz-appearance: none;     /* Removes default Firefox styling */
+        appearance: none;          /* Removes default styling */
+        background-color: white;   /* Dropdown background color */
+        border: 1px solid #ddd;    /* Border around the dropdown */
+        padding: 10px 15px;        /* Padding inside the dropdown */
+        margin: 10px 0;            /* Margin for spacing */
+        width: 100%;               /* Full width */
+        border-radius: 5px;        /* Rounded corners */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Box shadow for a sleek look */
+        cursor: pointer;           /* Changes the cursor to a pointer */
+        font-family: 'Lato', sans-serif; /* Font family for consistency */
+        font-size: 16px;           /* Font size */
+        transition: all 0.3s ease; /* Smooth transition for hover effects */
+    }
+
+    .sleek-dropdown:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Larger shadow when hovered */
+    }
+
+        /* Style for the dropdown arrow */
+    .sleek-dropdown::after {
+        content: '▼'; /* Unicode for down arrow */
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        pointer-events: none;
+        transform: translateY(-50%);
+    }
+
+        /* Container needs to be relative for the absolute positioning of the arrow */
+    .box {
+        position: relative;
+    }
+
+    .dropdown-label {
+        display: block;
+        margin-top: 20px;
+        margin-bottom: 5px;
+        font-size: 16px;
+        color: #333;
+        font-family: 'Lato', sans-serif;
+    }
+
+    .icon-legend-grid {
+        display: grid;
+        grid-template-columns: auto 1fr; /* Left column for image, right for text */
+        gap: 10px; /* Adjust the gap between grid items */
+        align-items: center;
+        max-width: 600px; /* You can adjust this to suit your design */
+        margin: 0 auto; /* This centers the grid in the parent element */
+    }
+
+    .icon-legend-item {
+        display: flex;
+        align-items: center;
+    }
+
+    .icon-legend-grid span {
+        font-size: 1.2em;
+    }
+
+    .icon-legend-item img {
+        width: 30px; /* Adjust icon size as needed */
+        margin-right: 10px;
+        margin-bottom: 20px;
+    }
+
+    .selected {
+    /* Example styles for selected state */
+        border: 2px solid #007bff;
+        background-color: #e7f5ff;
+    }
+    .bold-text {
+        font-weight: bolder;
+    }
 </style>
 <body>
 <div class="header">
@@ -253,6 +365,58 @@
       <!-- Add more languages here -->
     </select>
   </div>
+
+  <div class="column-container">
+    <div class="left-column">
+      <div id="map-placeholder">
+        <!-- Leaflet map will go here -->
+        <p>Map loading...</p>
+      </div>
+    </div>
+    <div class="right-column">
+      <div class="context-block">
+        <h2>Context</h2>
+        <p>Information about the Durham Public School Communities and the data presented in the map...</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="three-boxes-container">
+    <div class="box">
+      <h3>Measurement</h3>
+      <label for="dropdown1" class="dropdown-label">Choose a school zone to display:</label>
+        <select id="dropdown1" class="sleek-dropdown">
+            <option value="">Choose a school</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <!-- Add more options here -->
+        </select>
+        <label for="dropdown2" class="dropdown-label">Choose a variable to display:</label>
+        <select id="dropdown2" class="sleek-dropdown">
+            <option value="">Choose a variable</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+          <!-- Add more options here -->
+        </select>
+    </div>
+    <div class="box">
+      <h3>Selected Variable Resources</h3>
+      <p>Description for box 2...</p>
+    </div>
+    <div class="box">
+      <h3>Icon Legend</h3>
+      <div class="icon-legend-grid">
+            <img src="path_to_icon_for_option1.png" alt="Option 1" />
+            <span data-description="option1">Option 1 Description</span>
+            <!-- Second item -->
+            <img src="path_to_icon_for_option2.png" alt="Option 2" />
+            <span data-description="option2">Option 2 Description</span>
+        </div>
+        <!-- Repeat for other options as needed -->
+      </div>
+    </div>
+  </div>
+  
 
   <div class="section-divider"></div>
 
@@ -350,7 +514,43 @@
 
   // Set the language of the page
   document.documentElement.lang = lang;
-}
+    }
+    document.getElementById('dropdown1').addEventListener('change', function() {
+    // Your code to update the Leaflet map based on the selection
+    console.log('Dropdown 1 selected value:', this.value);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var contextParagraph = document.querySelector('.context-block p');
+    var dropdown = document.getElementById('dropdown2');
+
+    var dropdown2 = document.getElementById('dropdown2');
+        dropdown2.addEventListener('change', function() {
+            var contextParagraph = document.querySelector('.context-block p');
+            var contextTexts = {
+                'option1': 'Information about option 1...',
+                'option2': 'Detailed context for option 2...',
+                // ... more context texts ...
+            };
+
+            var selectedOption = dropdown2.value;
+            contextParagraph.textContent = contextTexts[selectedOption] || 'Please select a valid option.';
+
+            // Remove bold class from all descriptions
+            document.querySelectorAll('[data-description]').forEach(desc => {
+                desc.classList.remove('bold-text');
+            });
+
+            // Add bold class to the selected option description
+            var selectedDescription = document.querySelector('[data-description="' + selectedOption + '"]');
+            if (selectedDescription) {
+                selectedDescription.classList.add('bold-text');
+            }
+
+            // Log the selection
+            console.log('Dropdown 2 selected value:', selectedOption);
+        });
+            });
 </script>
 </body>
 </html>
