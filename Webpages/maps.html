@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visualizing Durham Public School Communities</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <style>
     body, h1, p {
         margin: 0;
@@ -176,6 +178,7 @@
     align-items: center;
     border-radius: 5px; /* consistency with other elements */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); /* similar shadow as the text container */
+    z-index: 30;
     }
 
     .column-container {
@@ -198,7 +201,7 @@
         position: fixed;
         top: 0;
         width: 100%;
-        z-index: 1000; /* Make sure it stays above other content */
+        z-index: 10000; /* Make sure it stays above other content */
     }
     .section-divider {
         border: 0;
@@ -371,7 +374,6 @@
   <div class="column-container">
     <div class="left-column">
       <div id="map-placeholder">
-        <!-- Leaflet map will go here -->
         <p>Map loading...</p>
       </div>
     </div>
@@ -388,8 +390,8 @@
       <h3>Measurement</h3>
       <label for="dropdown1" class="dropdown-label">Choose a school zone to display:</label>
         <select id="dropdown1" class="sleek-dropdown">
-            <option value="">All</option>
-            <option value="option1">Option 1</option>
+            <option value="All">All</option>
+            <option value="oakgrove">Oak Grove Elementary</option>
             <option value="option2">Option 2</option>
             <!-- Add more options here -->
         </select>
@@ -430,7 +432,54 @@
     </div>
 
   <script>
-    function openTab(evt, tabName) {
+
+      var datasets = [
+          // ... other datasets ...
+          {
+              name: 'All',
+              url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/53a9495bcb2e9f2561e2be859ba66dfe2317c703/data/2021/map_data/All.geojson'
+          }
+      ];
+      var currentGeoJsonLayer;
+      function addGeoJsonToMap(geoJsonPath, name) {
+          fetch(geoJsonPath).then(function(response) {
+              return response.json();
+          }).then(function(json) {
+              // If there's a current GeoJSON layer, remove it
+              if (currentGeoJsonLayer) {
+                  map.removeLayer(currentGeoJsonLayer);
+              }
+              // Add the new GeoJSON layer
+              currentGeoJsonLayer = L.geoJSON(json, {
+                  onEachFeature: onEachFeature // Make sure this function exists or remove this option
+              }).addTo(map);
+          }).catch(function(error) {
+              console.error('Error loading GeoJSON for ' + name, error);
+              // Provide user feedback here, e.g., alert("Failed to load " + name);
+          });
+      }
+
+    // Document Ready Event
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize the map on the "map-placeholder" div
+        map = L.map('map-placeholder').setView([35.9940, -78.8986], 13);
+
+        // Add tile layer to the map
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add GeoJSON datasets to the map
+        datasets.forEach(function(dataset) {
+            addGeoJsonToMap(dataset.url, dataset.name);
+        });
+
+        // Add reset map control
+        resetMapControl.addTo(map);
+    });
+
+    
+      function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
@@ -445,18 +494,16 @@
     }
 
     window.onscroll = function() {
-        var tabStrip = document.querySelector('.tab-strip');
-        var tabPlaceholder = document.querySelector('.tab-strip-placeholder');
-        var stickyPos = document.querySelector('.image-container').getBoundingClientRect().bottom + 348;
-
-        if (window.pageYOffset > stickyPos) {
-            tabStrip.classList.add("sticky");
-            tabPlaceholder.style.display = "block"; // show the placeholder
-        } else {
-            tabStrip.classList.remove("sticky");
-            tabPlaceholder.style.display = "none"; // hide the placeholder
-        }
-    }
+      var stickyTabs = document.querySelector('.sticky'); // Replace with the actual class or ID of your tab strip
+      var headerHeight = document.querySelector('.header').offsetHeight; // Adjust if you have a header you want the tabs to slide under
+      
+      // When the scroll is past the header height, add the sticky class, otherwise remove it
+      if (window.pageYOffset > headerHeight) {
+        stickyTabs.classList.add("sticky");
+      } else {
+        stickyTabs.classList.remove("sticky");
+      }
+    };
 
     var translations = {
   'en': {
@@ -517,11 +564,26 @@
   // Set the language of the page
   document.documentElement.lang = lang;
     }
-    document.getElementById('dropdown1').addEventListener('change', function() {
-    // Your code to update the Leaflet map based on the selection
-    console.log('Dropdown 1 selected value:', this.value);
-    });
+    document.getElementById('dropdown1').addEventListener('change', function(e) {
+    // Clear any existing GeoJSON layers first, if needed
 
+    // Get the selected value
+    var selectedZone = this.value;
+    
+    // Find the dataset by name in the datasets array
+    var selectedDataset = datasets.find(dataset => dataset.name === selectedZone.toLowerCase());
+
+    // If a dataset is found, load it; otherwise, handle the "All" case or other cases
+    if(selectedDataset) {
+        addGeoJsonToMap(selectedDataset.url, selectedDataset.name);
+    } else {
+        console.log('No matching dataset found for:', selectedZone);
+        // Here you can handle the case where an invalid option is selected or implement a default behavior
+    }
+});
+
+
+  
     document.addEventListener('DOMContentLoaded', function() {
     var contextParagraph = document.querySelector('.context-block p');
     var dropdown = document.getElementById('dropdown2');
@@ -551,8 +613,8 @@
 
             // Log the selection
             console.log('Dropdown 2 selected value:', selectedOption);
+        });    
         });
-            });
 </script>
 </body>
 </html>
