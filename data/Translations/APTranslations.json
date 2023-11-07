@@ -1,0 +1,290 @@
+{
+  "cultural_date_format": "%d-%m-%Y",
+  "languages": ["English", "Spanish"],
+  "translation": [
+
+{"English": "- AP English Language",
+     "Spanish": "- AP Inglés (Lenguaje)"},
+     
+    {"English": "- AP English Literature",
+     "Spanish": "- AP Inglés (Literatura)"},
+     
+     {"English": "- AP Language and Composition",
+     "Spanish": "- AP Lenguaje y Composición"},
+     
+     {"English": "- AP Literature and Composition",
+     "Spanish": "- AP Literatura y Composición"},
+     
+     {"English": "- AP Statistics",
+     "Spanish": "- AP Estadísticas"},
+     
+    {"English": "- AP Calculus",
+     "Spanish": "- AP Cálculo"},
+     
+     {"English": "- AP Calculus AB",
+     "Spanish": "- AP Cálculo AB"},
+     
+     {"English": "- AP Calculus BC",
+     "Spanish": "- AP Cálculo BC"},
+     
+     {"English": "- AP Biology",
+     "Spanish": "- AP Biología"},
+     
+     {"English": "- AP Chemistry",
+     "Spanish": "- AP Química"},
+     
+     {"English": "- AP Environmental Science",
+     "Spanish": "- AP Ciencias del medio ambiente"},
+     
+     {"English": "- AP Physics C: Mechanics",
+     "Spanish": "- AP Física C: Mecánica"},
+     
+     {"English": "- AP Physics I",
+     "Spanish": "- AP Física C I"},
+     
+     {"English": "- AP Physics II",
+     "Spanish": "- AP Física C II"},
+     
+     {"English": "- AP Physics C: Electricity and Magnetism",
+     "Spanish": "- AP Física C: Electricidad y Magnetismo"},
+     
+     {"English": "- AP Physics 1: Algebra Based",
+     "Spanish": "- AP Física 1: Álgebra"},
+     
+     {"English": "- AP Physics 2: Algebra Based",
+     "Spanish": "- AP Física 2: Álgebra"},
+     
+     {"English": "- AP Human Geography",
+     "Spanish": "- AP Geografía humana"},
+     
+     {"English": "- AP World History",
+     "Spanish": "AP Historia Mundial"},
+     
+     {"English": "- AP US History",
+     "Spanish": "- AP Historia de los Estados Unidos"},
+     
+     {"English": "- AP Psychology",
+     "Spanish": "- AP Psicología"},
+     
+     {"English": "- AP Macroeconomics",
+     "Spanish": "- AP Macronomía"},
+     
+     {"English": "- AP Government and Politics",
+     "Spanish": "- AP Gobierno y política"},
+     
+     {"English": "- AP European History",
+     "Spanish": "- AP Historia de Europa"},
+     
+     {"English": "- AP US Government and Politics",
+     "Spanish": "- AP Gobierno y Política de los Estados Unidos "},
+     
+     {"English": "- AP World History: Modern",
+     "Spanish": "- AP Historia Mundial: Moderna"},
+     
+     {"English": "- AP Microeconomics",
+     "Spanish": "- AP Microeconomía"},
+     
+     {"English": "- AP Seminar",
+     "Spanish": "AP Seminario"},
+     
+     {"English": "- AP Latin",
+     "Spanish": "- AP Latín"},
+     
+     {"English": "- AP Spanish Language",
+     "Spanish": "- AP Español (Lenguaje)"},
+     
+     {"English": "- AP Spanish Literature",
+     "Spanish": "- AP Español (Literatura)"},
+     
+     {"English": "- AP French Language",
+     "Spanish": "- AP Francés (Lenguaje)"},
+
+{"English": "- AP Spanish Language & Culture",
+     "Spanish": "- AP Español: Lenguaje y Cultura"},
+
+{"English": "- AP Italian",
+     "Spanish": "- AP Italiano"},
+
+{"English": "- AP Chinese",
+     "Spanish": "- AP Chino"},
+
+{"English": "- AP Vergil Latin",
+     "Spanish": "- AP Latín (Vergil)"},
+
+{"English": "- AP Studio Art Drawing",
+     "Spanish": "- AP Estudio de Arte: El dibujo"},
+
+{"English": "- AP Studio Art: 2D Design",
+     "Spanish": "- AP Estudio de Arte: Diseño de dos dimensiones"},
+
+{"English": "- AP Studio Art: 3D Design",
+     "Spanish": "- AP Estudio de Arte: Diseño de tres dimensiones"},
+
+{"English": "- AP Art History",
+     "Spanish": "- AP Historia de Arte"},
+
+{"English": "- AP Music Theory",
+     "Spanish": "- AP Teoría Músical"},
+
+{"English": "- AP Studio Art",
+     "Spanish": "- AP Estudio de arte"},
+
+{"English": "- AP Computer Science",
+     "Spanish": "- AP Ciencias de la computación"},
+
+{"English": "- AP Intro to Engineering Design",
+     "Spanish": "- AP Introducción a ingeniería y diseño"},
+
+{"English": "- AP Principles of Engineering",
+     "Spanish": "- AP Principios de ingeniería"},
+
+{"English": "- AP Digital Electronics",
+     "Spanish": "- AP Electrónicos digitales"},
+
+{"English": "- AP Civil Engineering & Architecture",
+     "Spanish": "- AP Ingeniería civil y arquitectura"},
+
+{"English": "- AP Aerospace Engineering",
+     "Spanish": "- AP Ingeniería aeroespacial"},
+
+{"English": "- AP Computer Integrated Manufacturing",
+     "Spanish": "- AP Manufacturación de computadoras integradas"},
+
+{"English": "- AP Computer Science Principles",
+     "Spanish": "- AP Principios de Ciencias de la computación"},
+
+{"English": "- AP Computer Science A",
+     "Spanish": "- AP Ciencias de la computación"},
+
+{"English": "Financial Planning",
+     "Spanish": "Organización de Finanzas"},
+
+{"English": "NAF Academy of Finance",
+     "Spanish": "NAF Academy of Finance"},
+
+{"English": "Animal Systems",
+     "Spanish": "Sistemas de Animales"},
+
+{"English": "- Certified Veterinarian Assistant",
+     "Spanish": "- Asistente de Veterinario Certificado"},
+
+{"English": "Biotechnology and Agriscience Research (Local Pathway)",
+     "Spanish": "Investigaciones sobre la Biotecnología y Agrociencia"},
+
+{"English": "Plant Systems",
+     "Spanish": "Sistemas de Plantas"},
+
+{"English": "Accounting",
+     "Spanish": "La Contabilidad"},
+
+{"English": "Entrepreneurship",
+     "Spanish": "El Emprendimiento"},
+
+{"English": "Sports & Entertainment Marketing",
+     "Spanish": "Mercadotecnia de los Deportes y Entretenimiento"},
+
+{"English": "Travel & Tourism",
+     "Spanish": "El Viaje y Turismo"},
+
+{"English": "Adobe Academy",
+     "Spanish": "Academia en Adobe"},
+
+{"English": "Adobe Illustrator",
+     "Spanish": "Ilustrador en Adobe"},
+
+{"English": "Adobe Photoshop",
+     "Spanish": "El Procesamiento de Imágenes en Adobe"},
+
+{"English": "Digital Design and Animation",
+     "Spanish": "La Animación y Diseño Digital"},
+
+{"English": "Autodesk 3DS Max",
+     "Spanish": "Autodesk 3DS Max"},
+
+{"English": "Game Art Design",
+     "Spanish": "Diseño de Arte Digital"},
+
+{"English": "- Autodesk 3DS Max",
+     "Spanish": "- Autodesk 3DS Max"},
+
+{"English": "NAF Academy of Information Technology",
+     "Spanish": "Academia NAF de Tecnología Informativa"},
+
+{"English": "Python Programming",
+     "Spanish": "Programación en Python"},
+
+{"English": "- MTA 98-381 Introduction to Programming Using Python",
+     "Spanish": "- MTA 98-381 Introducción a la Programación en Python"},
+
+{"English": "- PCAP Python Certified Associate",
+     "Spanish": "- PCAP Socio de Python Certificado"},
+
+{"English": "Early Childhood Development & Services",
+     "Spanish": "Servicios sobre el Desarrollo de la Infancia"},
+
+{"English": "Food & Nutrition",
+     "Spanish": "Los Alimentos y la Nutrición"},
+
+{"English": "Interior Design",
+     "Spanish": "Diseño de Interiores"},
+
+{"English": "Culinary Arts Applications",
+     "Spanish": "Artes Culinarios"},
+
+{"English": "- Pre-Professional Assessment and Certification in Culinary Arts",
+     "Spanish": "- Evaluación y Certifiación en los Artes Culinarios"},
+
+{"English": "PLTW Engineering",
+     "Spanish": "Ingeniería en PLTW"},
+
+{"English": "Technology Engineering and Design",
+     "Spanish": "Ingeniería de Tecnología y Diseño"},
+
+{"English": "Advanced Placement Courses",
+     "Spanish": "Cursos Avanzados (AP)"},
+
+{"English": "CTE Courses",
+     "Spanish": "Educación para carreras técnicas (CTE)"},
+
+{"English": "Agricultural Education",
+     "Spanish": "Educación Agricultural"},
+
+{"English": "Business, Marketing, and Finance",
+     "Spanish": "Negocios, Mercadotecnia, y Finanzas"},
+
+{"English": "Computer Science and Information Technology Education",
+     "Spanish": "Ciencias de la Computación y Tecnología Informativa"},
+
+{"English": "Family and Consumer Sciences Education",
+     "Spanish": "Ciencias Familiares y de Consumidores"},
+
+{"English": "Health Science Education",
+     "Spanish": "Ciencia de la Salud"},
+
+{"English": "Trade, Technology, Engineering and Industrial Education",
+     "Spanish": "Comercio, Tecnología, Ingeniería, y Eduación Industrial"},
+     
+     {"English": "English AP Courses",
+     "Spanish": "Ciencia de la Salud"},
+     
+     {"English": "Math AP Courses",
+     "Spanish": "Ciencia de la Salud"},
+     
+     {"English": "Science AP Courses",
+     "Spanish": "Ciencia de la Salud"},
+     
+     {"English": "Social Sciences AP Courses",
+     "Spanish": "Ciencia de la Salud"},
+     
+     {"English": "World Languages AP Courses",
+     "Spanish": "Ciencia de la Salud"},
+     
+     {"English": "Music and Arts AP Courses",
+     "Spanish": "Ciencia de la Salud"},
+     
+     {"English": "Engineneering AP Courses",
+     "Spanish": "Ciencia de la Salud"}
+     
+]
+}
+
