@@ -207,6 +207,21 @@
         width: 80%;
     }
 
+    .language-switcher {
+      position: absolute; /* or 'relative' depending on your layout */
+      right: 30px;
+      top: 30px;
+      z-index: 50; /* to ensure it's above other content */
+    }
+
+    .language-switcher select {
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 400; /* regular */
+      font-size: 18px;
+      cursor: pointer;
+    }
 </style>
 <body>
 <div class="header">
@@ -214,18 +229,18 @@
   <h1>Visualizing Durham Public Schools</h1>
 </div>
   
-    <div class="navigation">
-        <a href="index.html" class="current">Home</a>
-        <a href="maps.html">Maps</a>
-        <a href="schoolstats.html">School Statistics</a>
-        <a href="datainsights.html">Data Insights</a>
-        <a href="courses.html">Courses</a>
-        <a href="sports.html">Sports</a>
-        <a href="arts.html">Arts</a>
-        <a href="engagement.html">Duke/NCCU Engagement</a>
-        <a href="feedback.html">Feedback</a>
-        <a href="team.html">Meet the Team</a>
-    </div>
+<div class="navigation">
+  <a href="index.html" data-translate="home" class="current">Home</a>
+  <a href="maps.html" data-translate="maps">Maps</a>
+  <a href="schoolstats.html" data-translate="schoolstats">School Statistics</a>
+  <a href="datainsights.html" data-translate="datainsights">Data Insights</a>
+  <a href="courses.html" data-translate="courses">Courses</a>
+  <a href="sports.html" data-translate="sports">Sports</a>
+  <a href="arts.html" data-translate="arts">Arts</a>
+  <a href="engagement.html" data-translate="engagement">Duke/NCCU Engagement</a>
+  <a href="feedback.html" data-translate="feedback">Feedback</a>
+  <a href="team.html" data-translate="team">Meet the Team</a>
+</div>
 
 <div class="tab-strip-placeholder"></div>
 
@@ -234,16 +249,24 @@
 <div class="statistics">
     <div class="stat">
       <h2>17</h2>
-      <p>Geospatial Variables</p>
+      <p data-translate="geospatial_variables">Geospatial Variables</p>
     </div>
     <div class="stat">
       <h2>41</h2>
-      <p>School-Specific Variables</p>
+      <p data-translate="school_specific_variables">School-Specific Variables</p>
     </div>
     <div class="stat">
       <h2>1</h2>
-      <p>Centralized Web App</p>
+      <p data-translate="centralized_web_app">Centralized Web App</p>
     </div>
+  </div>
+
+  <div class="language-switcher">
+    <select id="language-dropdown" onchange="switchLanguage(this.value);">
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <!-- Add more languages here -->
+    </select>
   </div>
     
   <img src="https://i.imgur.com/SYijUmk.jpg" alt="Top Image" class="header-image">
@@ -300,6 +323,66 @@
             tabPlaceholder.style.display = "none"; // hide the placeholder
         }
     }
+
+    var translations = {
+  'en': {
+    'geospatial_variables': 'Geospatial Variables',
+    'school_specific_variables': 'School-Specific Variables',
+    'centralized_web_app': 'Centralized Web App',
+    // Add more translation keys and values here for English
+  },
+  'es': {
+    'geospatial_variables': 'Variables Geoespaciales',
+    'school_specific_variables': 'Variables Específicas de la Escuela',
+    'centralized_web_app': 'Aplicación Web Centralizada',
+    // Add more translation keys and values here for Spanish
+    },
+    // Add more languages and their translations here
+  };
+  // Translate navigation tabs
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var savedLanguage = localStorage.getItem('preferredLanguage');
+    if (savedLanguage) {
+      document.getElementById('language-dropdown').value = savedLanguage;
+      switchLanguage(savedLanguage);
+    }
+  });
+
+  function switchLanguage(lang) {
+    localStorage.setItem('preferredLanguage', lang);
+  // Translate attributes
+  document.querySelectorAll('[data-translate]').forEach(function(elem) {
+    var key = elem.getAttribute('data-translate');
+    if (translations[lang] && translations[lang][key]) {
+      elem.textContent = translations[lang][key];
+    }
+  });
+
+  
+  const navTabs = {
+    'home': {'en': 'Home', 'es': 'Inicio'},
+    'maps': {'en': 'Maps', 'es': 'Mapas'},
+    'schoolstats': {'en': 'School Statistics', 'es': 'Estadísticas Escolares'},
+    'datainsights': {'en': 'Data Insights', 'es': 'Perspectivas de Datos'},
+    'courses': {'en': 'Courses', 'es': 'Cursos'},
+    'sports': {'en': 'Sports', 'es': 'Deportes'},
+    'arts': {'en': 'Arts', 'es': 'Artes'},
+    'engagement': {'en': 'Duke/NCCU Engagement', 'es': 'Compromiso Duke/NCCU'},
+    'feedback': {'en': 'Feedback', 'es': 'Retroalimentación'},
+    'team': {'en': 'Meet the Team', 'es': 'Conoce al Equipo'}
+  };
+
+  document.querySelectorAll('.navigation a').forEach(function(tab) {
+    var tabKey = tab.getAttribute('href').replace('.html', '');
+    if (navTabs[tabKey] && navTabs[tabKey][lang]) {
+      tab.textContent = navTabs[tabKey][lang];
+    }
+  });
+
+  // Set the language of the page
+  document.documentElement.lang = lang;
+}
 </script>
 </body>
 </html>
