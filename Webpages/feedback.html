@@ -22,9 +22,10 @@
     p, .navigation a {
         font-weight: 400; /* regular */
     }
-
-    .stat h2 {
+    
+    .h2 {
         font-weight: 500; /* medium */
+        font-size: 18px;
     }
 
     .header {
@@ -222,6 +223,18 @@
       font-size: 18px;
       cursor: pointer;
     }
+
+    .text-container {
+      background-color: #fff; /* white background */
+      border: 1px solid #e0e0e0; /* light grey border */
+      border-radius: 5px; /* rounded corners for a modern look */
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+      padding: 20px; /* internal spacing */
+      margin-bottom: 20px; /* space between boxes and other elements */
+      max-width: 80%;
+      margin-left: auto; /* Centers the container */
+      margin-right: auto; /* Centers the container */
+    }
 </style>
 <body>
 <div class="header">
@@ -253,6 +266,26 @@
       <!-- Add more languages here -->
     </select>
   </div>
+
+  <div class="column-container">
+    <!-- Left Column with Feedback Section -->
+    <div class="left-column">
+        <div class="text-container">
+            <div style="text-align: center;">     
+                <h2>Feedback</h2>
+                <p>We value your input and feedback about our visualization of Durham Public School communities. 
+                Please share your thoughts and suggestions to help us improve.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column for additional content -->
+    <div class="right-column">
+        <div class="text-container">
+            <!-- You can add content here for the right column -->
+        </div>
+    </div>
+</div>
 
   <div class="section-divider"></div>
 
