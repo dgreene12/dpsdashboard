@@ -222,6 +222,49 @@
       font-size: 18px;
       cursor: pointer;
     }
+
+    .arts-grid-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .arts-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* 5 columns for each category */
+        grid-auto-rows: 60px;
+        gap: 10px;
+        width: 48%; /* Adjust width for spacing between columns */
+    }
+
+    .grid-header {
+        font-weight: bold;
+        background-color: #DFC5FE; /* Header background color */
+        padding: 8px;
+        text-align: center;
+    }
+
+    .arts-grid div {
+        padding: 8px;
+        text-align: center;
+        background-color: #f0f0f0; /* Cell background color */
+        border: 1px solid #d0d0d0; /* Cell border */
+    }
+
+    .checkmark {
+        font-size: 30px; /* Adjust this value to make the checkmark bigger or smaller */
+    }
+
+    /* Optional: Responsive layout for smaller screens */
+    @media (max-width: 768px) {
+      .arts-grid-container {
+          flex-direction: column;
+      }
+      .arts-grid {
+          width: 100%;
+          margin-bottom: 20px;
+      }
+    }
 </style>
 <body>
 <div class="header">
@@ -253,6 +296,306 @@
       <!-- Add more languages here -->
     </select>
   </div>
+
+  <div class="arts-grid-container">
+    <!-- Column 1 -->
+    <div class="arts-grid">
+      <!-- Column 1 Headers -->
+      <div class="grid-header">School</div>
+      <div class="grid-header">Music</div>
+      <div class="grid-header">Visual Arts</div>
+      <div class="grid-header">Theatre</div>
+      <div class="grid-header">Dance</div>
+  
+      <!-- Schools in Column 1 -->
+      <div>Bethesda Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Brogden Middle</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Burton Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>C.E. Jordan High</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>C.C. Spaulding Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Carrington Middle</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Club Boulevard Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Creekside Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Durham School of Technology</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Durham School of the Arts</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>E.K. Powe Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Easley Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Eastway Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Eno Valley Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Fayetteville Street Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Forest View Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>George Watts Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>Glenn Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Hillandale Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Hillside High</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Hope Valley Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>J.D. Clement Early College</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>Lakewood Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  </div>
+
+    <!-- Column 2 -->
+    <div class="arts-grid">
+      <!-- Column 2 Headers -->
+      <div class="grid-header">School</div>
+      <div class="grid-header">Music</div>
+      <div class="grid-header">Visual Arts</div>
+      <div class="grid-header">Theatre</div>
+      <div class="grid-header">Dance</div>
+  
+      <!-- Schools in Column 2 -->
+      <div>Lakewood Montessori Middle</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Little River K-8</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Lowes Grove Middle</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Lucas Middle</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Merrick-Moore Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Morehead Montessori Magnet</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Neal Middle</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Northern High</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Oak Grove Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Parkwood Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>Pearsontown Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  
+      <div>R.N. Harris Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>Riverside High</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>Rogers-Herr Middle</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>Sandy Ridge Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>School for Creative Studies</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>Shepard Middle</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>Sherwood Githens Middle</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>Southern High</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>Southwest Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>Spring Valley Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>W.G. Pearson Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+
+      <div>Y.E Smith Elementary</div>
+      <div><span class="checkmark">✓</span></div>
+      <div><span class="checkmark">✓</span></div>
+      <div></div>
+      <div></div>
+  </div>
+</div>
 
   <div class="section-divider"></div>
 
