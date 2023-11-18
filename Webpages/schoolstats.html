@@ -152,7 +152,8 @@
 }
 
     .image-container {
-        display: inline-block; /* Aligns images next to each other */
+        display: block; /* Changed from inline-block to block */
+        text-align: center; /* Centers inline contents horizontally */
         white-space: nowrap; /* Prevents images from wrapping to the next line */
         overflow-x: auto; /* Enables horizontal scrolling if images overflow */
         padding: 10px; /* Space between images and potential text or bottom border */
@@ -160,11 +161,12 @@
 
     .partner-image {
         height: auto; /* Maintains aspect ratio */
-        width: auto; /* Image width can adjust to fixed height */
-        max-width: 40%; /* Ensures image doesn't overflow container */
-        height: 80px; /* Example fixed height, adjust as needed */
-        margin: 0 40px; /* Provides space between images */
-        vertical-align: middle; /* Aligns images to the middle of the line */
+        width: auto; /* Allows width to adjust */
+        max-width: 40%; /* Maximum width for images */
+        height: 80px; /* Fixed height for images */
+        margin: 0 40px; /* Horizontal spacing between images */
+        vertical-align: middle; /* Aligns images vertically */
+        display: inline-block; /* Ensures images are inline */
     }
 
     #map-placeholder {
@@ -222,6 +224,74 @@
       font-size: 18px;
       cursor: pointer;
     }
+
+    .tab-strip {
+      display: flex;
+      justify-content: center;
+      background-color: #DFC5FE; /* Harmonize with the current color scheme */
+      padding: 10px 0;
+    }
+
+    .tablinks {
+      background-color: inherit;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      padding: 10px 15px;
+      font-size: 16px;
+      color: #000;
+    }
+
+    .tablinks:hover, .tablinks.active {
+      background-color: #663399; /* Complementary color for highlighting */
+      color: #FFF;
+    }
+
+    .tabcontent {
+      display: none;
+      padding: 20px;
+    }
+
+    .dropdown-menu {
+      margin-bottom: 20px;
+    }
+
+    .dropdown-menu label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .dropdown-menu select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .column-container {
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .left-column, .right-column {
+      flex: 1;
+    }
+
+    #graphs-placeholder {
+      width: 100%; /* full width of the container */
+      padding: 20px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); /* Shadow for depth */
+      margin-bottom: 20px; /* Space below the graph container */
+    }
+
+    #myChart {
+      width: 100%; /* Responsive width */
+      height: auto; /* Auto height for responsive design */
+      max-height: 500px; /* Maximum height of the graph */
+    }
+
 </style>
 <body>
 <div class="header">
@@ -252,6 +322,49 @@
       <option value="es">Español</option>
       <!-- Add more languages here -->
     </select>
+  </div>
+
+  <div class="tab-strip">
+    <button class="tablinks" onclick="openTab(event, 'ElementarySchools')">Elementary Schools</button>
+    <button class="tablinks" onclick="openTab(event, 'MiddleSchools')">Middle Schools</button>
+    <button class="tablinks" onclick="openTab(event, 'HighSchools')">High Schools</button>
+  </div>
+  
+  <div id="ElementarySchools" class="tabcontent">
+    <!-- Content for Elementary Schools -->
+  </div>
+  
+  <div id="MiddleSchools" class="tabcontent" style="display:none;">
+    <!-- Content for Middle Schools -->
+  </div>
+  
+  <div id="HighSchools" class="tabcontent" style="display:none;">
+    <!-- Content for High Schools -->
+  </div>
+  
+  <div id="graphs-placeholder" class="tabcontent">
+    <canvas id="myChart"></canvas>
+    <!-- The canvas element for the Chart.js graph -->
+  </div>
+  
+  <div class="column-container">
+    <div class="left-column">
+      <div class="dropdown-menu">
+        <label for="dropdown1">Statistic</label>
+        <select id="dropdown1">
+          <!-- Options for Dropdown 1 -->
+        </select>
+      </div>
+      <div class="dropdown-menu">
+        <label for="dropdown2">Year</label>
+        <select id="dropdown2">
+          <!-- Options for Dropdown 2 -->
+        </select>
+      </div>
+    </div>
+    <div class="right-column">
+      <p>Context and resources will be placed here.</p>
+    </div>
   </div>
 
   <div class="section-divider"></div>
@@ -352,5 +465,62 @@
   document.documentElement.lang = lang;
 }
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="graphs.js"></script>
+
+<script> function saveDropdownValue() {
+    var yearDropdown = document.getElementById('dropdown2');
+    localStorage.setItem('selectedYear', yearDropdown.value);
+  }
+
+  function applySavedDropdownValue() {
+    var savedYear = localStorage.getItem('selectedYear');
+    if (savedYear) {
+      document.getElementById('dropdown2').value = savedYear;
+    }
+  }
+
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+    applySavedDropdownValue();
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+  var yearDropdown = document.getElementById('dropdown2');
+
+  // Apply the saved value on page load
+  applySavedDropdownValue();
+
+  // Save the value whenever the dropdown changes
+  yearDropdown.addEventListener('change', saveDropdownValue);
+});
+</script> 
+
+<!-- Your JavaScript for the chart goes here -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      // Proper chart configuration goes here
+    });
+  });
+</script>
+  
 </body>
 </html>

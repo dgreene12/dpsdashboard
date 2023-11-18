@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="mapData.js"></script>
 <style>
     body, h1, p {
         margin: 0;
@@ -431,79 +432,132 @@
         <img src="https://i.imgur.com/212Qpl3.jpg" alt="Duke" class="partner-image">
     </div>
 
-  <script>
-
-      var datasets = [
-          // ... other datasets ...
-          {
-              name: 'All',
-              url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/53a9495bcb2e9f2561e2be859ba66dfe2317c703/data/2021/map_data/All.geojson'
-          }
-      ];
+    <script>
+      var map;
       var currentGeoJsonLayer;
+  
       function addGeoJsonToMap(geoJsonPath, name) {
           fetch(geoJsonPath).then(function(response) {
               return response.json();
           }).then(function(json) {
-              // If there's a current GeoJSON layer, remove it
               if (currentGeoJsonLayer) {
                   map.removeLayer(currentGeoJsonLayer);
               }
-              // Add the new GeoJSON layer
               currentGeoJsonLayer = L.geoJSON(json, {
-                  onEachFeature: onEachFeature // Make sure this function exists or remove this option
+                  onEachFeature: function(feature, layer) {
+                      if (feature.geometry.type === "Point") {
+                          map.setView(layer.getBounds().getCenter(), 10);
+                      } else {
+                          map.fitBounds(layer.getBounds()); // Fit to bounds for other types
+                      }
+                  }
               }).addTo(map);
           }).catch(function(error) {
               console.error('Error loading GeoJSON for ' + name, error);
-              // Provide user feedback here, e.g., alert("Failed to load " + name);
           });
       }
+  
+      var resetMapControl = L.control({position: 'topright'});
+        resetMapControl.onAdd = function(map) {
+            var div = L.DomUtil.create('div', 'reset-map-control');
+            var resetButton = document.createElement('button');
+            resetButton.innerText = 'Reset Map';
+            resetButton.style.backgroundColor = '#663399';
+            resetButton.style.color = 'white';
+            resetButton.style.border = 'none';
+            resetButton.style.borderRadius = '5px';
+            resetButton.style.padding = '10px 15px';
+            resetButton.style.fontFamily = "'Lato', sans-serif";
+            resetButton.style.fontSize = '16px';
+            resetButton.style.cursor = 'pointer';
+            resetButton.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.3)';
+            resetButton.style.transition = 'background-color 0.3s, box-shadow 0.3s';
 
-    // Document Ready Event
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize the map on the "map-placeholder" div
-        map = L.map('map-placeholder').setView([35.9940, -78.8986], 13);
+            resetButton.onclick = function() {
+          // Reset the dropdown to 'All'
+          document.getElementById('dropdown1').value = 'All';
 
-        // Add tile layer to the map
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+          // Remove any existing GeoJSON layer
+          if (currentGeoJsonLayer) {
+              map.removeLayer(currentGeoJsonLayer);
+          }
 
-        // Add GeoJSON datasets to the map
-        datasets.forEach(function(dataset) {
-            addGeoJsonToMap(dataset.url, dataset.name);
-        });
+          // Load the 'All' dataset
+          addGeoJsonToMap(datasets[0].url, datasets[0].name);
 
-        // Add reset map control
-        resetMapControl.addTo(map);
+          // Set the map view to the default view for 'All'
+          // This assumes datasets[0] is the 'All' dataset and it covers the desired area
+          map.setView([35.9940, -78.8986], 10); // Adjust the coordinates and zoom level as needed
+      };
+      div.appendChild(resetButton);
+      return div;
+  };
+  
+      document.addEventListener('DOMContentLoaded', function() {
+        map = L.map('map-placeholder').setView([35.9940, -78.8986], 10);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(map);
+  
+          datasets.forEach(function(dataset) {
+              addGeoJsonToMap(dataset.url, dataset.name);
+          });
+  
+          resetMapControl.addTo(map);
+  
+          var dropdown = document.getElementById('dropdown1');
+          datasets.forEach(function(dataset) {
+              var option = document.createElement('option');
+              option.value = dataset.name;
+              option.textContent = dataset.name.charAt(0).toUpperCase() + dataset.name.slice(1);
+              dropdown.appendChild(option);
+          });
+  
+          var savedLanguage = localStorage.getItem('preferredLanguage');
+          if (savedLanguage) {
+              document.getElementById('language-dropdown').value = savedLanguage;
+              switchLanguage(savedLanguage);
+          }
+      });
+  
+      document.getElementById('dropdown1').addEventListener('change', function() {
+          var selectedZone = this.value;
+          var selectedDataset = datasets.find(dataset => dataset.name === selectedZone);
+          if (selectedDataset) {
+              addGeoJsonToMap(selectedDataset.url, selectedDataset.name);
+          } else {
+              console.error('No matching dataset found for:', selectedZone);
+          }
+      });
+
+        var savedLanguage = localStorage.getItem('preferredLanguage');
+        if (savedLanguage) {
+            document.getElementById('language-dropdown').value = savedLanguage;
+            switchLanguage(savedLanguage);
+        };
+
+    document.getElementById('dropdown1').addEventListener('change', function() {
+        var selectedZone = this.value;
+        var selectedDataset = datasets.find(dataset => dataset.name === selectedZone);
+        if (selectedDataset) {
+            addGeoJsonToMap(selectedDataset.url, selectedDataset.name);
+        } else {
+            console.error('No matching dataset found for:', selectedZone);
+        }
     });
 
-    
-      function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
+    document.getElementById('dropdown2').addEventListener('change', function() {
+        var contextParagraph = document.querySelector('.context-block p');
+        var contextTexts = {
+            'option1': 'Information about option 1...',
+            'option2': 'Detailed context for option 2...',
+            // Add more context texts as needed
+        };
 
-    window.onscroll = function() {
-      var stickyTabs = document.querySelector('.sticky'); // Replace with the actual class or ID of your tab strip
-      var headerHeight = document.querySelector('.header').offsetHeight; // Adjust if you have a header you want the tabs to slide under
-      
-      // When the scroll is past the header height, add the sticky class, otherwise remove it
-      if (window.pageYOffset > headerHeight) {
-        stickyTabs.classList.add("sticky");
-      } else {
-        stickyTabs.classList.remove("sticky");
-      }
-    };
+        var selectedOption = this.value;
+        contextParagraph.textContent = contextTexts[selectedOption] || 'Please select a valid option.';
+    });
+
 
     var translations = {
   'en': {
@@ -552,69 +606,21 @@
     'engagement': {'en': 'Duke/NCCU Engagement', 'es': 'Compromiso Duke/NCCU'},
     'feedback': {'en': 'Feedback', 'es': 'Retroalimentación'},
     'team': {'en': 'Meet the Team', 'es': 'Conoce al Equipo'}
-  };
+  }};
 
-  document.querySelectorAll('.navigation a').forEach(function(tab) {
-    var tabKey = tab.getAttribute('href').replace('.html', '');
-    if (navTabs[tabKey] && navTabs[tabKey][lang]) {
-      tab.textContent = navTabs[tabKey][lang];
-    }
-  });
+  document.getElementById('language-dropdown').addEventListener('change', function() {
+        switchLanguage(this.value);
+    });
 
-  // Set the language of the page
-  document.documentElement.lang = lang;
-    }
-    document.getElementById('dropdown1').addEventListener('change', function(e) {
-    // Clear any existing GeoJSON layers first, if needed
-
-    // Get the selected value
-    var selectedZone = this.value;
-    
-    // Find the dataset by name in the datasets array
-    var selectedDataset = datasets.find(dataset => dataset.name === selectedZone.toLowerCase());
-
-    // If a dataset is found, load it; otherwise, handle the "All" case or other cases
-    if(selectedDataset) {
-        addGeoJsonToMap(selectedDataset.url, selectedDataset.name);
-    } else {
-        console.log('No matching dataset found for:', selectedZone);
-        // Here you can handle the case where an invalid option is selected or implement a default behavior
-    }
-});
-
-
-  
-    document.addEventListener('DOMContentLoaded', function() {
-    var contextParagraph = document.querySelector('.context-block p');
-    var dropdown = document.getElementById('dropdown2');
-
-    var dropdown2 = document.getElementById('dropdown2');
-        dropdown2.addEventListener('change', function() {
-            var contextParagraph = document.querySelector('.context-block p');
-            var contextTexts = {
-                'option1': 'Information about option 1...',
-                'option2': 'Detailed context for option 2...',
-                // ... more context texts ...
-            };
-
-            var selectedOption = dropdown2.value;
-            contextParagraph.textContent = contextTexts[selectedOption] || 'Please select a valid option.';
-
-            // Remove bold class from all descriptions
-            document.querySelectorAll('[data-description]').forEach(desc => {
-                desc.classList.remove('bold-text');
-            });
-
-            // Add bold class to the selected option description
-            var selectedDescription = document.querySelector('[data-description="' + selectedOption + '"]');
-            if (selectedDescription) {
-                selectedDescription.classList.add('bold-text');
-            }
-
-            // Log the selection
-            console.log('Dropdown 2 selected value:', selectedOption);
-        });    
-        });
+    window.onscroll = function() {
+        var stickyTabs = document.querySelector('.sticky');
+        var headerHeight = document.querySelector('.header').offsetHeight;
+        if (window.pageYOffset > headerHeight) {
+            stickyTabs.classList.add("sticky");
+        } else {
+            stickyTabs.classList.remove("sticky");
+        }
+    };
 </script>
 </body>
 </html>
