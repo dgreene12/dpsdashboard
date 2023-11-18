@@ -482,22 +482,26 @@
               map.removeLayer(currentGeoJsonLayer);
           }
 
-          // Load the 'All' dataset
+          // Reload 'All' dataset
           addGeoJsonToMap(datasets[0].url, datasets[0].name);
 
-          // Set the map view to the default view for 'All'
-          // This assumes datasets[0] is the 'All' dataset and it covers the desired area
-          map.setView([35.9940, -78.8986], 10); // Adjust the coordinates and zoom level as needed
+          // Reset view to default view for 'All'
+          map.setView([35.9940, -78.8986], 10); // Adjust the coordinates and zoom level if necessary
       };
       div.appendChild(resetButton);
       return div;
   };
   
-      document.addEventListener('DOMContentLoaded', function() {
-        map = L.map('map-placeholder').setView([35.9940, -78.8986], 10);
+        document.addEventListener('DOMContentLoaded', function() {
+          map = L.map('map-placeholder').setView([35.9940, -78.8986], 10); // Initial view setup
           L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
               attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           }).addTo(map);
+
+          // Load 'All' dataset by default
+          addGeoJsonToMap(datasets[0].url, datasets[0].name); // Assumes 'All' is the first in the datasets array
+
+          resetMapControl.addTo(map);
   
           datasets.forEach(function(dataset) {
               addGeoJsonToMap(dataset.url, dataset.name);
