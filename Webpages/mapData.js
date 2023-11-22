@@ -12,7 +12,7 @@ var datasets = [
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2021/map_data/Brogden%20Middle.geojson'
     },
     {
-        name: 'Burton ELementary',
+        name: 'Burton Elementary',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Burton%20Elementary.geojson'
     },
     {
@@ -53,7 +53,7 @@ var datasets = [
     },
     {
         name: 'Eastway Elementary',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/blob/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2021/map_data/Eastway%20Elementary.geojson'
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2021/map_data/Eastway%20Elementary.geojson'
     },
     {
         name: 'E.K. Powe Elementary',

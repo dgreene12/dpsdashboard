@@ -430,106 +430,88 @@
     </div>
 
     <script>
-      var map;
-      var currentGeoJsonLayer;
-  
-      function addGeoJsonToMap(geoJsonPath, name) {
-          fetch(geoJsonPath).then(function(response) {
-              return response.json();
-          }).then(function(json) {
-              if (currentGeoJsonLayer) {
-                  map.removeLayer(currentGeoJsonLayer);
-              }
-              currentGeoJsonLayer = L.geoJSON(json, {
-                  onEachFeature: function(feature, layer) {
-                      if (feature.geometry.type === "Point") {
-                          map.setView(layer.getBounds().getCenter(), 10);
-                      } else {
-                          map.fitBounds(layer.getBounds()); // Fit to bounds for other types
-                      }
-                  }
-              }).addTo(map);
-          }).catch(function(error) {
-              console.error('Error loading GeoJSON for ' + name, error);
-          });
-      }
-  
-      var resetMapControl = L.control({position: 'topright'});
+        var map;
+        var currentGeoJsonLayer;
+    
+        function addGeoJsonToMap(geoJsonPath, name) {
+            fetch(geoJsonPath).then(function(response) {
+                return response.json();
+            }).then(function(json) {
+                if (currentGeoJsonLayer) {
+                    map.removeLayer(currentGeoJsonLayer);
+                }
+                currentGeoJsonLayer = L.geoJSON(json).addTo(map);
+
+                // Check if the loaded dataset is 'All'
+                if (name === 'All') {
+                    // Set the view to the specific coordinates for 'All'
+                    map.setView([36.0555, -78.8986], 10);
+                } else {
+                    // For other datasets, fit to their bounds
+                    map.fitBounds(currentGeoJsonLayer.getBounds());
+                }
+            }).catch(function(error) {
+                console.error('Error loading GeoJSON for ' + name, error);
+            });
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            map = L.map('map-placeholder').setView([36.0555, -78.8986], 10);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+    
+            addGeoJsonToMap(datasets[0].url, datasets[0].name); // Load 'All' dataset by default
+    
+            resetMapControl.addTo(map);
+    
+            var dropdown = document.getElementById('dropdown1');
+            datasets.forEach(function(dataset) {
+                var option = document.createElement('option');
+                option.value = dataset.name;
+                option.textContent = dataset.name.charAt(0).toUpperCase() + dataset.name.slice(1);
+                dropdown.appendChild(option);
+            });
+    
+            // Set the dropdown to 'All' by default
+            document.getElementById('dropdown1').value = 'All';
+    
+            var savedLanguage = localStorage.getItem('preferredLanguage');
+            if (savedLanguage) {
+                document.getElementById('language-dropdown').value = savedLanguage;
+                switchLanguage(savedLanguage);
+            }
+        });
+    
+        document.getElementById('dropdown1').addEventListener('change', function() {
+            var selectedZone = this.value;
+            var selectedDataset = datasets.find(dataset => dataset.name === selectedZone);
+            if (selectedDataset) {
+                addGeoJsonToMap(selectedDataset.url, selectedDataset.name);
+            } else {
+                console.error('No matching dataset found for:', selectedZone);
+            }
+        });
+
+        var resetMapControl = L.control({position: 'topright'});
         resetMapControl.onAdd = function(map) {
             var div = L.DomUtil.create('div', 'reset-map-control');
             var resetButton = document.createElement('button');
             resetButton.innerText = 'Reset Map';
-            resetButton.style.backgroundColor = '#663399';
-            resetButton.style.color = 'white';
-            resetButton.style.border = 'none';
-            resetButton.style.borderRadius = '5px';
-            resetButton.style.padding = '10px 15px';
-            resetButton.style.fontFamily = "'Lato', sans-serif";
-            resetButton.style.fontSize = '16px';
-            resetButton.style.cursor = 'pointer';
-            resetButton.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.3)';
-            resetButton.style.transition = 'background-color 0.3s, box-shadow 0.3s';
-
+            resetButton.style = "background-color: #663399; color: white; border: none; border-radius: 5px; padding: 10px 15px; font-family: 'Lato', sans-serif; font-size: 16px; cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); transition: background-color 0.3s, box-shadow 0.3s;";
+    
             resetButton.onclick = function() {
-          // Reset the dropdown to 'All'
-          document.getElementById('dropdown1').value = 'All';
-
-          // Remove any existing GeoJSON layer
-          if (currentGeoJsonLayer) {
-              map.removeLayer(currentGeoJsonLayer);
-          }
-
-          // Reload 'All' dataset
-          addGeoJsonToMap(datasets[0].url, datasets[0].name);
-
-          // Reset view to default view for 'All'
-          map.setView([35.9940, -78.8986], 10); // Adjust the coordinates and zoom level if necessary
-      };
-      div.appendChild(resetButton);
-      return div;
-  };
-  
-        document.addEventListener('DOMContentLoaded', function() {
-          map = L.map('map-placeholder').setView([35.9940, -78.8986], 10); // Initial view setup
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          }).addTo(map);
-
-          // Load 'All' dataset by default
-          addGeoJsonToMap(datasets[0].url, datasets[0].name); // Assumes 'All' is the first in the datasets array
-
-          resetMapControl.addTo(map);
-  
-          datasets.forEach(function(dataset) {
-              addGeoJsonToMap(dataset.url, dataset.name);
-          });
-  
-          resetMapControl.addTo(map);
-  
-          var dropdown = document.getElementById('dropdown1');
-          datasets.forEach(function(dataset) {
-              var option = document.createElement('option');
-              option.value = dataset.name;
-              option.textContent = dataset.name.charAt(0).toUpperCase() + dataset.name.slice(1);
-              dropdown.appendChild(option);
-          });
-  
-          var savedLanguage = localStorage.getItem('preferredLanguage');
-          if (savedLanguage) {
-              document.getElementById('language-dropdown').value = savedLanguage;
-              switchLanguage(savedLanguage);
-          }
-      });
-  
-      document.getElementById('dropdown1').addEventListener('change', function() {
-          var selectedZone = this.value;
-          var selectedDataset = datasets.find(dataset => dataset.name === selectedZone);
-          if (selectedDataset) {
-              addGeoJsonToMap(selectedDataset.url, selectedDataset.name);
-          } else {
-              console.error('No matching dataset found for:', selectedZone);
-          }
-      });
+                document.getElementById('dropdown1').value = 'All';
+                if (currentGeoJsonLayer) {
+                    map.removeLayer(currentGeoJsonLayer);
+                }
+                addGeoJsonToMap(datasets[0].url, datasets[0].name);
+                map.setView([36.0555, -78.8986], 10);
+            };
+    
+            div.appendChild(resetButton);
+            return div;
+        };
 
         var savedLanguage = localStorage.getItem('preferredLanguage');
         if (savedLanguage) {
