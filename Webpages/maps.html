@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="mapData.js"></script>
+<script src="schoolCoordinates.js"></script>
 <style>
     body, h1, p {
         margin: 0;
@@ -431,47 +432,44 @@
 
     <script>
         var map;
-        var currentGeoJsonLayer;
-    
-        function addGeoJsonToMap(geoJsonPath, name) {
-    fetch(geoJsonPath).then(function(response) {
-        return response.json();
-    }).then(function(json) {
-        if (currentGeoJsonLayer) {
-            map.removeLayer(currentGeoJsonLayer);
-        }
-        currentGeoJsonLayer = L.geoJSON(json, {
-            style: function(feature) {
-                // Apply a special style only for the 'All' dataset
-                if (name === 'All') {
-                    return {
-                        color: "#00467F", // White outline color
-                        weight: 3,        // Bold line weight
-                        fillOpacity: 0.2    // No fill
-                    };
-                }
-                // No style for other datasets, use Leaflet's default
-                return {};
+var currentGeoJsonLayer;
+var schoolMarker; // Global variable to hold the school marker
+
+function addGeoJsonToMap(geoJsonPath, name) {
+    return new Promise((resolve, reject) => {
+        fetch(geoJsonPath).then(function(response) {
+            return response.json();
+        }).then(function(json) {
+            if (currentGeoJsonLayer) {
+                map.removeLayer(currentGeoJsonLayer);
+            }
+            currentGeoJsonLayer = L.geoJSON(json, {
+                style: function(feature) {
+                    return name === 'All' ? { color: "#00467F", weight: 3, fillOpacity: 0.2 } : { weight: 3, fillOpacity: 0.2 };
+                },
+                onEachFeature: function(feature, layer) {
+                    if (feature.geometry.type === "Point") {
+                        map.setView(layer.getBounds().getCenter(), 10);
+                    } else {
+                        map.fitBounds(layer.getBounds());
+                    }
                 }
             }).addTo(map);
-
-                map.fitBounds(currentGeoJsonLayer.getBounds());
-
+            resolve();
         }).catch(function(error) {
             console.error('Error loading GeoJSON for ' + name, error);
+            reject(error);
         });
-    }
-    
-        document.addEventListener('DOMContentLoaded', function() {
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
     map = L.map('map-placeholder');
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Load 'All' dataset by default and adjust the view based on its bounds
     addGeoJsonToMap(datasets[0].url, datasets[0].name);
-
-    resetMapControl.addTo(map);
 
     var dropdown = document.getElementById('dropdown1');
     datasets.forEach(function(dataset) {
@@ -481,81 +479,48 @@
         dropdown.appendChild(option);
     });
 
-    // Set the dropdown to 'All' by default
     document.getElementById('dropdown1').value = 'All';
 
-    var savedLanguage = localStorage.getItem('preferredLanguage');
-    if (savedLanguage) {
-        document.getElementById('language-dropdown').value = savedLanguage;
-        switchLanguage(savedLanguage);
-    }
-});
-
-    document.getElementById('dropdown1').addEventListener('change', function() {
-        var selectedZone = this.value;
-        var selectedDataset = datasets.find(dataset => dataset.name === selectedZone);
-        if (selectedDataset) {
-            addGeoJsonToMap(selectedDataset.url, selectedDataset.name);
-        } else {
-            console.error('No matching dataset found for:', selectedZone);
-        }
-    });
-
+    // Reset Map Control
     var resetMapControl = L.control({position: 'topright'});
     resetMapControl.onAdd = function(map) {
         var div = L.DomUtil.create('div', 'reset-map-control');
         var resetButton = document.createElement('button');
         resetButton.innerText = 'Reset Map';
-        resetButton.style = "background-color: #663399; color: white; border: none; border-radius: 5px; padding: 10px 15px; font-family: 'Lato', sans-serif; font-size: 16px; cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); transition: background-color 0.3s, box-shadow 0.3s;";
-
+        resetButton.setAttribute('style', "background-color: #663399; color: white; border: none; border-radius: 5px; padding: 10px 15px; font-family: 'Lato', sans-serif; font-size: 16px; cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); transition: background-color 0.3s, box-shadow 0.3s;");
         resetButton.onclick = function() {
-            // Reset the dropdown to 'All'
             document.getElementById('dropdown1').value = 'All';
-
-            // Reload 'All' dataset and adjust the view based on its bounds
+            if (schoolMarker) {
+                map.removeLayer(schoolMarker);
+            }
             addGeoJsonToMap(datasets[0].url, datasets[0].name);
         };
-
         div.appendChild(resetButton);
         return div;
     };
+    resetMapControl.addTo(map);
+});
 
-    function addGeoJsonToMap(geoJsonPath, name) {
-    fetch(geoJsonPath).then(function(response) {
-        return response.json();
-    }).then(function(json) {
-        if (currentGeoJsonLayer) {
-            map.removeLayer(currentGeoJsonLayer);
-        }
-        currentGeoJsonLayer = L.geoJSON(json, {
-            style: function(feature) {
-                // Apply a special style only for the 'All' dataset
-                if (name === 'All') {
-                    return {
-                        color: "#00467F", // Durham blue outline
-                        weight: 3,        // Bold line weight
-                        fillOpacity: 0.2    // Light fill
-                    };
-                }
-                // No style for other datasets, use Leaflet's default
-                return {
-                    color: "#00467F", // Durham blue
-                    weight: 3,        // Bold line weight
-                    fillOpacity: 0.2    // Light fill
-                };
-            },
-            onEachFeature: function(feature, layer) {
-                if (feature.geometry.type === "Point") {
-                    map.setView(layer.getBounds().getCenter(), 10);
-                } else {
-                    map.fitBounds(layer.getBounds()); // Fit to bounds for other types
-                }
+document.getElementById('dropdown1').addEventListener('change', function() {
+    var selectedZone = this.value;
+    var selectedDataset = datasets.find(dataset => dataset.name === selectedZone);
+
+    // Remove any existing school marker
+    if (schoolMarker) {
+        map.removeLayer(schoolMarker);
+    }
+
+    if (selectedDataset) {
+        addGeoJsonToMap(selectedDataset.url, selectedDataset.name).then(() => {
+            const schoolData = schoolCoordinates.find(school => school.name === selectedZone);
+            if (schoolData && schoolData.coords) {
+                schoolMarker = L.marker(schoolData.coords, { icon: new L.Icon.Default() }).addTo(map);
             }
-        }).addTo(map);
-    }).catch(function(error) {
-        console.error('Error loading GeoJSON for ' + name, error);
-    });
-}
+        });
+    } else {
+        console.error('No matching dataset found for:', selectedZone);
+    }
+});
 
         var savedLanguage = localStorage.getItem('preferredLanguage');
         if (savedLanguage) {

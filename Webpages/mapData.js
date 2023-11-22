@@ -24,7 +24,7 @@ var datasets = [
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2021/map_data/C.C.%20Spaulding%20Elementary.geojson'
     },
     {
-        name: 'City of Medicine Academy',
+        name: 'City of Medicine Academy [Magnet]',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/City%20of%20Medicine%20Academy.geojson'
     },
     {
@@ -45,7 +45,7 @@ var datasets = [
     },
     {
         name: 'Durham School of Technology [Magnet]',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/blob/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Durham%20School%20of%20Technology.geojson'
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Durham%20School%20of%20Technology.geojson'
     },
     {
         name: 'Easley Elementary',
@@ -133,7 +133,7 @@ var datasets = [
     },
     {
         name: 'Mangum Elementary',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/blob/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Mangum%20Elementary.geojson'
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Mangum%20Elementary.geojson'
     },
     {
         name: 'Merrick-Moore Elementary',
@@ -192,7 +192,7 @@ var datasets = [
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Shepard%20Middle.geojson'
     },
     {
-        name: 'Sherwood Githens',
+        name: 'Sherwood Githens Middle',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Sherwood%20Githens%20Middle.geojson'
     },
     {
