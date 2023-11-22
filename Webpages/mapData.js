@@ -1,7 +1,7 @@
 var datasets = [
     {
         name: 'All',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/53a9495bcb2e9f2561e2be859ba66dfe2317c703/data/2021/map_data/All.geojson'
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/J.D.%20Clement%20Early%20College.geojson'
     }, 
     {
         name: 'Bethesda Elementary',
@@ -123,10 +123,10 @@ var datasets = [
         name: 'Lowe\'s Grove Middle',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2021/map_data/Lowes%20Grove%20Middle.geojson'
     },
-    {
-        name: 'Lyons Farm Elementary',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2021/map_data/Lowes%20Grove%20Middle.geojson'
-    },
+    //{
+        //name: 'Lyons Farm Elementary',
+        //url: ''
+    //},
     {
         name: 'Lucas Middle',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Lucas%20Middle.geojson'
