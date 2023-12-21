@@ -1,4 +1,4 @@
-var datasets = [
+var geospatial = [
     {
         name: 'After-School Care Programs',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/d4bc24e3a1569dc08faf7bc3abd75cfc947210ec/data/Geospatial%20Variables/After-School%20Care%20Programs.csv'
@@ -24,7 +24,7 @@ var datasets = [
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/04c2a4dd2c18260bb6bb83595c7bd9a8e8fb7e88/data/2021/Community%20Sports.csv'
     }, 
     {
-        name: 'Farmers\ Markets',
+        name: 'Farmers Markets',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b55b57a5adc27afe01638af94f783a28e91f9d26/data/2022/url_Farmer\'s%20Markets.csv'
     }, 
     {
