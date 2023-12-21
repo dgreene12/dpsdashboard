@@ -513,28 +513,31 @@
     var selectedDataset = datasets.find(dataset => dataset.name === selectedZone);
 
     if (selectedDataset) {
-        addGeoJsonToMap(selectedDataset.url, selectedDataset.name).then(() => {
-            const schoolData = schoolCoordinates.find(school => school.name === selectedZone);
-            if (schoolData && schoolData.coords) {
-                // Reinitialize the schoolMarker if it doesn't exist or has been removed
-                if (!schoolMarker || !map.hasLayer(schoolMarker)) {
-                    schoolMarker = L.marker(schoolData.coords, { icon: new L.Icon.Default() }).addTo(map);
-                } else {
-                    // Move the existing marker to the new coordinates
-                    schoolMarker.setLatLng(schoolData.coords);
-                }
-            }
-        });
+        // This will not affect the GeoJSON layer added by dropdown 2
+        addGeoJsonToMap(selectedDataset.url, selectedDataset.name);
+        updateSchoolMarker(selectedZone);
     } else {
         console.error('No matching dataset found for:', selectedZone);
     }
 }
 
-    function handleVariableChange() {
+    function updateSchoolMarker(zoneName) {
+        const schoolData = schoolCoordinates.find(school => school.name === zoneName);
+        if (schoolData && schoolData.coords) {
+            if (!schoolMarker || !map.hasLayer(schoolMarker)) {
+                schoolMarker = L.marker(schoolData.coords, { icon: new L.Icon.Default() }).addTo(map);
+            } else {
+                schoolMarker.setLatLng(schoolData.coords);
+            }
+        }
+    }
+
+function handleVariableChange() {
     var selectedVariable = this.value;
     var selectedDataset = geospatial.find(item => item.name === selectedVariable);
 
     if (selectedDataset) {
+        // This will add or update the GeoJSON layer without affecting the schoolMarker
         loadCsvDataOnMap(selectedDataset.url);
     } else {
         console.error('No matching geospatial dataset found for:', selectedVariable);
@@ -576,15 +579,14 @@ function csvToGeoJson(csvText) {
     };
 }
 
-    function loadCsvDataOnMap(url) {
+function loadCsvDataOnMap(url) {
     fetch(url)
         .then(response => response.text())
         .then(csvText => {
             var geoJsonData = csvToGeoJson(csvText);
-            if (currentGeoJsonLayer) {
-                currentGeoJsonLayer.clearLayers();
-            }
-            currentGeoJsonLayer = L.geoJSON(geoJsonData, {
+            // Instead of removing the existing GeoJSON layer, create a new one
+            // and add it to the map. This way, the existing layers remain intact.
+            L.geoJSON(geoJsonData, {
                 pointToLayer: function(feature, latlng) {
                     return L.marker(latlng).bindPopup(feature.properties.name);
                 }
@@ -592,6 +594,7 @@ function csvToGeoJson(csvText) {
         })
         .catch(error => console.error('Error loading CSV data:', error));
 }
+
 
     function switchLanguage(lang) {
         localStorage.setItem('preferredLanguage', lang);
