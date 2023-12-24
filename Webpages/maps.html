@@ -433,6 +433,7 @@
     var map;
     var currentGeoJsonLayer;
     var schoolMarker;
+    var currentMarkers = [];
 
     document.addEventListener('DOMContentLoaded', function() {
         initializeMap();
@@ -579,22 +580,33 @@ function csvToGeoJson(csvText) {
     };
 }
 
-function loadCsvDataOnMap(url) {
-    fetch(url)
-        .then(response => response.text())
-        .then(csvText => {
-            var geoJsonData = csvToGeoJson(csvText);
-            // Instead of removing the existing GeoJSON layer, create a new one
-            // and add it to the map. This way, the existing layers remain intact.
-            L.geoJSON(geoJsonData, {
-                pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng).bindPopup(feature.properties.name);
-                }
-            }).addTo(map);
-        })
-        .catch(error => console.error('Error loading CSV data:', error));
-}
+    function loadCsvDataOnMap(url) {
+        fetch(url)
+            .then(response => response.text())
+            .then(csvText => {
+                var geoJsonData = csvToGeoJson(csvText);
 
+                // Clear existing markers before adding new ones
+                clearMarkers();
+
+                L.geoJSON(geoJsonData, {
+                    pointToLayer: function(feature, latlng) {
+                        var marker = L.marker(latlng).bindPopup(feature.properties.name);
+                        currentMarkers.push(marker); // Store the marker
+                        return marker;
+                    }
+                }).addTo(map);
+            })
+            .catch(error => console.error('Error loading CSV data:', error));
+    }
+
+    function clearMarkers() {
+        // Remove each marker from map and clear the array
+        currentMarkers.forEach(function(marker) {
+            map.removeLayer(marker);
+        });
+        currentMarkers = [];
+    }
 
     function switchLanguage(lang) {
         localStorage.setItem('preferredLanguage', lang);
