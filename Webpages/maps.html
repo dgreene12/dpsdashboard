@@ -523,13 +523,23 @@
     }
 }
 
+    var smallIcon = L.icon({
+        iconUrl: 'https://i.imgur.com/Y9O61u7.png',
+        iconSize: [40, 40], // Size of the icon
+        iconAnchor: [12, 25], // Point of the icon which will correspond to marker's location
+        popupAnchor: [0, -25] // Point from which the popup should open relative to the iconAnchor
+    });
+
     function updateSchoolMarker(zoneName) {
         const schoolData = schoolCoordinates.find(school => school.name === zoneName);
         if (schoolData && schoolData.coords) {
             if (!schoolMarker || !map.hasLayer(schoolMarker)) {
-                schoolMarker = L.marker(schoolData.coords, { icon: new L.Icon.Default() }).addTo(map);
+                // Use the custom icon when creating a new marker
+                schoolMarker = L.marker(schoolData.coords, { icon: smallIcon }).addTo(map);
             } else {
+                // Update the marker's position and icon
                 schoolMarker.setLatLng(schoolData.coords);
+                schoolMarker.setIcon(smallIcon);
             }
         }
     }
