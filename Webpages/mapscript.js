@@ -112,17 +112,16 @@
         }
     }
 
-function handleVariableChange() {
-    var selectedVariable = this.value;
-    var selectedDataset = geospatial.find(item => item.name === selectedVariable);
-
-    if (selectedDataset) {
-        // This will add or update the GeoJSON layer without affecting the schoolMarker
-        loadCsvDataOnMap(selectedDataset.url);
-    } else {
-        console.error('No matching geospatial dataset found for:', selectedVariable);
+    function handleVariableChange() {
+        var selectedVariableName = this.value;
+        var selectedVariable = geospatial.find(item => item.name === selectedVariableName);
+    
+        if (selectedVariable) {
+            loadCsvDataOnMap(selectedVariable.url, selectedVariable.iconUrl);
+        } else {
+            console.error('No matching geospatial dataset found for:', selectedVariableName);
+        }
     }
-}
 
 function csvToGeoJson(csvText) {
     var lines = csvText.split("\n");
@@ -159,25 +158,31 @@ function csvToGeoJson(csvText) {
     };
 }
 
-    function loadCsvDataOnMap(url) {
-        fetch(url)
-            .then(response => response.text())
-            .then(csvText => {
-                var geoJsonData = csvToGeoJson(csvText);
+function loadCsvDataOnMap(url, iconUrl) {
+    fetch(url)
+        .then(response => response.text())
+        .then(csvText => {
+            var geoJsonData = csvToGeoJson(csvText);
 
-                // Clear existing markers before adding new ones
-                clearMarkers();
+            // Clear existing markers before adding new ones
+            clearMarkers();
 
-                L.geoJSON(geoJsonData, {
-                    pointToLayer: function(feature, latlng) {
-                        var marker = L.marker(latlng).bindPopup(feature.properties.name);
-                        currentMarkers.push(marker); // Store the marker
-                        return marker;
-                    }
-                }).addTo(map);
-            })
-            .catch(error => console.error('Error loading CSV data:', error));
-    }
+            L.geoJSON(geoJsonData, {
+                pointToLayer: function(feature, latlng) {
+                    var icon = L.icon({
+                        iconUrl: iconUrl,
+                        iconSize: [25, 25], // You can adjust the size
+                        // ... other icon properties ...
+                    });
+
+                    var marker = L.marker(latlng, { icon: icon }).bindPopup(feature.properties.name);
+                    currentMarkers.push(marker);
+                    return marker;
+                }
+            }).addTo(map);
+        })
+        .catch(error => console.error('Error loading CSV data:', error));
+}
 
     function clearMarkers() {
         // Remove each marker from map and clear the array
