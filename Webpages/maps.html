@@ -500,6 +500,7 @@
         document.getElementById('dropdown1').value = 'All';
         document.getElementById('dropdown2').value = '';
         addGeoJsonToMap(datasets[0].url, datasets[0].name);
+        clearMarkers();
     }
     function setupEventListeners() {
         document.getElementById('dropdown1').addEventListener('change', handleSchoolZoneChange);
