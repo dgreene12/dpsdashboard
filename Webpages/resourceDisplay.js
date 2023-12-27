@@ -26,12 +26,12 @@ function updateResourcesList(resources, variableName) {
         return;
     }
 
-    var listHTML = '<ul>';
+    var tableHTML = `<table class="resource-table"><thead><tr><th>Name</th><th>Address</th><th>URL</th><th>Distance (miles)</th></tr></thead><tbody>`;
     resources.forEach(function(resource) {
-        listHTML += `<li>${variableName} at (${resource.lat.toFixed(4)}, ${resource.lon.toFixed(4)}) - ${resource.distance.toFixed(2)} miles away</li>`;
+        tableHTML += `<tr><td>${resource.name}</td><td>${resource.address}</td><td><a href="${resource.url}" target="_blank">Link</a></td><td>${resource.distance.toFixed(2)}</td></tr>`;
     });
-    listHTML += '</ul>';
-    resourcesList.innerHTML = listHTML;
+    tableHTML += '</tbody></table>';
+    resourcesList.innerHTML = tableHTML;
 }
 
 // Main function to display resources near a selected school
@@ -55,6 +55,9 @@ function displayResources(schoolName, variableName) {
             var headers = lines[0].split(",");
             var latIndex = headers.indexOf("LATITUDE");
             var lonIndex = headers.indexOf("LONGITUDE");
+            var nameIndex = headers.indexOf("name");
+            var addressIndex = headers.indexOf("ADDRESS");
+            var urlIndex = headers.indexOf("URL");
             var resourcesWithinDistance = [];
 
             for (var i = 1; i < lines.length; i++) {
@@ -65,14 +68,39 @@ function displayResources(schoolName, variableName) {
                     if (!isNaN(lat) && !isNaN(lon)) {
                         var distance = calculateDistance(schoolData.coords[0], schoolData.coords[1], lat, lon);
                         if (distance <= 5) {
-                            resourcesWithinDistance.push({ lat, lon, distance });
+                            var name = currentline[nameIndex];
+                            var address = currentline[addressIndex];
+                            var url = currentline[urlIndex];
+                            resourcesWithinDistance.push({ name, address, url, lat, lon, distance });
                         }
                     }
                 }
             }
+
+            // Sort resources by distance
+            resourcesWithinDistance.sort((a, b) => a.distance - b.distance);
+
             updateResourcesList(resourcesWithinDistance, variableName);
         })
         .catch(error => console.error('Error loading CSV data:', error));
+}
+
+// Function to update the resources list in the "Selected Variable Resources" box
+function updateResourcesList(resources, variableName) {
+    var resourcesList = document.getElementById('selected-variable-resources-list');
+    resourcesList.innerHTML = ''; // Clear existing list
+
+    if (resources.length === 0) {
+        resourcesList.innerHTML = `<p>No ${variableName} found within 5 miles.</p>`;
+        return;
+    }
+
+    var tableHTML = `<table><tr><th>Name</th><th>Address</th><th>URL</th><th>Distance (miles)</th></tr>`;
+    resources.forEach(function(resource) {
+        tableHTML += `<tr><td>${resource.name}</td><td>${resource.address}</td><td><a href="${resource.url}" target="_blank">Link</a></td><td>${resource.distance.toFixed(2)}</td></tr>`;
+    });
+    tableHTML += '</table>';
+    resourcesList.innerHTML = tableHTML;
 }
 
 // Event listener for dropdown changes

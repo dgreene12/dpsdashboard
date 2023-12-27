@@ -103,10 +103,9 @@
     #selected-variable-resources-list {
         width: 100%; /* or a specific pixel value, or percentage */
         min-height: 200px; /* adjust as needed */
-        max-height: 400px; /* adjust as needed */
+        max-height: 300px; /* adjust as needed */
         overflow-y: auto; /* adds a scrollbar if content overflows */
         padding: 10px; /* optional, for internal spacing */
-        border: 1px solid #ccc; /* optional, for visibility */
     }
     .statistics {
         display: flex;
@@ -271,13 +270,22 @@
 
     .box {
         background-color: #fff;
-        flex-basis: calc(33.333% - 20px); /* subtracting gap size */
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
-        border: 1px solid black; /* This will add a black outline */
+        border: 1px solid black;
     }
+
+    /* Adjusting the widths of the boxes */
+    .box:first-child {
+        flex-basis: 33%; /* Measurement box */
+    }
+
+    .box:last-child {
+        flex-basis: 66%; /* Selected Variable Resources box */
+    }
+    
     .sleek-dropdown {
         -webkit-appearance: none;  /* Removes default Chrome and Safari styling */
         -moz-appearance: none;     /* Removes default Firefox styling */
@@ -419,18 +427,6 @@
       <div id="selected-variable-resources-list">
     </div>
   </div>
-    <div class="box">
-      <h3>Icon Legend</h3>
-      <div class="icon-legend-grid">
-            <img src="path_to_icon_for_option1.png" alt="Option 1" />
-            <span data-description="option1">Option 1 Description</span>
-            <!-- Second item -->
-            <img src="path_to_icon_for_option2.png" alt="Option 2" />
-            <span data-description="option2">Option 2 Description</span>
-        </div>
-        <!-- Repeat for other options as needed -->
-      </div>
-    </div>
   </div>
   
 

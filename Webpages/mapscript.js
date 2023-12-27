@@ -71,6 +71,7 @@
         addGeoJsonToMap(datasets[0].url, datasets[0].name);
         clearMarkers();
         markerClusterGroup.clearLayers();
+        document.getElementById('selected-variable-resources-list').innerHTML = '';
     }
     function setupEventListeners() {
         document.getElementById('dropdown1').addEventListener('change', handleSchoolZoneChange);
