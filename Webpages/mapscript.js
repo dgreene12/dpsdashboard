@@ -2,6 +2,7 @@
     var currentGeoJsonLayer;
     var schoolMarker;
     var currentMarkers = [];
+    var markerClusterGroup = L.markerClusterGroup();
 
     document.addEventListener('DOMContentLoaded', function() {
         initializeMap();
@@ -69,10 +70,13 @@
         document.getElementById('dropdown2').value = '';
         addGeoJsonToMap(datasets[0].url, datasets[0].name);
         clearMarkers();
+        markerClusterGroup.clearLayers();
     }
     function setupEventListeners() {
         document.getElementById('dropdown1').addEventListener('change', handleSchoolZoneChange);
         document.getElementById('dropdown2').addEventListener('change', handleVariableChange);
+        document.getElementById('dropdown1').addEventListener('change', handleDropdownChange);
+        document.getElementById('dropdown2').addEventListener('change', handleDropdownChange);
         document.getElementById('language-dropdown').addEventListener('change', function() {
             switchLanguage(this.value);
         });
@@ -166,6 +170,7 @@ function loadCsvDataOnMap(url, iconUrl) {
 
             // Clear existing markers before adding new ones
             clearMarkers();
+            markerClusterGroup.clearLayers();
 
             L.geoJSON(geoJsonData, {
                 pointToLayer: function(feature, latlng) {
@@ -179,7 +184,9 @@ function loadCsvDataOnMap(url, iconUrl) {
                     currentMarkers.push(marker);
                     return marker;
                 }
-            }).addTo(map);
+            }).addTo(markerClusterGroup); // Add markers to the cluster group
+
+            markerClusterGroup.addTo(map); // Add the cluster group to the map
         })
         .catch(error => console.error('Error loading CSV data:', error));
 }
@@ -189,9 +196,11 @@ function loadCsvDataOnMap(url, iconUrl) {
         currentMarkers.forEach(function(marker) {
             map.removeLayer(marker);
         });
+        markerClusterGroup.clearLayers();
         currentMarkers = [];
     }
 
+    
     function switchLanguage(lang) {
         localStorage.setItem('preferredLanguage', lang);
         document.querySelectorAll('[data-translate]').forEach(function(elem) {

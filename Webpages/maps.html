@@ -6,11 +6,15 @@
 <title>Visualizing Durham Public School Communities</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/MarkerCluster.Default.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/MarkerCluster.css"/>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="mapscript.js"></script>
 <script src="mapvariabledata.js"></script>
 <script src="mapData.js"></script>
 <script src="schoolCoordinates.js"></script>
+<script src="resourceDisplay.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/leaflet.markercluster.js"></script>
 <style>
     body, h1, p {
         margin: 0;
@@ -96,6 +100,14 @@
         color: #FFFFFF; /* White color for active state */
     }
 
+    #selected-variable-resources-list {
+        width: 100%; /* or a specific pixel value, or percentage */
+        min-height: 200px; /* adjust as needed */
+        max-height: 400px; /* adjust as needed */
+        overflow-y: auto; /* adds a scrollbar if content overflows */
+        padding: 10px; /* optional, for internal spacing */
+        border: 1px solid #ccc; /* optional, for visibility */
+    }
     .statistics {
         display: flex;
         justify-content: space-around;
@@ -404,8 +416,9 @@
     </div>
     <div class="box">
       <h3>Selected Variable Resources</h3>
-      <p>Description for box 2...</p>
+      <div id="selected-variable-resources-list">
     </div>
+  </div>
     <div class="box">
       <h3>Icon Legend</h3>
       <div class="icon-legend-grid">
@@ -431,6 +444,7 @@
     </div>
 
     <script src="mapscript.js"></script>
+    <script src="resourceDisplay.js"></script>
 
 </body>
 </html>
