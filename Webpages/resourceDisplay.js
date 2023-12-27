@@ -16,24 +16,6 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
     return R * c; // Distance in miles
 }
 
-// Function to update the resources list in the "Selected Variable Resources" box
-function updateResourcesList(resources, variableName) {
-    var resourcesList = document.getElementById('selected-variable-resources-list');
-    resourcesList.innerHTML = ''; // Clear existing list
-
-    if (resources.length === 0) {
-        resourcesList.innerHTML = `<p>No ${variableName} found within 5 miles.</p>`;
-        return;
-    }
-
-    var tableHTML = `<table class="resource-table"><thead><tr><th>Name</th><th>Address</th><th>URL</th><th>Distance (miles)</th></tr></thead><tbody>`;
-    resources.forEach(function(resource) {
-        tableHTML += `<tr><td>${resource.name}</td><td>${resource.address}</td><td><a href="${resource.url}" target="_blank">Link</a></td><td>${resource.distance.toFixed(2)}</td></tr>`;
-    });
-    tableHTML += '</tbody></table>';
-    resourcesList.innerHTML = tableHTML;
-}
-
 // Main function to display resources near a selected school
 function displayResources(schoolName, variableName) {
     var schoolData = schoolCoordinates.find(school => school.name === schoolName);
@@ -42,6 +24,7 @@ function displayResources(schoolName, variableName) {
         return;
     }
 
+    var actualSchoolName = schoolData.name; // Get the actual school name
     var variableData = geospatial.find(variable => variable.name === variableName);
     if (!variableData) {
         console.error('Variable not found:', variableName);
@@ -77,29 +60,26 @@ function displayResources(schoolName, variableName) {
                 }
             }
 
-            // Sort resources by distance
             resourcesWithinDistance.sort((a, b) => a.distance - b.distance);
-
-            updateResourcesList(resourcesWithinDistance, variableName);
+            updateResourcesList(resourcesWithinDistance, variableName, actualSchoolName);
         })
         .catch(error => console.error('Error loading CSV data:', error));
 }
 
-// Function to update the resources list in the "Selected Variable Resources" box
-function updateResourcesList(resources, variableName) {
+function updateResourcesList(resources, variableName, actualSchoolName) {
     var resourcesList = document.getElementById('selected-variable-resources-list');
     resourcesList.innerHTML = ''; // Clear existing list
 
     if (resources.length === 0) {
-        resourcesList.innerHTML = `<p>No ${variableName} found within 5 miles.</p>`;
+        resourcesList.innerHTML = `<p>No ${variableName} found within 5 miles of ${actualSchoolName}.</p>`;
         return;
     }
 
-    var tableHTML = `<table><tr><th>Name</th><th>Address</th><th>URL</th><th>Distance (miles)</th></tr>`;
+    var tableHTML = `<table class="resource-table"><thead><tr><th>Name</th><th>Address</th><th>URL</th><th>Distance from ${actualSchoolName}</th></tr></thead><tbody>`;
     resources.forEach(function(resource) {
-        tableHTML += `<tr><td>${resource.name}</td><td>${resource.address}</td><td><a href="${resource.url}" target="_blank">Link</a></td><td>${resource.distance.toFixed(2)}</td></tr>`;
+        tableHTML += `<tr><td>${resource.name}</td><td>${resource.address}</td><td><a href="${resource.url}" target="_blank">Link</a></td><td>${resource.distance.toFixed(2)} miles</td></tr>`;
     });
-    tableHTML += '</table>';
+    tableHTML += '</tbody></table>';
     resourcesList.innerHTML = tableHTML;
 }
 

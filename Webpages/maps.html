@@ -363,6 +363,42 @@
     .bold-text {
         font-weight: bolder;
     }
+
+    #selected-variable-resources-list table {
+        width: 100%; /* Full width of its container */
+        border-collapse: collapse; /* Removes gaps between borders */
+        text-align: left; /* Aligns text to the left */
+        margin-top: 20px; /* Adds space above the table */
+    }
+
+    #selected-variable-resources-list th, 
+    #selected-variable-resources-list td {
+        border: 1px solid #ddd; /* Adds a light grey border */
+        padding: 8px; /* Adds padding inside each cell */
+    }
+
+    #selected-variable-resources-list th {
+        background-color: #663399; /* Navy blue header background */
+        color: white; /* White text for headers */
+        font-weight: bold; /* Makes header text bold */
+    }
+
+    #selected-variable-resources-list tr:nth-child(even) {
+        background-color: #f2f2f2; /* Adds a zebra-striping effect */
+    }
+
+    #selected-variable-resources-list tr:hover {
+        background-color: #ddd; /* Changes background on row hover */
+    }
+
+    #selected-variable-resources-list a {
+        color: #663399; /* Styles links to match the header color */
+        text-decoration: none; /* Removes underline from links */
+    }
+
+    #selected-variable-resources-list a:hover {
+        text-decoration: underline; /* Adds underline on hover for links */
+    }
 </style>
 <body>
 <div class="header">
