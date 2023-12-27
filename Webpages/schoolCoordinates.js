@@ -7,6 +7,7 @@ var schoolCoordinates = [
     { name: "City of Medicine Academy [Magnet]", coords: [36.03812, -78.90232] },
     { name: "Club Boulevard Elementary", coords: [36.01894, -78.89716] },
     { name: "Creekside Elementary", coords: [35.9287, -78.9935] },
+    { name: "Durham Performance Learning Center [Magnet]", coords: [35.9898, -78.8788] },
     { name: "Durham School of the Arts [Magnet]", coords: [36.00297, -78.9059] },
     { name: "Durham School of Technology [Magnet]", coords: [35.95339276, -78.90357409] },
     { name: "E.K. Powe Elementary", coords: [36.0129, -78.92254] },

@@ -37,7 +37,7 @@ var datasets = [
     },
     {
         name: 'Durham Performance Learning Center [Magnet]',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Durham%20Performance%20Learning%20Center.geojson'
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/J.D.%20Clement%20Early%20College.geojson'
     },
     {
         name: 'Durham School of the Arts [Magnet]',

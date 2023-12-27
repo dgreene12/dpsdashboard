@@ -93,7 +93,7 @@
 
     var smallIcon = L.icon({
         iconUrl: 'https://i.imgur.com/Y9O61u7.png',
-        iconSize: [40, 40], // Size of the icon
+        iconSize: [50, 50], // Size of the icon
         iconAnchor: [12, 25], // Point of the icon which will correspond to marker's location
         popupAnchor: [0, -25] // Point from which the popup should open relative to the iconAnchor
     });
