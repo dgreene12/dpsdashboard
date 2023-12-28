@@ -71,11 +71,11 @@ function updateResourcesList(resources, variableName, actualSchoolName) {
     resourcesList.innerHTML = ''; // Clear existing list
 
     if (resources.length === 0) {
-        resourcesList.innerHTML = `<p>No ${variableName} found within 5 miles of ${actualSchoolName}.</p>`;
+        resourcesList.innerHTML = `<p>No ${variableName.toLowerCase()} found within 5 miles of ${actualSchoolName}.</p>`;
         return;
     }
 
-    var tableHTML = `<table class="resource-table"><thead><tr><th>Name</th><th>Address</th><th>URL</th><th>Distance from ${actualSchoolName}</th></tr></thead><tbody>`;
+    var tableHTML = `<table class="resource-table"><thead><tr><th>Name</th><th>Address</th><th>Website</th><th>Distance from ${actualSchoolName}</th></tr></thead><tbody>`;
     resources.forEach(function(resource) {
         tableHTML += `<tr><td>${resource.name}</td><td>${resource.address}</td><td><a href="${resource.url}" target="_blank">Link</a></td><td>${resource.distance.toFixed(2)} miles</td></tr>`;
     });

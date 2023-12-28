@@ -128,40 +128,41 @@
         }
     }
 
-function csvToGeoJson(csvText) {
-    var lines = csvText.split("\n");
-    var result = [];
-    var headers = lines[0].split(",");
-    var latIndex = headers.indexOf("LATITUDE");
-    var lngIndex = headers.indexOf("LONGITUDE");
-    var nameIndex = headers.indexOf("name");
-
-    for (var i = 1; i < lines.length; i++) {
-        var obj = {};
-        var currentline = lines[i].split(",");
-
-        if (currentline.length > latIndex && currentline.length > lngIndex) {
-            var latitude = parseFloat(currentline[latIndex]);
-            var longitude = parseFloat(currentline[lngIndex]);
-            var name = currentline[nameIndex];
-
-            if (!isNaN(latitude) && !isNaN(longitude)) {
-                obj["type"] = "Feature";
-                obj["properties"] = { "name": name };
-                obj["geometry"] = {
-                    "type": "Point",
-                    "coordinates": [longitude, latitude]
-                };
-                result.push(obj);
+    function csvToGeoJson(csvText) {
+        var lines = csvText.split("\n");
+        var result = [];
+        var headers = lines[0].split(",");
+    
+        var latIndex = headers.indexOf("LATITUDE");
+        var lngIndex = headers.indexOf("LONGITUDE");
+        var nameIndex = headers.indexOf("name");
+    
+        for (var i = 1; i < lines.length; i++) {
+            var obj = {};
+            var currentline = lines[i].split(",");
+    
+            if (currentline.length > latIndex && currentline.length > lngIndex) {
+                var latitude = parseFloat(currentline[latIndex]);
+                var longitude = parseFloat(currentline[lngIndex]);
+                var name = currentline[nameIndex];
+    
+                if (!isNaN(latitude) && !isNaN(longitude)) {
+                    obj["type"] = "Feature";
+                    obj["properties"] = { "name": name };
+                    obj["geometry"] = {
+                        "type": "Point",
+                        "coordinates": [longitude, latitude]
+                    };
+                    result.push(obj);
+                }
             }
         }
+    
+        return {
+            "type": "FeatureCollection",
+            "features": result
+        };
     }
-
-    return {
-        "type": "FeatureCollection",
-        "features": result
-    };
-}
 
 function loadCsvDataOnMap(url, iconUrl) {
     fetch(url)
