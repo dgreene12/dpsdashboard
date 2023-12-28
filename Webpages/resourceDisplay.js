@@ -41,11 +41,8 @@ function displayResources(schoolName, variableName) {
             var nameIndex = headers.indexOf("name");
             var addressIndex = headers.indexOf("ADDRESS");
             var urlIndex = headers.indexOf("URL");
+            var typeIndex = variableName === 'Community Arts' ? headers.indexOf("Type") : -1;
             var resourcesWithinDistance = [];
-
-            if (variableName === 'Grocery Stores') {
-                snapIndex = headers.indexOf("SNAP");
-            }
 
             for (var i = 1; i < lines.length; i++) {
                 var currentline = lines[i].split(",");
@@ -58,12 +55,11 @@ function displayResources(schoolName, variableName) {
                             var name = currentline[nameIndex];
                             var address = currentline[addressIndex];
                             var url = currentline[urlIndex];
-                            if (variableName === 'Grocery Stores' && snapIndex !== -1) {
-                                var snap = currentline[snapIndex];
-                                resourcesWithinDistance.push({ name, address, url, lat, lon, distance, snap });
-                            } else {
-                                resourcesWithinDistance.push({ name, address, url, lat, lon, distance });
+                            var resourceObject = { name, address, url, lat, lon, distance };
+                            if (typeIndex !== -1) {
+                                resourceObject.type = currentline[typeIndex]; // Adding type
                             }
+                            resourcesWithinDistance.push(resourceObject);
                         }
                     }
                 }
@@ -85,15 +81,15 @@ function updateResourcesList(resources, variableName, actualSchoolName) {
     }
 
     var showAddress = !(variableName === 'Childcare Centers' || variableName === 'Religious Centers');
-    var showSNAP = variableName === 'Grocery Stores';
+    var showType = variableName === 'Community Arts';
 
     var tableHTML = `<table class="resource-table"><thead><tr><th>Name</th>`;
     if (showAddress) {
         tableHTML += `<th>Address</th>`;
     }
     tableHTML += `<th>Website</th>`;
-    if (showSNAP) {
-        tableHTML += `<th>SNAP</th>`;
+    if (showType) {
+        tableHTML += `<th>Type</th>`;
     }
     tableHTML += `<th>Distance from ${actualSchoolName}</th></tr></thead><tbody>`;
 
@@ -103,8 +99,8 @@ function updateResourcesList(resources, variableName, actualSchoolName) {
             tableHTML += `<td>${resource.address}</td>`;
         }
         tableHTML += `<td><a href="${resource.url}" target="_blank">Link</a></td>`;
-        if (showSNAP) {
-            tableHTML += `<td>${resource.snap}</td>`;
+        if (showType) {
+            tableHTML += `<td>${resource.type}</td>`;
         }
         tableHTML += `<td>${resource.distance.toFixed(2)} miles</td></tr>`;
     });
