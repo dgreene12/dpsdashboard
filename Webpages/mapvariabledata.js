@@ -1,7 +1,7 @@
 var geospatial = [
     {
         name: 'After-School Care Programs',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/d4bc24e3a1569dc08faf7bc3abd75cfc947210ec/data/Geospatial%20Variables/After-School%20Care%20Programs.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/7f44060231812ba788120f716492ff0eb455f9fd/data/2022/url_After-School%20Care%20Programs.csv',
         iconUrl: 'https://i.imgur.com/40O3W9P.png'
     }, 
     //{
@@ -16,7 +16,7 @@ var geospatial = [
     }, 
     {
         name: 'Community and Cultural Centers',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/0db4ca994ccb85827cc962f9648987e84ca6330a/data/2022/url_Community%20%26%20Cultural%20Centers.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/7f44060231812ba788120f716492ff0eb455f9fd/data/2022/url_Community%20%26%20Cultural%20Centers.csv',
         iconUrl: 'https://i.imgur.com/emlFHoy.png'
     }, 
     {
@@ -31,12 +31,12 @@ var geospatial = [
     }, 
     {
         name: 'Farmers Markets',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b55b57a5adc27afe01638af94f783a28e91f9d26/data/2022/url_Farmer%27s%20Markets.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/7f44060231812ba788120f716492ff0eb455f9fd/data/2022/url_Farmer%27s%20Markets.csv',
         iconUrl: 'https://i.imgur.com/a4w7FpQ.png'
     }, 
     {
         name: 'Food Pantries',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/d4bc24e3a1569dc08faf7bc3abd75cfc947210ec/data/Geospatial%20Variables/Food%20Pantries.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/985114f267f7ef5850dd8a98a82ca737d4ce5b71/data/2022/url_Food%20Pantries.csv',
         iconUrl: 'https://i.imgur.com/HCaRLlV.png'
     }, 
     {
@@ -56,17 +56,17 @@ var geospatial = [
     },
     {
         name: 'Hospitals and Clinics',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b55b57a5adc27afe01638af94f783a28e91f9d26/data/2022/url_Hospitals%20and%20Clinics.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/985114f267f7ef5850dd8a98a82ca737d4ce5b71/data/2022/url_Hospitals%20and%20Clinics.csv',
         iconUrl: 'https://i.imgur.com/jW8QP8W.png'
     }, 
     {
         name: 'Libraries',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/d4bc24e3a1569dc08faf7bc3abd75cfc947210ec/data/Geospatial%20Variables/Libraries.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/985114f267f7ef5850dd8a98a82ca737d4ce5b71/data/2022/url_Libraries.csv',
         iconUrl: 'https://i.imgur.com/iUR1oS5.png'
     }, 
     {
         name: 'Parks',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b55b57a5adc27afe01638af94f783a28e91f9d26/data/2022/url_Parks.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/985114f267f7ef5850dd8a98a82ca737d4ce5b71/data/2022/url_Parks.csv',
         iconUrl: 'https://i.imgur.com/MK2uamK.png'
     }, 
     {
