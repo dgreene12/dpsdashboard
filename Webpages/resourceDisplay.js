@@ -41,7 +41,7 @@ function displayResources(schoolName, variableName) {
             var nameIndex = headers.indexOf("name");
             var addressIndex = headers.indexOf("ADDRESS");
             var urlIndex = headers.indexOf("URL");
-            var typeIndex = variableName === 'Community Arts' ? headers.indexOf("Type") : -1;
+            var typeIndex = (variableName === 'Community Arts' || variableName === 'Community Sports') ? headers.indexOf("Type") : -1;
             var resourcesWithinDistance = [];
 
             for (var i = 1; i < lines.length; i++) {
@@ -57,7 +57,7 @@ function displayResources(schoolName, variableName) {
                             var url = currentline[urlIndex];
                             var resourceObject = { name, address, url, lat, lon, distance };
                             if (typeIndex !== -1) {
-                                resourceObject.type = currentline[typeIndex]; // Adding type
+                                resourceObject.type = currentline[typeIndex];
                             }
                             resourcesWithinDistance.push(resourceObject);
                         }
@@ -81,7 +81,7 @@ function updateResourcesList(resources, variableName, actualSchoolName) {
     }
 
     var showAddress = !(variableName === 'Childcare Centers' || variableName === 'Religious Centers');
-    var showType = variableName === 'Community Arts';
+    var showType = (variableName === 'Community Arts' || variableName === 'Community Sports');
 
     var tableHTML = `<table class="resource-table"><thead><tr><th>Name</th>`;
     if (showAddress) {
@@ -100,7 +100,7 @@ function updateResourcesList(resources, variableName, actualSchoolName) {
         }
         tableHTML += `<td><a href="${resource.url}" target="_blank">Link</a></td>`;
         if (showType) {
-            tableHTML += `<td>${resource.type}</td>`;
+            tableHTML += `<td>${resource.type || 'N/A'}</td>`;
         }
         tableHTML += `<td>${resource.distance.toFixed(2)} miles</td></tr>`;
     });
@@ -120,3 +120,4 @@ function handleDropdownChange() {
         displayResources(selectedSchool, selectedVariable);
     }
 }
+

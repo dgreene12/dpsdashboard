@@ -23,7 +23,7 @@ var schoolCoordinates = [
     { name: "Holt Elementary", coords: [36.05675840608633, -78.90643466154617] },
     { name: "Holton Career & Resource Center [Magnet]", coords: [35.98982, -78.87893] },
     { name: "Hope Valley Elementary", coords: [35.9674, -78.9381] },
-    { name: "J.D. Clement Early College", coords: [35.97467, -78.90097] },
+    { name: "J.D. Clement Early College [Magnet]", coords: [35.97467, -78.90097] },
     { name: "Jordan High", coords: [35.92390841, -78.9613309] },
     { name: "Lakeview High", coords: [36.03763, -78.87844] },
     { name: "Lakewood Elementary", coords: [35.98288, -78.93535] },
@@ -31,9 +31,10 @@ var schoolCoordinates = [
     { name: "Lowe's Grove Middle", coords: [35.90461, -78.89126] },
     { name: "Lucas Middle", coords: [36.10914, -78.88588] },
     { name: "Lyons Farm Elementary", coords: [335.87343864079329, -78.92396902108148] },
+    { name: "Mangum Elementary", coords: [36.17061332683497, -78.87620075397203] },
     { name: "Merrick-Moore Elementary", coords: [36.0055, -78.8521] },
     { name: "Middle College [Magnet]", coords: [35.97539, -78.88072] },
-    { name: "Morehead Montessori School", coords: [35.9887, -78.9137] },
+    { name: "Morehead Montessori Elementary [Magnet]", coords: [35.9887, -78.9137] },
     { name: "Neal Middle", coords: [35.97812, -78.7812] },
     { name: "Northern High", coords: [36.09381, -78.91181] },
     { name: "Oak Grove Elementary", coords: [35.9799, -78.8195] },
@@ -50,5 +51,5 @@ var schoolCoordinates = [
     { name: "Southwest Elementary", coords: [35.928775101176036, -78.92356096441785] },
     { name: "Spring Valley Elementary", coords: [35.95612, -78.81522] },
     { name: "W.G. Pearson Elementary", coords: [35.95826, -78.90769] },
-    { name: "Y.E Smith Elementary", coords: [35.98547, -78.87286] }
+    { name: "Y.E. Smith Elementary", coords: [35.98547, -78.87286] }
 ];

@@ -21,12 +21,12 @@ var geospatial = [
     }, 
     {
         name: 'Community Arts',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/04c2a4dd2c18260bb6bb83595c7bd9a8e8fb7e88/data/2021/Community%20Arts.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/702e69c7fcf05003a7c184c53dfa344d47b78086/data/2021/spatial_data/renamed_Community%20Arts.csv',
         iconUrl: 'https://i.imgur.com/ZVYrOew.png'
     }, 
     {
         name: 'Community Sports',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/04c2a4dd2c18260bb6bb83595c7bd9a8e8fb7e88/data/2021/Community%20Sports.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b3b7fb29ea107cf7027f3aa5ea2350f89e8c9902/data/2021/spatial_data/renamed_Community%20Sports.csv',
         iconUrl: 'https://i.imgur.com/jD8vqqy.png'
     }, 
     {
@@ -41,7 +41,7 @@ var geospatial = [
     }, 
     {
         name: 'Gardens',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/d4bc24e3a1569dc08faf7bc3abd75cfc947210ec/data/Geospatial%20Variables/Community%20Gardens.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/86a8a9d664e6b2bce972f34c3c91fa0d35cd0f6e/data/2021/spatial_data/renamed_Community%20Gardens.csv',
         iconUrl: 'https://i.imgur.com/fMKTf65.png'
     }, 
     {

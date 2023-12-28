@@ -144,7 +144,7 @@ var datasets = [
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Middle%20College.geojson'
     },
     {
-        name: 'Morehead Montessori',
+        name: 'Morehead Montessori Elementary [Magnet]',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Morehead%20Montessori%20School.geojson'
     },
     {
