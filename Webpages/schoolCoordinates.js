@@ -47,6 +47,7 @@ var schoolCoordinates = [
     { name: "Sherwood Githens Middle", coords: [35.94427, -78.97978] },
     { name: "Shepard Middle [Magnet]", coords: [35.96548, -78.89958] },
     { name: "Southern School of Energy and Sustainability", coords: [35.99991, -78.8292] },
+    { name: "Southwest Elementary", coords: [35.928775101176036, -78.92356096441785] },
     { name: "Spring Valley Elementary", coords: [35.95612, -78.81522] },
     { name: "W.G. Pearson Elementary", coords: [35.95826, -78.90769] },
     { name: "Y.E Smith Elementary", coords: [35.98547, -78.87286] }

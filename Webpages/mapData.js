@@ -100,7 +100,7 @@ var datasets = [
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Hope%20Valley%20Elementary.geojson'
     },
     {
-        name: 'J.D. Clement Early College',
+        name: 'J.D. Clement Early College [Magnet]',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/J.D.%20Clement%20Early%20College.geojson'
     },
     {

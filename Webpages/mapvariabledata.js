@@ -11,7 +11,7 @@ var geospatial = [
     //} 
     {
         name: 'Childcare Centers',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/4688fd1abe609e4782f830febe60785013c01110/data/2022/url_Childcare%20Centers.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/f8f0aa548735c362650487d6f552733ff97fc33b/data/2022/url_Childcare%20Centers.csv',
         iconUrl: 'https://i.imgur.com/1MWPIFr.png'
     }, 
     {
@@ -46,12 +46,12 @@ var geospatial = [
     }, 
     {
         name: 'Grocery Stores',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/d4bc24e3a1569dc08faf7bc3abd75cfc947210ec/data/Geospatial%20Variables/Grocery%20Stores.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b3c7d1003d3f43abadf9a615ed2ce97b6019709e/data/2022/supermarkets.csv',
         iconUrl: 'https://i.imgur.com/7HQiCrK.png'
     }, 
     {
         name: 'Homeless Shelters',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/d4bc24e3a1569dc08faf7bc3abd75cfc947210ec/data/2023/spatial_data/homeless_shelter.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ef9d7676516a970ce81bed452e31de00e9d0ddf0/data/2023/spatial_data/homeless_shelter.csv',
         iconUrl: 'https://i.imgur.com/u2FjNNH.png'
     },
     {
@@ -71,7 +71,7 @@ var geospatial = [
     }, 
     {
         name: 'Pharmacies',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/d4bc24e3a1569dc08faf7bc3abd75cfc947210ec/data/2023/spatial_data/pharmacies.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/e264e2430ff8086f1db34ea099f2ad1635b85f12/data/2023/spatial_data/pharmacies.csv',
         iconUrl: 'https://i.imgur.com/dDx1Vgb.png'
     }, 
     {
@@ -84,9 +84,9 @@ var geospatial = [
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b55b57a5adc27afe01638af94f783a28e91f9d26/data/Geospatial%20Variables/Religious%20Centers.csv',
         iconUrl: 'https://i.imgur.com/DpjnA0S.png'
     }, 
-    {
-        name: 'Restaurants',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/90e598aff1975972e92c455d690fa293e3c891a9/data/2023/spatial_data/restaurants.csv',
-        iconUrl: 'https://i.imgur.com/ELwgENp.png'
-    }
+    //{
+    //  name: 'Restaurants',
+    //   url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/90e598aff1975972e92c455d690fa293e3c891a9/data/2023/spatial_data/restaurants.csv',
+    //  iconUrl: 'https://i.imgur.com/ELwgENp.png'
+    //}
 ];

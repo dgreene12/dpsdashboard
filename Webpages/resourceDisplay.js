@@ -43,6 +43,10 @@ function displayResources(schoolName, variableName) {
             var urlIndex = headers.indexOf("URL");
             var resourcesWithinDistance = [];
 
+            if (variableName === 'Grocery Stores') {
+                snapIndex = headers.indexOf("SNAP");
+            }
+
             for (var i = 1; i < lines.length; i++) {
                 var currentline = lines[i].split(",");
                 if (currentline.length > latIndex && currentline.length > lonIndex) {
@@ -54,7 +58,12 @@ function displayResources(schoolName, variableName) {
                             var name = currentline[nameIndex];
                             var address = currentline[addressIndex];
                             var url = currentline[urlIndex];
-                            resourcesWithinDistance.push({ name, address, url, lat, lon, distance });
+                            if (variableName === 'Grocery Stores' && snapIndex !== -1) {
+                                var snap = currentline[snapIndex];
+                                resourcesWithinDistance.push({ name, address, url, lat, lon, distance, snap });
+                            } else {
+                                resourcesWithinDistance.push({ name, address, url, lat, lon, distance });
+                            }
                         }
                     }
                 }
@@ -75,10 +84,31 @@ function updateResourcesList(resources, variableName, actualSchoolName) {
         return;
     }
 
-    var tableHTML = `<table class="resource-table"><thead><tr><th>Name</th><th>Address</th><th>Website</th><th>Distance from ${actualSchoolName}</th></tr></thead><tbody>`;
+    var showAddress = !(variableName === 'Childcare Centers' || variableName === 'Religious Centers');
+    var showSNAP = variableName === 'Grocery Stores';
+
+    var tableHTML = `<table class="resource-table"><thead><tr><th>Name</th>`;
+    if (showAddress) {
+        tableHTML += `<th>Address</th>`;
+    }
+    tableHTML += `<th>Website</th>`;
+    if (showSNAP) {
+        tableHTML += `<th>SNAP</th>`;
+    }
+    tableHTML += `<th>Distance from ${actualSchoolName}</th></tr></thead><tbody>`;
+
     resources.forEach(function(resource) {
-        tableHTML += `<tr><td>${resource.name}</td><td>${resource.address}</td><td><a href="${resource.url}" target="_blank">Link</a></td><td>${resource.distance.toFixed(2)} miles</td></tr>`;
+        tableHTML += `<tr><td>${resource.name}</td>`;
+        if (showAddress) {
+            tableHTML += `<td>${resource.address}</td>`;
+        }
+        tableHTML += `<td><a href="${resource.url}" target="_blank">Link</a></td>`;
+        if (showSNAP) {
+            tableHTML += `<td>${resource.snap}</td>`;
+        }
+        tableHTML += `<td>${resource.distance.toFixed(2)} miles</td></tr>`;
     });
+
     tableHTML += '</tbody></table>';
     resourcesList.innerHTML = tableHTML;
 }
