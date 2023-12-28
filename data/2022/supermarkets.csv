@@ -1,45 +1,45 @@
-﻿LONGITUDE,LATITUDE,name,ADDRESS,URL,SNAP
--78.94686,36.0202,Lagos Meat Market Llc,3438 Hillsborough Rd. #C,,
--78.9166,35.99643,Durham Co-Op Market,1111 W Chapel Hill St.,http://durham.coop/,Yes
--78.91571,35.99713,Al-Taiba Market,1008 W Chapel Hill St.,,Yes
--78.953079,35.903931,Target,8210 Renaissance Pkwy.,https://www.target.com/sl/Durham-SE-Store/2069,Yes
--78.998642,35.954521,Walmart Supercenter,5450 New Hope Commons Dr.,https://www.walmart.com/store/2137-durham-nc,Yes
--78.97963,36.032082,Food Lion #939,4621 Hillsborough Rd.,https://www.foodlion.com/,Yes
--78.95845,35.917683,Harris Teeter #224,1125 W NC Highway 54 #310,https://www.harristeeter.com/,Yes
--78.956421,35.920921,Food Lion #274,4711 Hope Valley Rd.,https://www.foodlion.com/,Yes
--78.959358,35.959801,Harris Teeter #172,1817 Martin Luther King Pkwy.,https://www.harristeeter.com/,Yes
--78.95871,35.962769,Fresh Market,4215 University Dr. #A3,https://www.thefreshmarket.com/,Yes
--78.961189,35.96645,Li Ming's Global Mart,3400 Westgate Dr. #14A,http://www.lm-globalmart.com/,Yes
--78.959015,35.966274,Target,4037 Durham Chapel Hill Blvd.,https://www.target.com/sl/durham/1872,Yes
--78.957458,35.964611,Little India,4201 University Dr. #10,,
--78.956627,35.967388,Sam's Club,4005 Durham-Chapel Hill Blvd.,https://www.samsclub.com/club/durham-nc-sams-club/4831,Yes
--78.927582,35.987659,Food Lion #1343,2000 Chapel Hill Rd.,https://www.foodlion.com/,Yes
--78.92408,36.009769,Harris Teeter #394,2107 Hillsborough Rd.,https://www.harristeeter.com/,Yes
--78.909569,35.985157,Compare Foods,1233 University Dr.,,Yes
--78.920631,36.006992,Whole Foods Market,621 Broad St.,https://www.wholefoodsmarket.com,Yes
--78.933769,36.014011,Food Lion #1099,2930 W Main St.,https://www.foodlion.com/,Yes
--78.930969,36.056541,Harris Teeter #254,1501 Horton Rd.,https://www.harristeeter.com/,Yes
--78.927773,36.05851,Food Lion #420,3808 Guess Rd.,https://www.foodlion.com/,Yes
--78.906609,36.06918,Harris Teeter #493,5116 N Roxboro St.,https://www.harristeeter.com/,Yes
--78.911224,36.076511,Food Lion #57,5279 N Roxboro St.,foodlion.com,Yes
--78.902428,35.901958,Around The World Market,1708 E NC Highway 54,https://www.aroundtheworldnc.com/,Yes
--78.898186,35.899097,Food Lion #885,4900 NC Highway 55 #300,https://www.foodlion.com/,Yes
--78.899963,35.987774,Durham Food World,401 E Lakewood Ave. #A,https://www.foodworlddurham.com,Yes
--78.886513,35.99231,Save-A-Lot,812 Liberty St.,https://savealot.com/,Yes
--78.889549,36.019871,King's Red & White Supermarket,305 E Club Blvd.,https://www.kingsredandwhite.com,Yes
--78.892548,36.037621,Food Lion #747,3500 N Roxboro St.,https://www.foodlion.com/,Yes
--78.886009,36.016449,Compare Foods,2000 Avondale Dr. #A,,Yes
--78.859421,35.989285,Food Lion #234,2400 Holloway St. #C,https://www.foodlion.com/,Yes
--78.843781,36.028511,Walmart Supercenter,1525 Glenn School Rd.,walmart.com,Yes
--78.792908,35.974571,Food Lion #2589,121 Sherron Rd. #210,https://www.foodlion.com/,Yes
--78.821747,35.982334,Carlie C's IGA,3729 Wake Forest Rd.,https://www.carliecs.com/,Yes
--78.810379,35.92025,Food Lion #2646,2121 TW Alexander Dr. #107,https://www.foodlion.com/,Yes
--78.960838,35.900043,Aldi,7906 NC Highway 751,https://www.aldi.us/,Yes
--78.84068,35.967809,Harris Teeter #304,10440 Glenwood Ave.,https://www.harristeeter.com/,Yes
--78.92135065,36.02923872,Harris Teeter #497,1802 North Pointe Dr.,https://www.harristeeter.com/,Yes
--78.94845289,36.01892963,Harris Teeter #492,3457 Hillsborough Rd.,https://www.harristeeter.com/,Yes
--78.84345849,36.02831257,Walmart Supercenter #1614,1525 Glenn School Rd.,https://www.walmart.com,Yes
--78.77791508,35.91251056,Walmart Supercenter #5118,10050 Glenwood Ave.,https://www.walmart.com,Yes
--78.99896771,35.95481446,Walmart Supercenter #2137,5450 New Hope Commons Dr.,https://www.walmart.com,Yes
--78.93842678,35.91002276,Sprouts Farmers Market,105 W NC 54 Hwy,https://www.sprouts.com,Yes
--78.90842546,35.96385346,Food Lion,3022 Fayetteville St.,https://stores.foodlion.com/nc/durham/3022-fayetteville-st,Yes
+﻿LONGITUDE,LATITUDE,name,ADDRESS,SNAP,URL
+-78.94686,36.0202,Lagos Meat Market LLC,3438 Hillsborough Rd. #C,Yes,
+-78.9166,35.99643,Durham Co-Op Market,1111 W Chapel Hill St.,Yes,http://durham.coop/
+-78.91571,35.99713,Al-Taiba Market,1008 W Chapel Hill St.,Yes,
+-78.953079,35.903931,Target,8210 Renaissance Pkwy.,Yes,https://www.target.com/sl/Durham-SE-Store/2069
+-78.998642,35.954521,Walmart Supercenter,5450 New Hope Commons Dr.,Yes,https://www.walmart.com/store/2137-durham-nc
+-78.97963,36.032082,Food Lion #939,4621 Hillsborough Rd.,Yes,https://www.foodlion.com/
+-78.95845,35.917683,Harris Teeter #224,1125 W NC Highway 54 #310,Yes,https://www.harristeeter.com/
+-78.956421,35.920921,Food Lion #274,4711 Hope Valley Rd.,Yes,https://www.foodlion.com/
+-78.959358,35.959801,Harris Teeter #172,1817 Martin Luther King Pkwy.,Yes,https://www.harristeeter.com/
+-78.95871,35.962769,Fresh Market,4215 University Dr. #A3,Yes,https://www.thefreshmarket.com/
+-78.961189,35.96645,Li Ming's Global Mart,3400 Westgate Dr. #14A,Yes,http://www.lm-globalmart.com/
+-78.959015,35.966274,Target,4037 Durham Chapel Hill Blvd.,Yes,https://www.target.com/sl/durham/1872
+-78.957458,35.964611,Little India,4201 University Dr. #10,Yes,
+-78.956627,35.967388,Sam's Club,4005 Durham-Chapel Hill Blvd.,Yes,https://www.samsclub.com/club/durham-nc-sams-club/4831
+-78.927582,35.987659,Food Lion #1343,2000 Chapel Hill Rd.,Yes,https://www.foodlion.com/
+-78.92408,36.009769,Harris Teeter #394,2107 Hillsborough Rd.,Yes,https://www.harristeeter.com/
+-78.909569,35.985157,Compare Foods,1233 University Dr.,Yes,
+-78.920631,36.006992,Whole Foods Market,621 Broad St.,Yes,https://www.wholefoodsmarket.com
+-78.933769,36.014011,Food Lion #1099,2930 W Main St.,Yes,https://www.foodlion.com/
+-78.930969,36.056541,Harris Teeter #254,1501 Horton Rd.,Yes,https://www.harristeeter.com/
+-78.927773,36.05851,Food Lion #420,3808 Guess Rd.,Yes,https://www.foodlion.com/
+-78.906609,36.06918,Harris Teeter #493,5116 N Roxboro St.,Yes,https://www.harristeeter.com/
+-78.911224,36.076511,Food Lion #57,5279 N Roxboro St.,Yes,foodlion.com
+-78.902428,35.901958,Around The World Market,1708 E NC Highway 54,Yes,https://www.aroundtheworldnc.com/
+-78.898186,35.899097,Food Lion #885,4900 NC Highway 55 #300,Yes,https://www.foodlion.com/
+-78.899963,35.987774,Durham Food World,401 E Lakewood Ave. #A,Yes,https://www.foodworlddurham.com
+-78.886513,35.99231,Save-A-Lot,812 Liberty St.,Yes,https://savealot.com/
+-78.889549,36.019871,King'S Red & White Supermarket,305 E Club Blvd.,Yes,https://www.kingsredandwhite.com
+-78.892548,36.037621,Food Lion #747,3500 N Roxboro St.,Yes,https://www.foodlion.com/
+-78.886009,36.016449,Compare Foods,2000 Avondale Dr. #A,Yes,
+-78.859421,35.989285,Food Lion #234,2400 Holloway St. #C,Yes,https://www.foodlion.com/
+-78.843781,36.028511,Walmart Supercenter,1525 Glenn School Rd.,Yes,walmart.com
+-78.792908,35.974571,Food Lion #2589,121 Sherron Rd. #210,Yes,https://www.foodlion.com/
+-78.821747,35.982334,Carlie C's IGA,3729 Wake Forest Rd.,Yes,https://www.carliecs.com/
+-78.810379,35.92025,Food Lion #2646,2121 TW Alexander Dr. #107,Yes,https://www.foodlion.com/
+-78.960838,35.900043,Aldi,7906 NC Highway 751,Yes,https://www.aldi.us/
+-78.84068,35.967809,Harris Teeter #304,10440 Glenwood Ave.,Yes,https://www.harristeeter.com/
+-78.92135065,36.02923872,Harris Teeter #497,1802 North Pointe Dr.,Yes,https://www.harristeeter.com/
+-78.94845289,36.01892963,Harris Teeter #492,3457 Hillsborough Rd.,Yes,https://www.harristeeter.com/
+-78.84345849,36.02831257,Walmart Supercenter #1614,1525 Glenn School Rd.,Yes,https://www.walmart.com
+-78.77791508,35.91251056,Walmart Supercenter #5118,10050 Glenwood Ave.,Yes,https://www.walmart.com
+-78.99896771,35.95481446,Walmart Supercenter #2137,5450 New Hope Commons Dr.,Yes,https://www.walmart.com
+-78.93842678,35.91002276,Sprouts Farmers Market,105 W NC 54 Hwy,Yes,https://www.sprouts.com
+-78.90842546,35.96385346,Food Lion,3022 Fayetteville St.,Yes,https://stores.foodlion.com/nc/durham/3022-fayetteville-st
