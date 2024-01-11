@@ -3,8 +3,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visualizing Durham Public School Communities</title>
+<title>Data Insights— Visualizing Durham Public School Communities</title>
 <link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="mapscript.js"></script>
+<script src="mapvariabledata.js"></script>
+<script src="mapData.js"></script>
+<script src="schoolCoordinates.js"></script>
+<script src="resourceDisplay.js"></script>
+<script src="graphcontainers.js"></script>
 <style>
     body, h1, p {
         margin: 0;
@@ -222,6 +229,37 @@
       font-size: 18px;
       cursor: pointer;
     }
+
+    .school-graph-container {
+      margin-bottom: 20px;
+    }
+
+    .school-graph-title {
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .school-graph-canvas {
+      width: 100%;
+      height: 150px; /* Adjust the height as needed */
+    }
+
+    .sleek-dropdown {
+        -webkit-appearance: none;  /* Removes default Chrome and Safari styling */
+        -moz-appearance: none;     /* Removes default Firefox styling */
+        appearance: none;          /* Removes default styling */
+        background-color: white;   /* Dropdown background color */
+        border: 1px solid #ddd;    /* Border around the dropdown */
+        padding: 10px 15px;        /* Padding inside the dropdown */
+        margin: 10px 0;            /* Margin for spacing */
+        width: 100%;               /* Full width */
+        border-radius: 5px;        /* Rounded corners */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Box shadow for a sleek look */
+        cursor: pointer;           /* Changes the cursor to a pointer */
+        font-family: 'Lato', sans-serif; /* Font family for consistency */
+        font-size: 16px;           /* Font size */
+        transition: all 0.3s ease; /* Smooth transition for hover effects */
+    }
 </style>
 <body>
 <div class="header">
@@ -253,6 +291,15 @@
       <!-- Add more languages here -->
     </select>
   </div>
+
+  <div class="graphs-section">
+    <h2>Resource Graphs by School</h2>
+    <select id="dropdown1" class="sleek-dropdown">
+        <!-- School options will be populated dynamically -->
+    </select>
+    <div id="graphscontainer">
+    </div>
+</div>
 
   <div class="section-divider"></div>
 

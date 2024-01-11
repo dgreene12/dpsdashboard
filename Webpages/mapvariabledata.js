@@ -81,7 +81,7 @@ var geospatial = [
     }, 
     {
         name: 'Religious Centers',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b55b57a5adc27afe01638af94f783a28e91f9d26/data/Geospatial%20Variables/Religious%20Centers.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/2311627235db3fef845ca4af0b55e946a956da24/data/2022/url_Religious%20Centers.csv',
         iconUrl: 'https://i.imgur.com/DpjnA0S.png'
     }, 
     //{
