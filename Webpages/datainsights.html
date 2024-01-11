@@ -20,6 +20,7 @@
 
     body, h1, h2, p, a {
     font-family: 'Lato', sans-serif;
+    text-align: center;
     }
 
     h1 {
@@ -68,7 +69,7 @@
     .navigation {
         display: flex;
         justify-content: center;
-        background-color: #DFC5FE; /* Darker shade for a more polished look */
+        background-color: #DFC5FE;
         position: sticky;
         top: 0;
         z-index: 10;
@@ -245,21 +246,37 @@
     }
 
     .sleek-dropdown {
-        -webkit-appearance: none;  /* Removes default Chrome and Safari styling */
-        -moz-appearance: none;     /* Removes default Firefox styling */
-        appearance: none;          /* Removes default styling */
-        background-color: white;   /* Dropdown background color */
-        border: 1px solid #ddd;    /* Border around the dropdown */
-        padding: 10px 15px;        /* Padding inside the dropdown */
-        margin: 10px 0;            /* Margin for spacing */
-        width: 100%;               /* Full width */
-        border-radius: 5px;        /* Rounded corners */
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Box shadow for a sleek look */
-        cursor: pointer;           /* Changes the cursor to a pointer */
-        font-family: 'Lato', sans-serif; /* Font family for consistency */
-        font-size: 16px;           /* Font size */
-        transition: all 0.3s ease; /* Smooth transition for hover effects */
+      -webkit-appearance: none;  /* Removes default Chrome and Safari styling */
+      -moz-appearance: none;     /* Removes default Firefox styling */
+      appearance: none;          /* Removes default styling */
+      background-color: white;   /* Dropdown background color */
+      border: 1px solid #ddd;    /* Border around the dropdown */
+      padding: 10px 15px;        /* Padding inside the dropdown */
+      margin: 10px auto;         /* Centered margin */
+      width: 40%;                /* Width */
+      border-radius: 5px;        /* Rounded corners */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Box shadow */
+      cursor: pointer;           /* Cursor style */
+      font-family: 'Lato', sans-serif; /* Font family */
+      font-size: 16px;           /* Font size */
+      transition: all 0.3s ease; /* Transition effect */
+      display: block;            /* Ensures the element is block-level */
+  }
+
+    #messageContainer {
+      text-align: center;
+      font-size: 30px;
+      color: #000000;
+      padding: 20px;
+      border: 2px solid #663399;
+      border-radius: 10px;
+      background-color: rgba(102, 51, 153, 0.1);
+      display: none; /* Initially hidden */
+      width: 60%;
+      margin: 20px auto;         /* Centered margin */
+      display: block;            /* Ensures the element is block-level */
     }
+
 </style>
 <body>
 <div class="header">
@@ -293,11 +310,13 @@
   </div>
 
   <div class="graphs-section">
-    <h2>Resource Graphs by School</h2>
+    <h2>Number of Resources by School Zone</h2>
     <select id="dropdown1" class="sleek-dropdown">
-        <!-- School options will be populated dynamically -->
     </select>
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <div id="myChartContainer">
+      <canvas id="myChart"></canvas>
+      <div id="messageContainer"></div>
+  </div>
 </div>
 
   <div class="section-divider"></div>

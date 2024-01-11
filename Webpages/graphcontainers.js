@@ -67,49 +67,77 @@ async function getResourcesForSchool(schoolName) {
 // Global variable for the chart
 let myChart;
 
-function updateGraph(labels, counts) {
-    const ctx = document.getElementById('myChart').getContext('2d');
-    if (myChart) {
-        myChart.destroy();
-    }
-    myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Number of Resources within 5 miles',
-                data: counts,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            indexAxis: 'y', // Horizontal bar chart
-            scales: {
-                x: {
-                    beginAtZero: true
+function updateGraphOrShowMessage(labels, counts, schoolName) {
+    const canvasContainer = document.getElementById('myChart').parentNode;
+    const messageContainer = document.getElementById('messageContainer');
+
+    if (schoolName === 'All' || !schoolName) {
+        // Clear existing chart
+        if (myChart) {
+            myChart.destroy();
+            myChart = null;
+        }
+        // Hide the canvas and show the message
+        document.getElementById('myChart').style.display = 'none';
+        messageContainer.innerHTML = '<p style="text-align: center; font-size: 20px;">Please select a school</p>';
+        messageContainer.style.display = 'block';
+    } else {
+        // Ensure the canvas element is present and visible
+        document.getElementById('myChart').style.display = 'block';
+        messageContainer.style.display = 'none'; // Hide the message
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        if (myChart) {
+            myChart.destroy();
+        }
+
+        myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Resources within 5 miles',
+                    data: counts,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y', // Horizontal bar chart
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
+    }
 }
-
 
 // Event listener for DOM content loaded
 document.addEventListener('DOMContentLoaded', async function() {
     populateSchoolDropdown(); // Populate the dropdown
 
-    // Initialize the graph for the first school in 'datasets'
+    // Display message initially or load first school's data
     if (datasets && datasets.length > 0) {
-        const resourceCounts = await getResourcesForSchool(datasets[0].name);
-        updateGraph(Object.keys(resourceCounts), Object.values(resourceCounts));
+        const selectedSchool = datasets[0].name;
+        if (selectedSchool === 'All' || !selectedSchool) {
+            updateGraphOrShowMessage(null, null, 'All');
+        } else {
+            const resourceCounts = await getResourcesForSchool(selectedSchool);
+            updateGraphOrShowMessage(Object.keys(resourceCounts), Object.values(resourceCounts), selectedSchool);
+        }
     }
 
     // Add event listener for dropdown changes
     document.getElementById('dropdown1').addEventListener('change', async function() {
         const selectedSchool = this.value;
-        const resourceCounts = await getResourcesForSchool(selectedSchool);
-        updateGraph(Object.keys(resourceCounts), Object.values(resourceCounts));
+        if (selectedSchool === 'All' || !selectedSchool) {
+            updateGraphOrShowMessage(null, null, 'All');
+        } else {
+            const resourceCounts = await getResourcesForSchool(selectedSchool);
+            updateGraphOrShowMessage(Object.keys(resourceCounts), Object.values(resourceCounts), selectedSchool);
+        }
     });
 });
