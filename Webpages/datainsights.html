@@ -11,7 +11,7 @@
 <script src="mapData.js"></script>
 <script src="schoolCoordinates.js"></script>
 <script src="resourceDisplay.js"></script>
-<script src="graphcontainers.js"></script>
+<script src="graphcontainers.js" defer></script>
 <style>
     body, h1, p {
         margin: 0;
@@ -297,8 +297,7 @@
     <select id="dropdown1" class="sleek-dropdown">
         <!-- School options will be populated dynamically -->
     </select>
-    <div id="graphscontainer">
-    </div>
+    <canvas id="myChart" width="400" height="400"></canvas>
 </div>
 
   <div class="section-divider"></div>
