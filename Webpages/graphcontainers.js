@@ -107,8 +107,10 @@ function updateGraphOrShowMessage(labels, counts, schoolName) {
                 indexAxis: 'y', // Horizontal bar chart
                 scales: {
                     x: {
-                        beginAtZero: true
-                    }
+                        beginAtZero: true,
+                        max: 200,
+                        fontSize: 16,
+                    },
                 }
             }
         });
