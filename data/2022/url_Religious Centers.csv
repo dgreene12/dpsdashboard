@@ -1,13 +1,9 @@
 CENTER_NAME,name,LATITUDE,LONGITUDE,URL
-Faith Assembly Christian Center,Faith Assembly Christian Center,35.96372262,-78.90907645,https://www.facc-ministries.org
 Emmanuel Praise & Worship Center,Emmanuel Praise & Worship Center,35.96506003,-78.90563251,http://theepwc.org
 W. Deen Mohammed Islamic Center,W. Deen Mohammed Islamic Center,35.98089743,-78.89988185,http://www.wdmislamiccenter.com
-New Destiny Christian,New Destiny Christian,35.98058488,-78.89584781,https://www.newdestinychristiancenter.com
 Rebuild Fellowship,Rebuild Fellowship,35.9822518,-78.8969207,https://www.rebuildchurch.com
-Russell Memorial CME Church,Russell Memorial CME Church,35.98051543,-78.89112712,http://russellmemorialcme.com
 Word of Life Worship Center,Word of Life Worship Center,35.98502991,-78.89992477,https://wlwc.org
 "Durham, Revival Worship Centre","Durham, Revival Worship Centre",35.98867604,-78.89404537,http://drwconline.org
-Greater Bethlehem Temple Apostolic Faith Church,Greater Bethlehem Temple Apostolic Faith Church,35.98648838,-78.88859512,http://www.usachurches.org/church/bethlehem-temple-apostolic-faith-church.htm
 United Nations Worship Center,United Nations Worship Center,35.9872697,-78.92869951,http://www.unitednationschurch.org
 Kingdom Builders Christian Center,Kingdom Builders Christian Center,35.98060224,-78.95530702,http://kingdom-builders.com
 Ar-Razzaq Islamic Center,Ar-Razzaq Islamic Center,35.99824199,-78.91556741,https://arrazzaqislamiccenter.org
@@ -23,20 +19,17 @@ Gethsemane Baptist Church,Gethsemane Baptist Church,35.98565856,-78.90303076,htt
 Mt. Zion Holy Church,Mt. Zion Holy Church,35.97989391,-78.89633596,http://www.mountzionuhc.com
 First Chronicles Community Church,First Chronicles Community Church,35.98114411,-78.89569223,http://firstchroniclescommunitychurch.org
 Fisher Memorial United Holy Church of America,Fisher Memorial United Holy Church of America,35.98482514,-78.89946878,https://www.discoverdurham.com/directory/fisher-memorial-united-holy-church-of-america/
-Covenant Presbyterian Church,Covenant Presbyterian Church,35.96798127,-78.91075552,https://www.cpcdurham.org/about-the-pastor
 Faucette Memorial CME,Faucette Memorial CME,35.96881487,-78.91637743,https://www.discoverdurham.com/directory/faucette-memorial-c-m-e-church/
 Faith Tabernacle Church of Durham,Faith Tabernacle Church of Durham,35.96429945,-78.92006815,https://www.discoverdurham.com/directory/faith-tabernacle-church-of-durham-inc/
 Jamaat Ibad Ar Rahman,Jamaat Ibad Ar Rahman,35.96316188,-78.90854538,https://ibadarrahman.org
-Southside Church of Christ,Southside Church of Christ,35.96276242,-78.90086353,https://sside.org
 Gateway To Heaven United Holy Church,Gateway To Heaven United Holy Church,35.96672218,-78.9026016,https://nccompanies.com/company/0796297/gateway-to-heaven-united-holy-church-inc.html
 Greater Bethlehem Temple Apostolic Faith Church,Greater Bethlehem Temple Apostolic Faith Church,35.98612735,-78.88841808,http://www.usachurches.org/church/bethlehem-temple-apostolic-faith-church.htm
 God First People Second Church,God First People Second Church,35.98894006,-78.88919056,https://www.ctmobi.com/listing/8712034/god-first-people-second-church
 The Church of the Apostolic Revival International,The Church of the Apostolic Revival International,35.98696076,-78.88764561,http://www.usachurches.org/church/the-church-of-the-apostolic-revival-international.htm
 United Assembly for Christ,United Assembly for Christ,35.98991233,-78.89537037,https://www.discoverdurham.com/directory/united-assembly-for-christ/
 Monroe Christian Church,Monroe Christian Church,35.96442103,-78.88820351,https://www.dnb.com/business-directory/company-profiles.monroe_christian_church.4d2817e23e8cff04d9d915c79eda362c.html
-Church of the Abiding Savior,Church of the Abiding Savior,35.96960504,-78.89277399,https://abiding-savior-lutheran.org
 White Rock Baptist Church,White Rock Baptist Church,35.95767348,-78.91066969,https://www.whiterockbaptistchurch.org
-Faith Congregation United,Faith Congregation United,35.96300557,-78.92506778,NA
+Faith Congregation United,Faith Congregation United,35.96300557,-78.92506778,
 New Life Chapel,New Life Chapel,35.96449918,-78.92133415,https://www.newlifechapel.net
 Bell Yeager Freewill Baptist Church,Bell Yeager Freewill Baptist Church,35.96432551,-78.91772926,https://www.bellyeagerfwb.org
 Agape & Power Deliverance Ministry,Agape & Power Deliverance Ministry,35.96514177,-78.91931713,https://toplocalplaces.com/united-states/durham/church-religious-organization/agape-power-deliverance-ministry-uhc-of-america/110315032331593
@@ -55,7 +48,6 @@ Bethesda Baptist Church,Bethesda Baptist Church,35.94386521,-78.83874035,https:/
 World Mission Society Church of God,World Mission Society Church of God,35.93676409,-78.84127324,https://english.watv.org
 Blacknall Memorial Church,Blacknall Memorial Church,36.00846089,-78.92126917,https://blacknall.org
 Braggtown Baptist Church,Braggtown Baptist Church,36.03344838,-78.89018134,https://www.bbcdurham.com
-First Calvary Baptist Church,First Calvary Baptist Church,35.97065728,-78.84946665,https://www.firstcalvary.org
 Elizabeth Street UMC,Elizabeth Street UMC,36.00552795,-78.89123298,https://elizabethstreetumc.org
 Cameron Grove Baptist Church,Cameron Grove Baptist Church,36.03371352,-78.88018981,https://www.discoverdurham.com/directory/cameron-grove-baptist-church/
 Christ the King Moravian Church,Christ the King Moravian Church,35.92947678,-78.95196943,https://ctkhome.org
@@ -80,7 +72,6 @@ Durham Memorial Baptist Church,Durham Memorial Baptist Church,35.975614,-78.8040
 Durham Mennonite Church,Durham Mennonite Church,35.98004238,-78.84088296,https://www.durhammennonite.org
 Durham Spanish SDA Church,Durham Spanish SDA Church,35.99229656,-78.87470908,https://durhamspanishnc.adventistchurch.org
 Ebenezer Missionary Baptist Church,Ebenezer Missionary Baptist Church,35.95978821,-78.88689095,https://embcofdurham.com
-Edgewood Baptist Church,Edgewood Baptist Church,36.08485984,-78.87123541,https://www.edgewoodbaptistdurham.com
 Emmanuel AME Church,Emmanuel AME Church,35.95626848,-78.88573785,https://www.emmanuelamec.com
 Epworth United Methodist Church,Epworth United Methodist Church,35.97029191,-78.93383555,http://www.epworth-umc.org
 Evangel Assembly of God,Evangel Assembly of God,35.97390209,-78.84782217,https://www.eagchurch.life
@@ -182,7 +173,7 @@ Durham Five Oaks SDA Church,Durham Five Oaks SDA Church,35.94250717,-78.98504192
 Peace Covenant Church of the Brethren,Peace Covenant Church of the Brethren,35.90961902,-78.92550025,https://peace-covenant.squarespace.com/
 Pilgrim United Church of Christ,Pilgrim United Church of Christ,35.97108477,-78.9426371,https://www.pilgrimucc-durham.org/
 Horton Road Church of God,Horton Road Church of God,36.05719187,-78.91911147,https://www.discoverdurham.com/directory/horton-road-church-of-god/
-Greater Joy International Ministries,Greater Joy International Ministries,35.98865179,-78.92846667,NA
+Greater Joy International Ministries,Greater Joy International Ministries,35.98865179,-78.92846667,
 Hope Valley Baptist Church,Hope Valley Baptist Church,35.92045716,-78.96129936,https://www.hvbc.org/
 Living Waters Christian Community,Living Waters Christian Community,35.97299711,-78.84935851,https://lwccnc.com/
 Mount Calvary United Church of Christ,Mount Calvary United Church of Christ,35.96928766,-78.89086313,https://www.mountcalvaryucc.org/
@@ -208,7 +199,7 @@ Fletcher's Chapel United,Fletcher's Chapel United,36.01246416,-78.80282774,https
 CityWell,CityWell,35.98253576,-78.93124695,https://citywell.org/
 New Metropolitan Baptist Church,New Metropolitan Baptist Church,35.95414127,-78.89674928,https://www.facebook.com/TheNMBC/videos/
 Orange Grove Missionary Baptist Church,Orange Grove Missionary Baptist Church,35.97493077,-78.86613141,https://www.ogmbc.org/
-Rebirth Baptist Church Ministries,Rebirth Baptist Church Ministries,35.98036673,-78.87910554,NA
+Rebirth Baptist Church Ministries,Rebirth Baptist Church Ministries,35.98036673,-78.87910554,
 Durham Bahá’í Center,Durham Bahá’í Center,35.89569081,-78.9099498,https://www.durhambahai.org/
 St. Paul United Methodist Church,St. Paul United Methodist Church,36.0254033,-78.88914394,https://stpaulumcdurham.com/
 Iglesia Cristiana Emanuel,Iglesia Cristiana Emanuel,35.94253838,-78.87715792,https://www.facebook.com/emanueldurhamnc/
