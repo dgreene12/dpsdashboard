@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visualizing Durham Public School Communities</title>
 <link rel="stylesheet" href="styles.css">
+<script src="engagedData.js"></script>
 <style>
     body, h1, p {
         margin: 0;
@@ -222,6 +223,102 @@
       font-size: 18px;
       cursor: pointer;
     }
+
+    .section-label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .engagement-dropdown {
+      margin-bottom: 20px;
+    }
+
+    .tab-strip {
+      display: flex;
+      justify-content: center;
+      background-color: #DFC5FE; /* Harmonize with the current color scheme */
+      padding: 10px 0;
+    }
+
+    .tablinks {
+      background-color: inherit;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      padding: 10px 15px;
+      font-size: 16px;
+      color: #000;
+    }
+
+    .tablinks:hover, .tablinks.active {
+      background-color: #663399; /* Complementary color for highlighting */
+      color: #FFF;
+    }
+
+    .tabcontent {
+      display: none;
+      padding: 20px;
+    }
+
+    .dropdown-menu {
+      margin-bottom: 20px;
+    }
+
+    .dropdown-menu label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .dropdown-menu select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    #ServiceTable table,
+    #TeachingLearningTable table,
+    #ResearchTable table {
+        width: 100%; /* Full width of its container */
+        border-collapse: collapse; /* Removes gaps between borders */
+        text-align: left; /* Aligns text to the left */
+        margin-top: 20px; /* Adds space above the table */
+    }
+
+    #ServiceTable th, #ServiceTable td,
+    #TeachingLearningTable th, #TeachingLearningTable td,
+    #ResearchTable th, #ResearchTable td {
+        border: 1px solid #ddd; /* Adds a light grey border */
+        padding: 8px; /* Adds padding inside each cell */
+    }
+
+    #ServiceTable th,
+    #TeachingLearningTable th,
+    #ResearchTable th {
+        background-color: #663399; /* Navy blue header background */
+        color: white; /* White text for headers */
+        font-weight: bold; /* Makes header text bold */
+    }
+
+    #ServiceTable tr:nth-child(even),
+    #TeachingLearningTable tr:nth-child(even),
+    #ResearchTable tr:nth-child(even) {
+        background-color: #f2f2f2; /* Adds a zebra-striping effect */
+    }
+
+    #ServiceTable tr:hover,
+    #TeachingLearningTable tr:hover,
+    #ResearchTable tr:hover {
+        background-color: #ddd; /* Changes background on row hover */
+    }
+
+    #ServiceTable a,
+    #TeachingLearningTable a,
+    #ResearchTable a {
+        color: #663399; /* Styles links to match the header color */
+        text-decoration: none; /* Removes underline from links */
+    }
+
 </style>
 <body>
 <div class="header">
@@ -254,6 +351,54 @@
     </select>
   </div>
 
+  <div class="tab-strip">
+    <button class="tablinks" onclick="openTab(event, 'Service')">Service</button>
+    <button class="tablinks" onclick="openTab(event, 'TeachingLearning')">Teaching and Learning</button>
+    <button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
+  </div>
+  
+  <!-- Tab Content for Service -->
+<div id="Service" class="tabcontent">
+  <h2>Service</h2>
+  <div class="dropdown-menu">
+    <label for="service-dropdown"><strong>Choose a Division to View Community Engagement Opportunities</strong></label>
+    <select id="service-dropdown" onchange="dropdownChanged('Service', this.value)">
+      <option value="Staff/Faculty">Staff/Faculty</option>
+      <option value="Undergraduate Students">Undergraduate Students</option>
+    </select>
+  </div>
+  <div id="ServiceTable" class="data-table"></div>
+  <!-- Additional content for Service section -->
+</div>
+
+<!-- Tab Content for Teaching and Learning -->
+<div id="TeachingLearning" class="tabcontent" style="display:none;">
+  <h2>Teaching and Learning</h2>
+  <div class="dropdown-menu">
+    <label for="teaching-dropdown"><strong>Choose a Division to View Community Engagement Opportunities</strong></label>
+    <select id="teaching-dropdown" onchange="dropdownChanged('Teaching and Learning', this.value)">
+      <option value="Staff/Faculty">Staff/Faculty</option>
+      <option value="Undergraduate Students">Undergraduate Students</option>
+    </select>
+  </div>
+  <div id="Teaching and LearningTable" class="data-table"></div>
+  <!-- Additional content for Teaching and Learning section -->
+</div>
+
+<!-- Tab Content for Research -->
+<div id="Research" class="tabcontent" style="display:none;">
+  <h2>Research</h2>
+  <div class="dropdown-menu">
+    <label for="research-dropdown"><strong>Choose a Division to View Community Engagement Opportunities</strong></label>
+    <select id="research-dropdown" onchange="dropdownChanged('Research', this.value)">
+      <option value="Staff/Faculty">Staff/Faculty</option>
+      <option value="Undergraduate Students">Undergraduate Students</option>
+    </select>
+  </div>
+  <div id="ResearchTable" class="data-table"></div>
+  <!-- Additional content for Research section -->
+</div>
+
   <div class="section-divider"></div>
 
     <div class="image-container">
@@ -264,6 +409,8 @@
     </div>
 
   <script>
+
+    
     function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -351,6 +498,30 @@
   // Set the language of the page
   document.documentElement.lang = lang;
 }
+
+document.querySelectorAll('.engagement-dropdown').forEach(function(dropdown) {
+    dropdown.addEventListener('change', function() {
+      var section = this.parentElement.id;
+      var division = this.value;
+      // Implement logic based on the selected division
+      // For example, load different content based on the section and division
+      console.log("Section: " + section + ", Division: " + division);
+    });
+  });
+
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
 </script>
 </body>
 </html>
