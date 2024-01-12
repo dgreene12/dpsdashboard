@@ -96,7 +96,7 @@ function updateGraphOrShowMessage(labels, counts, schoolName) {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Number of Resources within 5 miles',
+                    label: 'Number of Resources within 5 Miles',
                     data: counts,
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgba(54, 162, 235, 1)',
