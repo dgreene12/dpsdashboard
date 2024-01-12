@@ -26,34 +26,81 @@ function fetchAndDisplayData(tabName, division) {
 
 function convertCSVToTable(csv) {
     var lines = csv.split("\n");
-    var headers = lines[0].split(",").map(header => header.trim());
-
-    // Define expected headers
-    var expectedHeaders = ["School", "Name", "URL", "Description", "Subject"];
-    var includeDescription = headers.includes("Description");
-
     var result = "<table>";
 
-    // Adding headers to the table
-    result += "<tr>";
-    expectedHeaders.forEach(header => {
-        if (header === "Description" && !includeDescription) return;
-        result += "<th>" + header + "</th>";
-    });
-    result += "</tr>";
+    for (var i = 0; i < lines.length; i++) {
+        var row = lines[i];
+        var cells = parseCSVLine(row);
 
-    // Adding data rows to the table
-    for (var j = 1; j < lines.length; j++) {
-        var cells = lines[j].split(",");
-        if (cells.length === headers.length) {
+        if (i === 0) { // Header row
             result += "<tr>";
-            cells.forEach((cell, index) => {
-                if (headers[index] === "Description" && !includeDescription) return;
-                result += "<td>" + cell.trim() + "</td>";
-            });
+            cells.forEach(cell => result += "<th>" + cell.trim() + "</th>");
+            result += "</tr>";
+        } else { // Data rows
+            result += "<tr>";
+            cells.forEach(cell => result += "<td>" + cell.trim() + "</td>");
             result += "</tr>";
         }
     }
+
+    result += "</table>";
+    return result;
+}
+
+function parseCSVLine(line) {
+    var cells = [];
+    var cell = "";
+    var insideQuotes = false;
+
+    for (var i = 0; i < line.length; i++) {
+        var char = line[i];
+
+        if (char === '"' && !insideQuotes) {
+            // Start of a quoted field
+            insideQuotes = true;
+            continue;
+        }
+
+        if (char === '"' && insideQuotes) {
+            if (i + 1 < line.length && line[i + 1] === '"') {
+                // Double quote within a quoted field
+                cell += '"';
+                i++; // Skip next quote
+            } else {
+                // End of a quoted field
+                insideQuotes = false;
+            }
+            continue;
+        }
+
+        if (char === ',' && !insideQuotes) {
+            // End of a field
+            cells.push(cell);
+            cell = "";
+        } else {
+            cell += char;
+        }
+    }
+
+    cells.push(cell); // Add last cell
+    return cells;
+}
+
+function convertCSVToTable(csv) {
+    var lines = csv.split("\n");
+    var result = "<table>";
+
+    for (var i = 0; i < lines.length; i++) {
+        var row = lines[i];
+        var cells = parseCSVLine(row);
+
+        result += "<tr>";
+        cells.forEach(cell => {
+            result += (i === 0 ? "<th>" : "<td>") + cell.trim() + (i === 0 ? "</th>" : "</td>");
+        });
+        result += "</tr>";
+    }
+
     result += "</table>";
     return result;
 }
