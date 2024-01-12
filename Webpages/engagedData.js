@@ -9,7 +9,7 @@ var engaged = {
     },
     'Research': {
         'Staff/Faculty': 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/9b05d76952edd104c81a486d7728d3e5252caa2e/data/2023/sf_research.csv',
-        'Undergraduate Students': 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/496250774c6fe9360b4072638b59faf52f7054eb/data/2023/us_research.csv'
+        'Undergraduate Students': 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/fedd6071eac41d7737db1a0e7f2d7719ef244e5f/data/2023/us_research.csv'
     }
 };
 
@@ -27,19 +27,17 @@ function fetchAndDisplayData(tabName, division) {
 function convertCSVToTable(csv) {
     var lines = csv.split("\n");
     var headers = lines[0].split(",").map(header => header.trim());
-    
-    // Check if headers match the expected headers
+
+    // Define expected headers
     var expectedHeaders = ["School", "Name", "URL", "Description", "Subject"];
-    if (!headers.every((header, index) => header === expectedHeaders[index])) {
-        console.error("CSV headers do not match the expected format.");
-        return "<p>Error: CSV format is incorrect.</p>";
-    }
+    var includeDescription = headers.includes("Description");
 
     var result = "<table>";
-    
+
     // Adding headers to the table
     result += "<tr>";
-    headers.forEach(header => {
+    expectedHeaders.forEach(header => {
+        if (header === "Description" && !includeDescription) return;
         result += "<th>" + header + "</th>";
     });
     result += "</tr>";
@@ -49,7 +47,8 @@ function convertCSVToTable(csv) {
         var cells = lines[j].split(",");
         if (cells.length === headers.length) {
             result += "<tr>";
-            cells.forEach(cell => {
+            cells.forEach((cell, index) => {
+                if (headers[index] === "Description" && !includeDescription) return;
                 result += "<td>" + cell.trim() + "</td>";
             });
             result += "</tr>";
