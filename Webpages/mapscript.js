@@ -72,6 +72,9 @@
         clearMarkers();
         markerClusterGroup.clearLayers();
         document.getElementById('selected-variable-resources-list').innerHTML = '';
+        
+        var contextAndResources = document.querySelector('.context-block p');
+        contextAndResources.textContent = "Please select a variable.";
     }
     function setupEventListeners() {
         document.getElementById('dropdown1').addEventListener('change', handleSchoolZoneChange);
@@ -123,6 +126,10 @@
     
         if (selectedVariable) {
             loadCsvDataOnMap(selectedVariable.url, selectedVariable.iconUrl);
+    
+            // Update the Context and Resources section
+            var contextAndResources = document.querySelector('.context-block p');
+            contextAndResources.textContent = selectedVariable.content || "Default content or instructions...";
         } else {
             console.error('No matching geospatial dataset found for:', selectedVariableName);
         }
