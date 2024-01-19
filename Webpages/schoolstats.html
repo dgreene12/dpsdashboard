@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visualizing Durham Public School Communities</title>
 <link rel="stylesheet" href="styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="statdata.js"></scriptsrc></script>
+<script src="schoolstatspage.js"></script>
 <style>
     body, h1, p {
         margin: 0;
@@ -331,14 +335,17 @@
   </div>
   
   <div id="ElementarySchools" class="tabcontent">
+    <div id="elementarySchoolData"></div>
     <!-- Content for Elementary Schools -->
   </div>
   
   <div id="MiddleSchools" class="tabcontent" style="display:none;">
+    <div id="middleSchoolData"></div>
     <!-- Content for Middle Schools -->
   </div>
   
   <div id="HighSchools" class="tabcontent" style="display:none;">
+    <div id="highSchoolData"></div>
     <!-- Content for High Schools -->
   </div>
   
@@ -353,12 +360,6 @@
         <label for="dropdown1">Statistic</label>
         <select id="dropdown1">
           <!-- Options for Dropdown 1 -->
-        </select>
-      </div>
-      <div class="dropdown-menu">
-        <label for="dropdown2">Year</label>
-        <select id="dropdown2">
-          <!-- Options for Dropdown 2 -->
         </select>
       </div>
     </div>
