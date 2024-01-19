@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="styles.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="statdata.js"></scriptsrc></script>
+<script src="statdata.js"></script>
 <script src="schoolstatspage.js"></script>
 <style>
     body, h1, p {
@@ -329,30 +329,29 @@
   </div>
 
   <div class="tab-strip">
-    <button class="tablinks" onclick="openTab(event, 'ElementarySchools')">Elementary Schools</button>
-    <button class="tablinks" onclick="openTab(event, 'MiddleSchools')">Middle Schools</button>
-    <button class="tablinks" onclick="openTab(event, 'HighSchools')">High Schools</button>
+    <button class="tablinks" onclick="openTab(event, 'Elementary')">Elementary Schools</button>
+    <button class="tablinks" onclick="openTab(event, 'Middle')">Middle Schools</button>
+    <button class="tablinks" onclick="openTab(event, 'High')">High Schools</button>
   </div>
   
-  <div id="ElementarySchools" class="tabcontent">
+  <div id="Elementary" class="tabcontent">
     <div id="elementarySchoolData"></div>
     <!-- Content for Elementary Schools -->
   </div>
   
-  <div id="MiddleSchools" class="tabcontent" style="display:none;">
+  <div id="Middle" class="tabcontent" style="display:none;">
     <div id="middleSchoolData"></div>
     <!-- Content for Middle Schools -->
   </div>
   
-  <div id="HighSchools" class="tabcontent" style="display:none;">
+  <div id="High" class="tabcontent" style="display:none;">
     <div id="highSchoolData"></div>
     <!-- Content for High Schools -->
   </div>
   
   <div id="graphs-placeholder" class="tabcontent">
     <canvas id="myChart"></canvas>
-    <!-- The canvas element for the Chart.js graph -->
-  </div>
+</div>
   
   <div class="column-container">
     <div class="left-column">
@@ -467,61 +466,45 @@
 }
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+<script src="statdata.js"></script>
+    <script src="schoolstatspage.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Combine both the dropdown and language switcher logic here
+            updateDropdown('Elementary'); // Initial population of dropdown
 
-<!-- Chart.js Library -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            var dropdown = document.getElementById('dropdown1');
+            dropdown.addEventListener('change', function() {
+                var selectedUrl = dropdown.value;
+                var selectedColumn = dropdown.options[dropdown.selectedIndex].getAttribute('data-column');
+                loadGraph(selectedUrl, selectedColumn);
+            });
 
-<script src="graphs.js"></script>
+            // Language switcher logic
+            var savedLanguage = localStorage.getItem('preferredLanguage');
+            if (savedLanguage) {
+              document.getElementById('language-dropdown').value = savedLanguage;
+              switchLanguage(savedLanguage);
+            }
+        });
 
-<script> function saveDropdownValue() {
-    var yearDropdown = document.getElementById('dropdown2');
-    localStorage.setItem('selectedYear', yearDropdown.value);
-  }
-
-  function applySavedDropdownValue() {
-    var savedYear = localStorage.getItem('selectedYear');
-    if (savedYear) {
-      document.getElementById('dropdown2').value = savedYear;
-    }
-  }
-
-  function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-    applySavedDropdownValue();
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-  var yearDropdown = document.getElementById('dropdown2');
-
-  // Apply the saved value on page load
-  applySavedDropdownValue();
-
-  // Save the value whenever the dropdown changes
-  yearDropdown.addEventListener('change', saveDropdownValue);
-});
-</script> 
-
-<!-- Your JavaScript for the chart goes here -->
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-      // Proper chart configuration goes here
-    });
-  });
-</script>
+        // Function to handle tab switching
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+            // Trigger a graph update when switching tabs
+            updateDropdown(tabName.replace('Schools', ''));
+        }
+    </script>
   
 </body>
 </html>
