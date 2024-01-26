@@ -127,26 +127,29 @@
   color: #333; /* dark grey */
 }
 
-/* Adjust header image style */
-.header-image {
-    max-width: 55%;
-    height: auto;
-    margin: 20px 0 20px 20px;
-    border: 2px solid #333;
-}
-
 .column-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  gap: 20px; /* adjust as needed for space between columns */
-}
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        gap: 20px; /* adjust as needed for space between columns */
+    }
 
-.left-column,
-.right-column {
-  flex: 1; /* makes both columns take up equal space */
-  padding: 10px; /* adjust as needed for inner spacing */
-}
+    .left-column {
+        flex: 0 0 60%; /* makes the left column take up 60% of the space */
+        padding: 10px; /* adjust as needed for inner spacing */
+    }
+
+    .right-column {
+        flex: 0 0 40%; /* makes the right column take up 40% of the space */
+        padding: 10px; /* adjust as needed for inner spacing */
+    }
+
+    .header-image {
+        width: 55%;
+        height: auto;
+        margin: 20px 0 20px 20px;
+        border: 2px solid #333;
+    }
 
 .text-container, .full-width-text-container {
   background-color: #fff; /* white background */
@@ -274,16 +277,13 @@
       <!-- Add more languages here -->
     </select>
   </div>
-    
-  <img src="https://i.imgur.com/SYijUmk.jpg" alt="Top Image" class="header-image">
-
-<div class="section-divider"></div>
-
 
 <div class="column-container">
-    <div class="left-column">
-      <!-- Static text container -->
-      <div class="text-container">
+  <div class="left-column">
+    <img src="https://i.imgur.com/SYijUmk.jpg" alt="Top Image" class="header-image">
+  </div>
+  <div class="right-column">
+    <div class="text-container">
         <p>The DPS Dashboard is designed to provide a holistic view of DPS and its communities.
           It draws from several sources to map and display data and resources throughout the community.
           Interactive maps show public transit bus stops, after school programs, childcare centers, grocery stores, food pantries, and more — all filterable by school zone
@@ -296,10 +296,19 @@
           </p>
       </div>
     </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+    <div class="column-container">
+    <div class="left-column">
+        <iframe width="853" height="480" src="https://www.youtube.com/embed/2v16LodpAyw" title="Empowered Decision-Making" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
     <div class="right-column">
-      <div id="map-placeholder">Leaflet map will be placed here</div>
+      <div id="map-placeholder"></div>
     </div>
   </div>
+
 
   <div class="section-divider"></div>
 
