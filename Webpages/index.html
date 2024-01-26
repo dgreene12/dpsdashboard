@@ -1,6 +1,12 @@
 <html lang="en">
 <head>
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/MarkerCluster.Default.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/MarkerCluster.css"/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.1/leaflet.markercluster.js"></script>
+<script src="mapscript.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visualizing Durham Public School Communities</title>
@@ -278,7 +284,16 @@
     <div class="left-column">
       <!-- Static text container -->
       <div class="text-container">
-        <p>Will copy over text from dashboard, but don't want code to be too long yet</p>
+        <p>The DPS Dashboard is designed to provide a holistic view of DPS and its communities.
+          It draws from several sources to map and display data and resources throughout the community.
+          Interactive maps show public transit bus stops, after school programs, childcare centers, grocery stores, food pantries, and more — all filterable by school zone
+          Graphic with statistics such as graduation rates, class size, and English as a Second Language enrollment are available.
+           
+          Our vision is that:
+          -campus organizations will use this data as the prepare university students to volunteer in Durham communities.
+          -neighborhood schools will use it to visualize their communities.
+          -and university offices seeking to better understand the Durham communities the aim to serve.
+          </p>
       </div>
     </div>
     <div class="right-column">
@@ -384,5 +399,24 @@
   document.documentElement.lang = lang;
 }
 </script>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="schoolCoordinates.js"></script>
+<script>
+    var map = L.map('map').setView([35.9940, -78.8986], 12); // Set the initial center and zoom level
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Add school markers to the map
+    schoolCoordinates.forEach(function (school) {
+        var marker = L.marker(school.coords).addTo(map);
+        marker.bindPopup('<b>' + school.name + '</b>').openPopup();
+    });
+</script>
+
 </body>
 </html>
