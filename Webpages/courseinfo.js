@@ -50,20 +50,28 @@ function populateDropdown(coursesData) {
 
 // Display Courses for Selected School
 function displayCoursesForSchool(school, coursesData) {
-    const courseTypes = ["English", "Math", "Science", "SocialScience", "WorldLanguages", "MusicAndArts", "Engineering"];
+    const courseTypes = {
+        "English": "English",
+        "Math": "Math",
+        "Science": "Science",
+        "SocialScience": "Social Sciences",
+        "WorldLanguages": "World Languages",
+        "MusicAndArts": "Music and Arts",
+        "Engineering": "Engineering"
+    };
 
-    courseTypes.forEach(type => {
+    for (let type in courseTypes) {
         let container = document.getElementById(type);
         let list = container.querySelector('.course-list');
         list.innerHTML = ''; // Clear previous content
 
-        let filteredCourses = coursesData.filter(course => course.School === school && course.Subject === type);
-        console.log('Filtered courses for', type, ':', filteredCourses); // Debug line
+        let subjectName = courseTypes[type];
+        let filteredCourses = coursesData.filter(course => course.School === school && course.Subject === subjectName);
 
         filteredCourses.forEach(course => {
             let listItem = document.createElement('li');
             listItem.textContent = course.Course;
             list.appendChild(listItem);
         });
-    });
+    }
 }
