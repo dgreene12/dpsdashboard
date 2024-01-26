@@ -264,6 +264,36 @@
             background-color: #f9f9f9;
         }
 
+        .course-boxes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .course-container {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* This is to handle the 2-3-2 layout */
+        .course-boxes > :nth-child(1), .course-boxes > :nth-child(2),
+        .course-boxes > :nth-child(6), .course-boxes > :nth-child(7) {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .course-boxes > :nth-child(3), .course-boxes > :nth-child(4),
+        .course-boxes > :nth-child(5) {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+
         .sleek-dropdown {
       -webkit-appearance: none;  /* Removes default Chrome and Safari styling */
       -moz-appearance: none;     /* Removes default Firefox styling */
@@ -365,13 +395,15 @@
       </div>
 </div>
 
-<div id="English" class="course-container"><h3>English</h3></div>
-<div id="Math" class="course-container"><h3>Math</h3></div>
-<div id="Science" class="course-container"><h3>Science</h3></div>
-<div id="SocialScience" class="course-container"><h3>Social Science</h3></div>
-<div id="WorldLanguages" class="course-container"><h3>World Languages</h3></div>
-<div id="MusicAndArts" class="course-container"><h3>Music and Arts</h3></div>
-<div id="Engineering" class="course-container"><h3>Engineering</h3></div>
+<div class="course-boxes">
+  <div id="English" class="course-container"><h3>English</h3></div>
+  <div id="Math" class="course-container"><h3>Math</h3></div>
+  <div id="Science" class="course-container"><h3>Science</h3></div>
+  <div id="SocialScience" class="course-container"><h3>Social Science</h3></div>
+  <div id="WorldLanguages" class="course-container"><h3>World Languages</h3></div>
+  <div id="MusicAndArts" class="course-container"><h3>Music and Arts</h3></div>
+  <div id="Engineering" class="course-container"><h3>Engineering</h3></div>
+</div>
 
 <script src="courseinfo.js"></script>
 
