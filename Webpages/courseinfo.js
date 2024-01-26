@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const dropdown = document.getElementById('dropdown1');
-    const apiUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/01257b4827a0491623a7a348b85682aa843b9ae5/CSV%20Data%20School%20Stats/APcourses.csv';
+    const apiUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/main/CSV%20Data%20School%20Stats/APcourses.csv';
 
     fetch(apiUrl)
       .then(response => response.text())
@@ -54,13 +54,16 @@ function displayCoursesForSchool(school, coursesData) {
 
     courseTypes.forEach(type => {
         let container = document.getElementById(type);
-        container.innerHTML = `<h3>${type.replace(/([A-Z])/g, ' $1').trim()}</h3>`; // Adds space before capital letters and trims
+        let list = container.querySelector('.course-list');
+        list.innerHTML = ''; // Clear previous content
 
-        coursesData.filter(course => course.School === school && course.Subject === type)
-                   .forEach(course => {
-                       let courseElement = document.createElement('p');
-                       courseElement.textContent = course.Course;
-                       container.appendChild(courseElement);
-                   });
+        let filteredCourses = coursesData.filter(course => course.School === school && course.Subject === type);
+        console.log('Filtered courses for', type, ':', filteredCourses); // Debug line
+
+        filteredCourses.forEach(course => {
+            let listItem = document.createElement('li');
+            listItem.textContent = course.Course;
+            list.appendChild(listItem);
+        });
     });
 }
