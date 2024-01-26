@@ -82,4 +82,34 @@ function displayCoursesForSchool(school, coursesData) {
             list.appendChild(listItem);
         });
     }
+
+    function updateTable(coursesData) {
+        // Dynamically determine course types from coursesData
+        const courseTypes = Array.from(new Set(coursesData.map(course => course.Subject)));
+    
+        const tableBody = document.getElementById('table-body');
+        tableBody.innerHTML = ''; // Clear existing rows
+    
+        const schoolCounts = {};
+        coursesData.forEach(course => {
+            if (!schoolCounts[course.School]) {
+                schoolCounts[course.School] = courseTypes.reduce((acc, type) => ({ ...acc, [type]: 0 }), {});
+            }
+            schoolCounts[course.School][course.Subject]++;
+        });
+    
+        for (const [school, counts] of Object.entries(schoolCounts)) {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${school}</td>` + courseTypes.map(type => `<td>${counts[type] || 0}</td>`).join('');
+            tableBody.appendChild(row);
+        }
+    }
+
+    function updateTableHeaders(courseTypes) {
+        const thead = document.querySelector('table tr');
+        thead.innerHTML = '<th>School</th>' + courseTypes.map(type => `<th>${type}</th>`).join('');
+    }
+    
+    // You would call this function after determining courseTypes in updateTable
+    updateTableHeaders(courseTypes);
 }
