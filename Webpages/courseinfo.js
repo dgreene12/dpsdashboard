@@ -40,6 +40,14 @@ function populateDropdown(coursesData) {
     schools.sort();
     const dropdown = document.getElementById('dropdown1');
     dropdown.innerHTML = ''; // Clear existing options
+    
+    let defaultOption = document.createElement('option');
+    defaultOption.text = 'Choose a school';
+    defaultOption.value = '';
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    dropdown.appendChild(defaultOption);
+
     schools.forEach(school => {
         let option = document.createElement('option');
         option.value = school;
