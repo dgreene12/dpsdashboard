@@ -230,6 +230,61 @@
       font-size: 18px;
       cursor: pointer;
     }
+    /* Mobile Devices */
+@media screen and (max-width: 600px) {
+    .header h1 {
+        font-size: 24px; /* Smaller font size for mobile devices */
+    }
+
+    .navigation a {
+        padding: 10px 12px; /* Smaller padding for navigation items */
+        font-size: 14px; /* Smaller font size for navigation links */
+    }
+
+    .column-container, .statistics, .left-column, .right-column {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center-align the stacked elements */
+    }
+
+    .left-column, .right-column, .stat, .text-container, .image-container {
+        width: 100%; /* Use full width for smaller screens */
+    }
+
+    .partner-image {
+        margin: 10px; /* Reduce margin around partner images */
+        max-width: 100%; /* Allow images to be fully responsive */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .navigation, .image-container {
+        flex-wrap: wrap; /* Allow items to wrap in navigation and image container */
+    }
+}
+
+/* Tablet Devices */
+@media screen and (max-width: 768px) {
+    .header h1 {
+        font-size: 32px; /* Adjust font size for tablets */
+    }
+
+    .navigation a {
+        padding: 15px 16px; /* Adjust padding for navigation items */
+        font-size: 16px; /* Adjust font size for better readability */
+    }
+
+    .stat h2 {
+        font-size: 2.5em; /* Adjust font size for statistics headings */
+    }
+
+    .column-container, .statistics {
+        flex-direction: column; /* Ensure elements stack vertically on smaller screens */
+    }
+
+    .partner-image {
+        max-width: 50%; /* Adjust max width for partner images */
+    }
+}
+
 </style>
 <body>
 <div class="header">
@@ -420,7 +475,7 @@
     }).addTo(map);
 
     // Add school markers to the map
-    
+
     schoolCoordinates.forEach(function (school) {
         var marker = L.marker(school.coords).addTo(map);
         marker.bindPopup('<b>' + school.name + '</b>').openPopup();
