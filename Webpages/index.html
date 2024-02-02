@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visualizing Durham Public School Communities</title>
 <link rel="stylesheet" href="styles.css">
-<style>
+<style> 
     body, h1, p {
         margin: 0;
         padding: 0;
@@ -420,6 +420,7 @@
     }).addTo(map);
 
     // Add school markers to the map
+    //test
     schoolCoordinates.forEach(function (school) {
         var marker = L.marker(school.coords).addTo(map);
         marker.bindPopup('<b>' + school.name + '</b>').openPopup();
