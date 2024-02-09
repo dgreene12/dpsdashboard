@@ -107,18 +107,30 @@ function openTab(evt, tabName) {
 
 // Event listener for DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Apply the saved value on page load
-    applySavedDropdownValue();
+    // Initialize any required setups
+    initializeDropdown(); // Assuming this populates your statistic dropdown
 
-    // Initially populate the dropdown for Elementary Schools
-    updateDropdown('Elementary');
+    const schoolTypeDropdown = document.getElementById('schoolTypeDropdown');
+    const statisticDropdown = document.getElementById('dropdown1');
 
-    var dropdown = document.getElementById('dropdown1');
-    dropdown.addEventListener('change', function() {
-        var selectedUrl = dropdown.value;
-        var selectedColumn = dropdown.options[dropdown.selectedIndex].getAttribute('data-column');
-        loadGraph(selectedUrl, selectedColumn);
+    // Assuming fetchDataAndDrawChart is your function to fetch data and update the chart
+    schoolTypeDropdown.addEventListener('change', function() {
+        const selectedSchoolType = this.value;
+        const selectedStatistic = statisticDropdown.value; // You may need to ensure this is correctly set or default to the first statistic as appropriate
+        fetchDataAndDrawChart(selectedStatistic, selectedSchoolType);
     });
+
+    // Your existing setup for statisticDropdown change event
+    statisticDropdown.addEventListener('change', function() {
+        const selectedStatistic = this.value;
+        const selectedSchoolType = schoolTypeDropdown.value;
+        fetchDataAndDrawChart(selectedStatistic, selectedSchoolType);
+    });
+
+    // Initial fetch and draw chart based on default or initial selections
+    const initialStatistic = statisticDropdown.value;
+    const initialSchoolType = schoolTypeDropdown.value;
+    fetchDataAndDrawChart(initialStatistic, initialSchoolType);
 });
 
 // Functions for saving and applying dropdown value
