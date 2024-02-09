@@ -84,9 +84,11 @@ function fetchDataAndDrawChart(selectedStatistic, selectedSchoolType) {
     case "High":
       csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/9bf837e93801b24d8698c7bb436baea64582b955/CSV%20Data%20School%20Stats/HS_stats_23.csv';
       break;
-  }
-  console.log("Using CSV URL:", csvUrl); 
-  
+      default:
+    console.error("Unexpected school type:", selectedSchoolType);
+    return; // Exit if no matching case
+}  
+
   Papa.parse(csvUrl, {
     download: true,
     header: true,
