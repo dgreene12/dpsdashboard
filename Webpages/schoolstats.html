@@ -9,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="statdata.js"></script>
 <script src="schoolstatspage.js"></script>
+<script src="newgraphs.js"></script>
 <style>
     body, h1, p {
         margin: 0;
@@ -327,31 +328,8 @@
       <!-- Add more languages here -->
     </select>
   </div>
-
-  <div class="tab-strip">
-    <button class="tablinks" onclick="openTab(event, 'Elementary')">Elementary Schools</button>
-    <button class="tablinks" onclick="openTab(event, 'Middle')">Middle Schools</button>
-    <button class="tablinks" onclick="openTab(event, 'High')">High Schools</button>
-  </div>
   
-  <div id="Elementary" class="tabcontent">
-    <div id="elementarySchoolData"></div>
-    <!-- Content for Elementary Schools -->
-  </div>
-  
-  <div id="Middle" class="tabcontent" style="display:none;">
-    <div id="middleSchoolData"></div>
-    <!-- Content for Middle Schools -->
-  </div>
-  
-  <div id="High" class="tabcontent" style="display:none;">
-    <div id="highSchoolData"></div>
-    <!-- Content for High Schools -->
-  </div>
-  
-  <div id="graphs-placeholder" class="tabcontent">
-    <canvas id="myChart"></canvas>
-</div>
+  <canvas id="myChart"></canvas>
   
   <div class="column-container">
     <div class="left-column">
@@ -359,6 +337,14 @@
         <label for="dropdown1">Statistic</label>
         <select id="dropdown1">
           <!-- Options for Dropdown 1 -->
+        </select>
+      </div>
+      <div class="dropdown-menu">
+        <label for="schoolTypeDropdown">School Type</label>
+        <select id="schoolTypeDropdown">
+          <option value="Elementary">Elementary Schools</option>
+          <option value="Middle">Middle Schools</option>
+          <option value="High">High Schools</option>
         </select>
       </div>
     </div>
@@ -467,7 +453,7 @@
 </script>
 
 <script src="statdata.js"></script>
-    <script src="schoolstatspage.js"></script>
+    <script src="newgraphs.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Combine both the dropdown and language switcher logic here
