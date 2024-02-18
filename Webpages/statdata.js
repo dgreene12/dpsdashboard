@@ -305,11 +305,11 @@ var statdata = {
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b6ddf40cf546acb04927f3e2d9a55ff057f8c3c3/CSV%20Data%20School%20Stats/HS_stats_23.csv',
         column: 'STUDENT_TEACHER_ELEM'
     }, 
-    {
-        name: 'Students with Disabilities',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b6ddf40cf546acb04927f3e2d9a55ff057f8c3c3/CSV%20Data%20School%20Stats/HS_stats_23.csv',
-        column: 'DISABLED_PERCENT'
-    }, 
+    //{
+       // name: 'Students with Disabilities',
+        //url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b6ddf40cf546acb04927f3e2d9a55ff057f8c3c3/CSV%20Data%20School%20Stats/HS_stats_23.csv',
+        //column: 'DISABLED_PERCENT'
+    //}, 
     {
         name: 'Titles Per Student',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b6ddf40cf546acb04927f3e2d9a55ff057f8c3c3/CSV%20Data%20School%20Stats/HS_stats_23.csv',

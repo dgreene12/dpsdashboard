@@ -6,7 +6,7 @@ const statisticToColumnMapping = {
   "Experienced Teacher Ratio": "EXP_TEACHER_RATIO",
   "Free and Reduced Lunch": "FREE_RED_PERCENT",
   "Funding Per Pupil": "FUNDING_PER_PUPIL",
-  "English as a Second Language (ESL) Student Enrollment": "ESL_PERCENT",
+  //"English as a Second Language (ESL) Student Enrollment": "ESL_PERCENT",
   "In-School Suspensions (ISS)": "IN_SCHOOL_SUSP_PER_1000",
   "Median Age": "MED_AGE",
   "Median Homesale Price": "MED_HOMESALE_PRICE",
@@ -16,7 +16,7 @@ const statisticToColumnMapping = {
   "Sidewalk Coverage": "SIDEWALK_COVG",
   "Students Per Device": "STUDENTS_PER_DEVICE",
   "Student-Teacher Ratio, Elementary School": "STUDENT_TEACHER_ELEM",
-  "Students With Disabilities": "DISABLED_PERCENT",
+  //"Students With Disabilities": "DISABLED_PERCENT",
   "Titles Per Student": "TITLES_PER_STUDENT",
   "WiFi Access Points Per Classroom": "WIFI_ACCESS_PTS",
 }
@@ -45,7 +45,7 @@ function initializeDropdown() {
     "Experienced Teacher Ratio",
     "Free and Reduced Lunch",
     "Funding Per Pupil",
-    "English as a Second Language (ESL) Student Enrollment",
+    //"English as a Second Language (ESL) Student Enrollment",
     "In-School Suspensions (ISS)",
     "Median Age",
     "Median Homesale Price",
@@ -55,7 +55,7 @@ function initializeDropdown() {
     "Sidewalk Coverage",
     "Students Per Device",
     "Student-Teacher Ratio, Elementary School",
-    "Students With Disabilities",
+    //"Students With Disabilities",
     "Titles Per Student",
     "WiFi Access Points Per Classroom"
   ];
@@ -106,18 +106,27 @@ function fetchDataAndDrawChart(selectedStatistic, selectedSchoolType) {
 }
 
 function processDataForChart(data, column, statisticName) {
-  // Ensure the SCHOOL_NAME column matches your CSV
   var labels = data.map(item => item.SCHOOL_NAME); 
-  var dataset = data.map(item => item[column] ? parseFloat(item[column]) : 0);
+  var dataset = data.map(item => {
+    const value = item[column] ? parseFloat(item[column]) : 0;
+    // Check if the current item is "Durham County" and assign a unique color
+    const backgroundColor = item.SCHOOL_NAME === "Durham County" ? '#FF5733' : '#76B9F0';
+    return {
+      data: value,
+      backgroundColor: backgroundColor,
+      borderColor: '#000000',
+      borderWidth: 1
+    };
+  });
 
   return {
     labels: labels,
     datasets: [{
       label: statisticName,
-      data: dataset,
-      backgroundColor: '#76B9F0',
-      borderColor: '#000000',
-      borderWidth: 1
+      data: dataset.map(item => item.data), // Extract just the data values for the chart
+      backgroundColor: dataset.map(item => item.backgroundColor), // Apply unique background colors
+      borderColor: dataset.map(item => item.borderColor),
+      borderWidth: dataset.map(item => item.borderWidth)
     }]
   };
 }

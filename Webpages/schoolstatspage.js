@@ -72,17 +72,27 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function processDataForChart(data, column, statisticName) {
-    var labels = data.map(item => item.SCHOOL_NAME);
-    var dataset = data.map(item => item[column] ? parseFloat(item[column]) : 0);
+    var labels = data.map(item => item.SCHOOL_NAME); 
+    var dataset = data.map(item => {
+      const value = item[column] ? parseFloat(item[column]) : 0;
+      // Check if the current item is "Durham County" and assign a unique color
+      const backgroundColor = item.SCHOOL_NAME === "Durham County" ? '#FF5733' : '#76B9F0';
+      return {
+        data: value,
+        backgroundColor: backgroundColor,
+        borderColor: '#000000',
+        borderWidth: 1
+      };
+    });
   
     return {
       labels: labels,
       datasets: [{
         label: statisticName,
-        data: dataset,
-        backgroundColor: '#76B9F0',
-        borderColor: '#000000',
-        borderWidth: 1
+        data: dataset.map(item => item.data), // Extract just the data values for the chart
+        backgroundColor: dataset.map(item => item.backgroundColor), // Apply unique background colors
+        borderColor: dataset.map(item => item.borderColor),
+        borderWidth: dataset.map(item => item.borderWidth)
       }]
     };
   }
