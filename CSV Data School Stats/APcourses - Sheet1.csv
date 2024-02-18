@@ -1,4 +1,4 @@
-School,Subject,Course
+School,Subject,Courses
 Riverside High,English,AP English Language
 Riverside High,English,AP English Literature
 Riverside High,World Languages,AP Spanish Language and Culture
@@ -14,15 +14,15 @@ Riverside High,Science,AP Environmental Science
 Riverside High,Science,AP Physics I
 Riverside High,Science,AP Physics II
 Riverside High,Science,AP Physics C: Mechanics
-Riverside High,Social Sciences,AP Psychology
-Riverside High,Social Sciences,AP U.S. Government and Politics
-Riverside High,Social Sciences,AP U.S. History
-Riverside High,Social Sciences,AP European History
-Riverside High,Social Sciences,AP Human Geography
-Riverside High,Social Sciences,AP Macroeconomics
-Riverside High,Social Sciences,AP Microeconomics
-Riverside High,Social Sciences,AP Comparative Government and Politics
-Riverside High,Social Sciences,AP World History
+Riverside High,Social,AP Psychology
+Riverside High,Social,AP U.S. Government and Politics
+Riverside High,Social,AP U.S. History
+Riverside High,Social,AP European History
+Riverside High,Social,AP Human Geography
+Riverside High,Social,AP Macroeconomics
+Riverside High,Social,AP Microeconomics
+Riverside High,Social,AP Comparative Government and Politics
+Riverside High,Social,AP World History
 Riverside High,Music and Arts,AP Music Theory
 Riverside High,Music and Arts,AP Studio Art: 2-D Design
 Riverside High,Music and Arts,AP Studio Art: Drawing
@@ -48,7 +48,7 @@ Durham School of Technology,English,AP English Language
 Durham School of Technology,English,AP English Literature
 Durham School of Technology,Math,AP Calculus AB
 Durham School of Technology,Science,AP Environmental Science
-Durham School of Technology,Social Sciences,AP U.S. Government and Politics
+Durham School of Technology,Social Science,AP U.S. Government and Politics
 Durham School of Technology,Engineering,AP Computer Science A
 ,,
 Hillside High,English,AP Language and Composition
@@ -62,11 +62,11 @@ Hillside High,Science,AP Biology
 Hillside High,Science,AP Physics C: Mechanics
 Hillside High,Science,AP Physics C: Electricity and Magnetism
 Hillside High,Science,AP Chemistry
-Hillside High,Social Sciences,AP European History
-Hillside High,Social Sciences,AP Human Geography
-Hillside High,Social Sciences,AP U.S. Government and Politics
-Hillside High,Social Sciences,AP U.S. History
-Hillside High,Social Sciences,AP Comparative Government and Politics
+Hillside High,Social,AP European History
+Hillside High,Social,AP Human Geography
+Hillside High,Social,AP U.S. Government and Politics
+Hillside High,Social,AP U.S. History
+Hillside High,Social,AP Comparative Government and Politics
 Hillside High,World Languages,AP Spanish Language and Culture
 Hillside High,World Languages,AP Spanish Literature and Culture
 Hillside High,Music and Arts,AP Music Theory
@@ -107,7 +107,6 @@ Jordan High,English,AP English Language
 Jordan High,English,AP English Literature
 Jordan High,World Languages,AP Spanish Language and Culture
 Jordan High,World Languages,AP Spanish Literature and Culture
-Jordan High,World Languages,AP Latin
 Jordan High,World Languages,AP French Language and Culture
 Jordan High,Math,AP Statistics
 Jordan High,Math,AP Calculus AB
@@ -117,18 +116,17 @@ Jordan High,Science,AP Chemistry
 Jordan High,Science,AP Environmental Science
 Jordan High,Science,AP Physics I
 Jordan High,Science,AP Physics II
-Jordan High,Science,AP Physics C: Mechanics
-Jordan High,Social Sciences,AP Psychology
-Jordan High,Social Sciences,AP U.S. Government and Politics
-Jordan High,Social Sciences,AP U.S. History
-Jordan High,Social Sciences,AP European History
-Jordan High,Social Sciences,AP Human Geography
-Jordan High,Social Sciences,AP Macroeconomics
-Jordan High,Social Sciences,AP Microeconomics
-Jordan High,Social Sciences,AP Comparative Government and Politics
-Jordan High,Social Sciences,AP World History
+Jordan High,Social,AP African American Studies
+Jordan High,Social,AP Psychology
+Jordan High,Social,AP U.S. Government and Politics
+Jordan High,Social,AP U.S. History
+Jordan High,Social,AP Human Geography
+Jordan High,Social,AP Comparative Government and Politics
+Jordan High,Social,AP World History
 Jordan High,Music and Arts,AP Music Theory
 Jordan High,Music and Arts,AP Studio Art: 2-D Design
 Jordan High,Music and Arts,AP Studio Art: Drawing
-Jordan High,Music and Arts,AP Studio Art: 3-D Design
-Jordan High,Music and Arts,AP Art History
+Jordan High,Capstone,AP Seminar
+Jordan High,Capstone,AP Research
+Jordan High,Math,AP Computer Science 
+Jordan High,Math,AP PreCalc
