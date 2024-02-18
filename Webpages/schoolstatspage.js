@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    initializeDropdown(); // Initialize dropdown with statistics options
     setupSchoolTypeDropdown(); // Setup listener for school type changes
   
     // Initialize chart with default selections (if needed)
