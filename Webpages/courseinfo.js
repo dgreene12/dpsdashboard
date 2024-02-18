@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const dropdown = document.getElementById('dropdown1');
-    const apiUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/main/CSV%20Data%20School%20Stats/APcourses.csv';
+    const apiUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/main/CSV%20Data%20School%20Stats/APcourses';
 
     fetch(apiUrl)
       .then(response => response.text())
