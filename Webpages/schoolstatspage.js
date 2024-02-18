@@ -1,147 +1,110 @@
-// Define global chart variable
-var myChart;
-
-// Function to create a new chart
-function createChart(chartData) {
-    // Destroy existing chart instance if it exists
-    console.log("createChart called with data: ", chartData);
-    if (myChart && typeof myChart.destroy === 'function') {
-        myChart.destroy();
-    }
-
-    // Create a new chart instance
-    var ctx = document.getElementById('myChart').getContext('2d');
-    myChart = new Chart(ctx, {
-        type: 'bar',
-        data: chartData,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-            plugins: {
-                legend: {
-                    display: true
-                }
-            },
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
-}
-
-// Function to load graph data
-function loadGraph(url, column) {
-    console.log("loadGraph called with URL: ", url, " and column: ", column);
-    Papa.parse(url, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            console.log("CSV data: ", results.data);
-            var chartData = processDataForChart(results.data, column);
-            createChart(chartData);
-        }
-    });
-}
-
-// Function to process CSV data for the chart
-function processDataForChart(data, column) {
-    var labels = data.map(item => item.SchoolName);
-    var dataset = data.map(item => parseFloat(item[column]));
-
-    return {
-        labels: labels,
-        datasets: [{
-            label: column,
-            data: dataset,
-            backgroundColor: '#76B9F0',
-            borderColor: '#000000',
-            borderWidth: 1
-        }]
-    };
-}
-
-// Function to update dropdown based on the selected school type
-function updateDropdown(schoolType) {
-    var dropdown = document.getElementById('dropdown1');
-    dropdown.innerHTML = ''; // Clear existing options
-
-    var data = statdata[schoolType + 'Schools'];
-    data.forEach(function(item) {
-        var option = document.createElement('option');
-        option.value = item.url;
-        option.textContent = item.name;
-        if (item.column) {
-            option.setAttribute('data-column', item.column);
-        }
-        dropdown.appendChild(option);
-    });
-
-    // Load initial graph
-    if (data[0].column) {
-        loadGraph(data[0].url, data[0].column);
-    } else {
-        // Handle the case where the first item doesn't have a column
-    }
-}
-
-// Function to handle tab switching
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-
-    // Update the dropdown based on the tab name
-    var schoolType = tabName.replace('Schools', '');
-    updateDropdown(schoolType);
-}
-
-// Event listener for DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize any required setups
-    initializeDropdown(); // Assuming this populates your statistic dropdown
-
-    const schoolTypeDropdown = document.getElementById('schoolTypeDropdown');
-    const statisticDropdown = document.getElementById('dropdown1');
-
-    // Assuming fetchDataAndDrawChart is your function to fetch data and update the chart
-    schoolTypeDropdown.addEventListener('change', function() {
-        const selectedSchoolType = this.value;
-        const selectedStatistic = statisticDropdown.value; // You may need to ensure this is correctly set or default to the first statistic as appropriate
-        fetchDataAndDrawChart(selectedStatistic, selectedSchoolType);
-    });
-
-    // Your existing setup for statisticDropdown change event
-    statisticDropdown.addEventListener('change', function() {
-        const selectedStatistic = this.value;
-        const selectedSchoolType = schoolTypeDropdown.value;
-        fetchDataAndDrawChart(selectedStatistic, selectedSchoolType);
-    });
-
-    // Initial fetch and draw chart based on default or initial selections
-    const initialStatistic = statisticDropdown.value;
-    const initialSchoolType = schoolTypeDropdown.value;
+    initializeDropdown(); // Initialize dropdown with statistics options
+    setupSchoolTypeDropdown(); // Setup listener for school type changes
+  
+    // Initialize chart with default selections (if needed)
+    const initialSchoolType = document.getElementById('schoolTypeDropdown').value;
+    const initialStatistic = document.getElementById('dropdown1').value;
     fetchDataAndDrawChart(initialStatistic, initialSchoolType);
-});
-
-// Functions for saving and applying dropdown value
-function saveDropdownValue() {
-    var statisticDropdown = document.getElementById('dropdown1');
-    localStorage.setItem('selectedStatistic', statisticDropdown.value);
-}
-
-function applySavedDropdownValue() {
-    var savedStatistic = localStorage.getItem('selectedStatistic');
-    if (savedStatistic) {
-        document.getElementById('dropdown1').value = savedStatistic;
+  });
+  
+  function setupSchoolTypeDropdown() {
+    const schoolTypeDropdown = document.getElementById('schoolTypeDropdown');
+    schoolTypeDropdown.addEventListener('change', function() {
+      const selectedSchoolType = this.value;
+      const statisticDropdown = document.getElementById('dropdown1');
+      const selectedStatistic = statisticDropdown.options[statisticDropdown.selectedIndex].value;
+      fetchDataAndDrawChart(selectedStatistic, selectedSchoolType);
+    });
+  }
+  
+  function initializeDropdown() {
+    const dropdown = document.getElementById('dropdown1');
+    const statistics = Object.keys(statisticToColumnMapping);
+  
+    statistics.forEach(stat => {
+      const option = document.createElement('option');
+      option.value = stat;
+      option.textContent = stat;
+      dropdown.appendChild(option);
+    });
+  
+    dropdown.addEventListener('change', function() {
+      const selectedSchoolType = document.getElementById('schoolTypeDropdown').value;
+      const selectedStatistic = this.value;
+      fetchDataAndDrawChart(selectedStatistic, selectedSchoolType);
+    });
+  }
+  
+  function fetchDataAndDrawChart(selectedStatistic, selectedSchoolType) {
+    console.log("Fetching data for:", selectedStatistic, "in", selectedSchoolType);
+    
+    let csvUrl = '';
+    switch (selectedSchoolType) {
+      case "Elementary":
+        csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/3a0d041f469685e64ec817c7736cc85ede48f0e2/CSV%20Data%20School%20Stats/ES_stats_23.csv'; 
+        break;
+      case "Middle":
+        csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/9bf837e93801b24d8698c7bb436baea64582b955/CSV%20Data%20School%20Stats/MS_stats_23.csv'; 
+        break;
+      case "High":
+        csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/9bf837e93801b24d8698c7bb436baea64582b955/CSV%20Data%20School%20Stats/HS_stats_23.csv';
+        break;
+      default:
+        console.error("Unexpected school type:", selectedSchoolType);
+        return;
     }
-}
+  
+    const column = statisticToColumnMapping[selectedStatistic];
+    if (!column) {
+      console.error("Column not found for statistic:", selectedStatistic);
+      return;
+    }
+  
+    Papa.parse(csvUrl, {
+      download: true,
+      header: true,
+      dynamicTyping: true,
+      complete: function(results) {
+        const chartData = processDataForChart(results.data, column, selectedStatistic);
+        createChart(chartData);
+      }
+    });
+  }
+  
+  function processDataForChart(data, column, statisticName) {
+    var labels = data.map(item => item.SCHOOL_NAME);
+    var dataset = data.map(item => item[column] ? parseFloat(item[column]) : 0);
+  
+    return {
+      labels: labels,
+      datasets: [{
+        label: statisticName,
+        data: dataset,
+        backgroundColor: '#76B9F0',
+        borderColor: '#000000',
+        borderWidth: 1
+      }]
+    };
+  }
+  
+  function createChart(chartData) {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    if (window.myChartInstance) {
+      window.myChartInstance.destroy();
+    }
+    window.myChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: chartData,
+      options: {
+        scales: {
+          y: { beginAtZero: true },
+          x: { display: true }
+        },
+        plugins: { legend: { display: true } },
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  }
+  

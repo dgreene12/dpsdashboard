@@ -99,7 +99,7 @@ var statdata = {
         column: 'WIFI_ACCESS_PTS'
     },
     ],
-    "MiddleSchools": [
+    "Middle": [
     {
         name: 'Racial Demographics',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b6ddf40cf546acb04927f3e2d9a55ff057f8c3c3/CSV%20Data%20School%20Stats/MS_all%20race%202023.csv',
@@ -203,7 +203,7 @@ var statdata = {
         column: 'WIFI_ACCESS_PTS'
     },
 ],
-"HighSchools": [
+"High": [
     {
         name: 'Racial Demographics',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b6ddf40cf546acb04927f3e2d9a55ff057f8c3c3/CSV%20Data%20School%20Stats/HS_all%20race%202023.csv',
