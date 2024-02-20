@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize chart with default selections (if needed)
     const initialSchoolType = document.getElementById('schoolTypeDropdown').value;
     const initialStatistic = document.getElementById('dropdown1').value;
+    updateContentArea(initialStatistic); 
     fetchDataAndDrawChart(initialStatistic, initialSchoolType);
   });
   
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function fetchDataAndDrawChart(selectedStatistic, selectedSchoolType) {
     console.log("Fetching data for:", selectedStatistic, "in", selectedSchoolType);
+    updateContentArea(selectedStatistic);
     
     let csvUrl = '';
     switch (selectedSchoolType) {
@@ -116,4 +118,19 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+
+  function updateContentArea(statisticName) {
+    const contentArea = document.getElementById('contentArea');
+    if (statContent[statisticName]) {
+        const { content, resources } = statContent[statisticName];
+        contentArea.innerHTML = `<h4>${statisticName}</h4><p>${content}</p>`;
+        // Add resources if any
+        if (resources && resources.length) {
+            const resourcesHtml = resources.map(url => `<a href="${url}" target="_blank">Resource</a>`).join("<br>");
+            contentArea.innerHTML += `<h5>Resources:</h5><p>${resourcesHtml}</p>`;
+        }
+    } else {
+        contentArea.innerHTML = `<p>No content available for this statistic.</p>`;
+    }
+}
   

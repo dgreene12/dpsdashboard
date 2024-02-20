@@ -31,7 +31,8 @@ var statdata = {
     {
         name: 'Enrollment',
         url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/3a0d041f469685e64ec817c7736cc85ede48f0e2/CSV%20Data%20School%20Stats/ES_stats_23.csv',
-        column: 'ENROLLMENT'
+        column: 'ENROLLMENT',
+        content: 'enrollment makes a big difference'
     }, 
     {
         name: 'Experienced Teacher Ratio',

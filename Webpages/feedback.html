@@ -132,24 +132,30 @@
 
 .column-container {
   display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  gap: 20px; /* adjust as needed for space between columns */
+  justify-content: space-around; /* Adjusts alignment to space around the items */
+  align-items: start; /* Aligns items at the start of the container */
+  padding: 20px; /* Padding around the entire container */
+  gap: 20%; /* Adjust the gap to manage space between the columns */
 }
 
 .left-column,
 .right-column {
-  flex: 1; /* makes both columns take up equal space */
-  padding: 10px; /* adjust as needed for inner spacing */
+  flex: 0 0 40%; /* Flex grow, flex shrink, flex basis */
+  /* Makes each column take up 40% of the container's width */
+  padding: 10px; /* Padding inside each column */
 }
 
 .text-container, .full-width-text-container {
-  background-color: #fff; /* white background */
-  border: 1px solid #e0e0e0; /* light grey border */
-  border-radius: 5px; /* rounded corners for a modern look */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
-  padding: 20px; /* internal spacing */
-  margin-bottom: 20px; /* space between boxes and other elements */
+    background-color: #fff;
+    border-radius: 8px; /* More pronounced rounded corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Updated shadow for sleek look */
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out; /* Smooth transform on hover */
+}
+
+.text-container:hover, .full-width-text-container:hover {
+    transform: translateY(-5px); /* Subtle hover effect */
 }
 
     .image-container {
@@ -235,6 +241,65 @@
       margin-left: auto; /* Centers the container */
       margin-right: auto; /* Centers the container */
     }
+
+    button, .button {
+    background-color: #663399;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    button:hover, .button:hover {
+        background-color: #5B72FF; /* Lighter shade for hover */
+    }
+
+    input[type="text"], input[type="email"], textarea {
+        border: 1px solid #CCC;
+        padding: 10px;
+        border-radius: 5px;
+        width: 100%; /* Full width inputs */
+        box-sizing: border-box; /* Border included in width */
+        margin-bottom: 20px; /* Spacing below inputs */
+    }
+
+    /* Style links to have a subtle color change and underline on hover */
+    a {
+        transition: color 0.3s ease-out; /* Smooth transition for color change */
+    }
+
+    a:hover, a:focus {
+        text-decoration: underline; /* Add underline on hover/focus */
+        color: #5B72FF; /* Lighter shade for hover, adjust the color as needed */
+    }
+
+    /* Custom bullet points */
+    ul.custom-bullets {
+        list-style: none; /* Remove default list style */
+        padding-left: 0; /* Adjust padding as needed */
+    }
+
+    ul.custom-bullets li::before {
+        content: '•'; /* Custom bullet symbol */
+        color: #663399; /* Bullet color, adjust as needed */
+        font-size: 20px; /* Bullet size, adjust as needed */
+        vertical-align: middle;
+        margin-right: 10px; /* Space between the bullet and text */
+    }
+
+    /* Adjust link color inside text-container for better visibility */
+    .text-container a, .full-width-text-container a {
+        color: #663399; /* Make link color match your theme, adjust as needed */
+    }
+
+    /* Enhance link visibility on hover within text containers */
+    .text-container a:hover, .full-width-text-container a:hover {
+        color: #5B72FF; /* Lighter shade for hover, adjust as needed */
+        text-decoration: underline; /* Reinforce underline on hover */
+    }
+    
 </style>
 <body>
 <div class="header">
@@ -248,7 +313,7 @@
   <a href="schoolstats.html" data-translate="schoolstats">School Statistics</a>
   <a href="datainsights.html" data-translate="datainsights">Data Insights</a>
   <a href="courses.html" data-translate="courses">Courses</a>
-  <a href="sports.html" data-translate="sports">Sports</a>
+  <!--<a href="sports.html" data-translate="sports">Sports</a>-->
   <a href="arts.html" data-translate="arts">Arts</a>
   <a href="engagement.html" data-translate="engagement">Duke/NCCU Engagement</a>
   <a href="feedback.html" data-translate="feedback" class="current">Feedback</a>
@@ -270,33 +335,29 @@
   <div class="column-container">
     <!-- Left Column with Feedback Section -->
     <div class="left-column">
-        <div class="text-container">
-            <div style="text-align: center;">     
-                <h2>Feedback</h2>
-                <p>We value your input and feedback about our visualization of Durham Public School communities. 
-                Please share your thoughts and suggestions to help us improve.</p>
-            </div>
-        </div>
+      <div class="text-container">
+        <div style="text-align: center;">     
+            <h2>We Want to Hear Your Feedback</h2>
+            <p>We value your input and feedback about our visualization of Durham Public School communities. If you have any thoughts or suggestions, please <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUZ8PJqDoljiumNdy_LdltwUgq1N5yZWamZK_hYEl6XxlOwQ/viewform" target="_blank">share them with us</a> to help us improve.
+            Feel free to reach out to Drew Greene (andrew.greene@duke.edu) with any questions or concerns.</p>
+            <img src="" alt="">
+          </div>
+    </div>
     </div>
 
-    <div class="text-container">
-      <div style="text-align: center;">     
-          <h2>We Want to Hear Your Feedback</h2>
-          <p>If you have any thoughts or suggestions, please <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUZ8PJqDoljiumNdy_LdltwUgq1N5yZWamZK_hYEl6XxlOwQ/viewform" target="_blank">share them with us</a> to help us improve.</p>
-          <img src="" alt="">
-        </div>
-  </div>
   
     <!-- Right Column for additional content -->
     <div class="right-column">
         <div class="text-container">
-          <h2>Learn More!</h2>
-          <p>• <a href="https://sites.duke.edu/uacs/outputs/" target="_blank">Community School Partnerships</a></p><br> 
-          <p>• <a href="https://bigdata.duke.edu/projects/strengthening-partnerships-durham-schools-local-universities/" target="_blank">Data+ 2023</a></p><br> 
-          <p>• <a href="https://bassconnections.duke.edu/project-teams/strengthening-partnerships-between-durham-public-schools-and-local-universities-2022" target="_blank">Bass Connections 2022-2023</a></p><br> 
-          <p>• <a href="https://community.duke.edu/impact-story/duke-public-school-collaboration-published-in-journal/" target="_blank">Duke and NCCU Collaboration Published in Community Schooling Journal</a></p><br> 
-          <p>• <a href="https://trinity.duke.edu/news/how-trinity-faculty-and-students-are-sharing-resources-support-durham-public-schools" target="_blank">How Trinity Faculty and Students Are Sharing Resources in Support of Durham Public Schools</a></p><br> 
-        </div>
+  <h2>Learn More!</h2>
+  <ul class="custom-bullets">
+    <li><a href="https://sites.duke.edu/uacs/outputs/" target="_blank">Community School Partnerships</a></li>
+    <li><a href="https://bigdata.duke.edu/projects/strengthening-partnerships-durham-schools-local-universities/" target="_blank">Data+ 2023</a></li>
+    <li><a href="https://bassconnections.duke.edu/project-teams/strengthening-partnerships-between-durham-public-schools-and-local-universities-2022" target="_blank">Bass Connections 2022-2023</a></li>
+    <li><a href="https://community.duke.edu/impact-story/duke-public-school-collaboration-published-in-journal/" target="_blank">Duke and NCCU Collaboration Published in Community Schooling Journal</a></li>
+    <li><a href="https://trinity.duke.edu/news/how-trinity-faculty-and-students-are-sharing-resources-support-durham-public-schools" target="_blank">How Trinity Faculty and Students Are Sharing Resources in Support of Durham Public Schools</a></li>
+  </ul>
+</div>
     </div>
 </div>
 
