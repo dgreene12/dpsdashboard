@@ -98,19 +98,47 @@ function updateGraphOrShowMessage(labels, counts, schoolName) {
                 datasets: [{
                     label: 'Number of Resources within 5 Miles',
                     data: counts,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(33, 102, 172, 0.7)', // Darker color
+                    borderColor: 'rgba(33, 102, 172, 1)', // Darker color for border
                     borderWidth: 1
                 }]
             },
             options: {
-                indexAxis: 'y', // Horizontal bar chart
+                indexAxis: 'y', // Makes the bar chart horizontal
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 16 // Bigger font size for legend
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Resources by School',
+                        font: {
+                            size: 20 // Bigger font size for title
+                        }
+                    }
+                },
                 scales: {
                     x: {
                         beginAtZero: true,
                         max: 200,
-                        fontSize: 16,
+                        ticks: {
+                            font: {
+                                size: 16 // Bigger font size for x-axis labels
+                            }
+                        }
                     },
+                    y: {
+                        ticks: {
+                            font: {
+                                size: 16 // Bigger font size for y-axis labels
+                            }
+                        }
+                    }
                 }
             }
         });
