@@ -1,24 +1,28 @@
 const statisticToColumnMapping = {
+  //"AP Course Enrollment [HS Only]": "ADV_COURSES_PERCENT",
   "Average Class Size": "AVG_CLASS_SIZE",
-  "Bachelor Degree Rate": "BACHELOR_DEG_RATE",
-  "BIPOC Students per School": "BIPOC_PERCENT",
+  "Bachelor\'s Degree Rate": "BACHELOR_DEG_RATE",
+  //"BIPOC Students per School": "BIPOC_PERCENT",
+  "CTE Course Enrollment [MS/HS Only]": "CTE_RATE",
+  //"English as a Second Language (ESL) Student Enrollment": "ESL_PERCENT",
   "Enrollment": "ENROLLMENT_NA",
   "Experienced Teacher Ratio": "EXP_TEACHER_RATIO",
   "Free and Reduced Lunch": "FREE_RED_PERCENT",
   "Funding Per Pupil": "FUNDING_PER_PUPIL",
-  //"English as a Second Language (ESL) Student Enrollment": "ESL_PERCENT",
+  "Graduation Rate [HS Only]": "GRADUATION_RATE",
   "In-School Suspensions (ISS)": "IN_SCHOOL_SUSP_PER_1000",
   "Median Age": "MED_AGE",
   "Median Homesale Price": "MED_HOMESALE_PRICE",
   "Median Household Income": "MED_HOUSEHOLD_INC",
-  "Racial Demographics": "RACIAL_DEMOGRAPHICS",
-  "School and Zone BIPOC Comparison": "SCHOOL_ZONE_BIPOC_COMP",
+  //"Racial Demographics": "RACIAL_DEMOGRAPHICS",
+  //"School and Zone BIPOC Comparison": "SCHOOL_ZONE_BIPOC_COMP",
   "Sidewalk Coverage": "SIDEWALK_COVG",
   "Students Per Device": "STUDENTS_PER_DEVICE",
   //"Student-Teacher Ratio": "STUDENT_TEACHER_ELEM",
   //"Students With Disabilities": "DISABLED_PERCENT",
   "Titles Per Student": "TITLES_PER_STUDENT",
   "WiFi Access Points Per Classroom": "WIFI_ACCESS_PTS",
+  
 }
 
 function openTab(evt, tabName) {
@@ -37,21 +41,30 @@ function openTab(evt, tabName) {
 
 function initializeDropdown() {
   const dropdown = document.getElementById('dropdown1');
+  //const defaultOption = document.createElement('option');
+  //defaultOption.value = ""; // Empty value indicates no selection
+  //defaultOption.textContent = "Select a Statistic"; // Text prompting user to make a selection
+  //defaultOption.disabled = true; // Optionally make it disabled
+  //defaultOption.selected = true; // Make it the selected option by default
+  //dropdown.appendChild(defaultOption); // Add it to the dropdown
   const statistics = [
+    //"AP Course Enrollment [HS Only]",
     "Average Class Size",
-    "Bachelor Degree Rate",
-    "BIPOC Students per School",
+    "Bachelor\'s Degree Rate",
+    //"BIPOC Students per School",
+    "CTE Course Enrollment [MS/HS Only]",
+    //"English as a Second Language (ESL) Student Enrollment",
     "Enrollment",
     "Experienced Teacher Ratio",
     "Free and Reduced Lunch",
     "Funding Per Pupil",
-    //"English as a Second Language (ESL) Student Enrollment",
+    "Graduation Rate [HS Only]",
     "In-School Suspensions (ISS)",
     "Median Age",
     "Median Homesale Price",
     "Median Household Income",
-    "Racial Demographics",
-    "School and Zone BIPOC Comparison",
+    //"Racial Demographics",
+    //"School and Zone BIPOC Comparison",
     "Sidewalk Coverage",
     "Students Per Device",
     "Student-Teacher Ratio",

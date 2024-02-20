@@ -277,7 +277,7 @@
       border: 1px solid #ccc;
     }
     #ServiceTable table,
-    #TeachingLearningTable table,
+    #TeachingLearning table,
     #ResearchTable table {
         width: 100%; /* Full width of its container */
         border-collapse: collapse; /* Removes gaps between borders */
@@ -286,14 +286,14 @@
     }
 
     #ServiceTable th, #ServiceTable td,
-    #TeachingLearningTable th, #TeachingLearningTable td,
+    #TeachingLearning th, #TeachingLearning td,
     #ResearchTable th, #ResearchTable td {
         border: 1px solid #ddd; /* Adds a light grey border */
         padding: 8px; /* Adds padding inside each cell */
     }
 
     #ServiceTable th,
-    #TeachingLearningTable th,
+    #TeachingLearning th,
     #ResearchTable th {
         background-color: #663399; /* Navy blue header background */
         color: white; /* White text for headers */
@@ -301,19 +301,19 @@
     }
 
     #ServiceTable tr:nth-child(even),
-    #TeachingLearningTable tr:nth-child(even),
+    #TeachingLearning tr:nth-child(even),
     #ResearchTable tr:nth-child(even) {
         background-color: #f2f2f2; /* Adds a zebra-striping effect */
     }
 
     #ServiceTable tr:hover,
-    #TeachingLearningTable tr:hover,
+    #TeachingLearning tr:hover,
     #ResearchTable tr:hover {
         background-color: #ddd; /* Changes background on row hover */
     }
 
     #ServiceTable a,
-    #TeachingLearningTable a,
+    #TeachingLearning a,
     #ResearchTable a {
         color: #663399; /* Styles links to match the header color */
         text-decoration: none; /* Removes underline from links */
@@ -362,6 +362,7 @@
   <div class="dropdown-menu">
     <label for="service-dropdown"><strong>Choose a Division to View Community Engagement Opportunities</strong></label>
     <select id="service-dropdown" onchange="dropdownChanged('Service', this.value)">
+      <option value="" disabled selected>Select a variable...</option> <!-- Default option added -->
       <option value="Staff/Faculty">Staff/Faculty</option>
       <option value="Undergraduate Students">Undergraduate Students</option>
     </select>
@@ -376,6 +377,7 @@
   <div class="dropdown-menu">
     <label for="teaching-dropdown"><strong>Choose a Division to View Community Engagement Opportunities</strong></label>
     <select id="teaching-dropdown" onchange="dropdownChanged('Teaching and Learning', this.value)">
+      <option value="" disabled selected>Select a variable...</option> <!-- Default option added -->
       <option value="Staff/Faculty">Staff/Faculty</option>
       <option value="Undergraduate Students">Undergraduate Students</option>
     </select>
@@ -390,6 +392,7 @@
   <div class="dropdown-menu">
     <label for="research-dropdown"><strong>Choose a Division to View Community Engagement Opportunities</strong></label>
     <select id="research-dropdown" onchange="dropdownChanged('Research', this.value)">
+      <option value="" disabled selected>Select a variable...</option> <!-- Default option added -->
       <option value="Staff/Faculty">Staff/Faculty</option>
       <option value="Undergraduate Students">Undergraduate Students</option>
     </select>
@@ -512,15 +515,21 @@ document.querySelectorAll('.engagement-dropdown').forEach(function(dropdown) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
+        tabcontent[i].style.display = "none";
     }
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
-  }
+
+    // Reset the dropdown to the default option when a tab is opened
+    var dropdownId = tabName.toLowerCase() + '-dropdown'; // Construct the dropdown ID based on the tabName
+    if (document.getElementById(dropdownId)) {
+        document.getElementById(dropdownId).selectedIndex = 0; // Reset to the first option (default instruction)
+    }
+}
 </script>
 </body>
 </html>
