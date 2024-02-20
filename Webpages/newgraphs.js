@@ -15,7 +15,7 @@ const statisticToColumnMapping = {
   "School and Zone BIPOC Comparison": "SCHOOL_ZONE_BIPOC_COMP",
   "Sidewalk Coverage": "SIDEWALK_COVG",
   "Students Per Device": "STUDENTS_PER_DEVICE",
-  "Student-Teacher Ratio, Elementary School": "STUDENT_TEACHER_ELEM",
+  //"Student-Teacher Ratio": "STUDENT_TEACHER_ELEM",
   //"Students With Disabilities": "DISABLED_PERCENT",
   "Titles Per Student": "TITLES_PER_STUDENT",
   "WiFi Access Points Per Classroom": "WIFI_ACCESS_PTS",
@@ -54,7 +54,7 @@ function initializeDropdown() {
     "School and Zone BIPOC Comparison",
     "Sidewalk Coverage",
     "Students Per Device",
-    "Student-Teacher Ratio, Elementary School",
+    "Student-Teacher Ratio",
     //"Students With Disabilities",
     "Titles Per Student",
     "WiFi Access Points Per Classroom"
@@ -84,17 +84,33 @@ function fetchDataAndDrawChart(selectedStatistic, selectedSchoolType) {
     case "High":
       csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/9bf837e93801b24d8698c7bb436baea64582b955/CSV%20Data%20School%20Stats/HS_stats_23.csv';
       break;
-      default:
-    console.error("Unexpected school type:", selectedSchoolType);
-    return; // Exit if no matching case
-}  
+    default:
+      console.error("Unexpected school type:", selectedSchoolType);
+      return; // Exit if no matching case
+  }
+
+  // Adjust the column mapping for the Student-Teacher Ratio based on the school type
+  let columnMapping = { ...statisticToColumnMapping }; // Clone the original mapping
+  if (selectedStatistic === "Student-Teacher Ratio") {
+    switch (selectedSchoolType) {
+      case "Elementary":
+        columnMapping["Student-Teacher Ratio"] = "STUDENT_TEACHER_ELEM";
+        break;
+      case "Middle":
+        columnMapping["Student-Teacher Ratio"] = "STUDENT_TEACHER_MS";
+        break;
+      case "High":
+        columnMapping["Student-Teacher Ratio"] = "STUDENT_TEACHER_HS";
+        break;
+    }
+  }
 
   Papa.parse(csvUrl, {
     download: true,
     header: true,
     dynamicTyping: true,
     complete: function(results) {
-      const column = statisticToColumnMapping[selectedStatistic];
+      const column = columnMapping[selectedStatistic]; // Use the adjusted mapping here
       if (!column) {
         console.error("Data column for selected statistic not found:", selectedStatistic);
         return;
