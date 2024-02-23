@@ -18,7 +18,7 @@ var geospatial = [
     }, 
     {
         name: 'Community and Cultural Centers',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/7f44060231812ba788120f716492ff0eb455f9fd/data/2022/url_Community%20%26%20Cultural%20Centers.csv',
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/0fd70e4b117984d86921ecd20cb6004f593bf490/data/Geospatial%20Variables/Community%20%26%20Cultural%20Centers.csv',
         iconUrl: 'https://i.imgur.com/emlFHoy.png',
         content: 'The benefits of building community outside the school building contribute to more powerful relationships and organizing within the school building. Community centers have been found to promote community cohesion and sense of belonging while providing programming that supports self-esteem, health, and academic success. Cultural centers also positively contribute to youth development by providing positive self-images as well as opportunities to learn about cultural practices and traditions of diverse groups.'
     }, 

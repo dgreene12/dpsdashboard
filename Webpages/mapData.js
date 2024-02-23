@@ -45,7 +45,7 @@ var datasets = [
     },
     {
         name: 'Durham School of Technology [Magnet]',
-        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/Durham%20School%20of%20Technology.geojson'
+        url: 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/ad948f53afdecf45c1b604fe33d6c41d343966a4/data/2023/map_data/School%20for%20Creative%20Studies.geojson'
     },
     {
         name: 'Easley Elementary',

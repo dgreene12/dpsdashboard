@@ -11,16 +11,16 @@ const statisticToColumnMapping = {
   "Funding Per Pupil": "FUNDING_PER_PUPIL",
   "Graduation Rate [HS Only]": "GRADUATION_RATE",
   "In-School Suspensions (ISS)": "IN_SCHOOL_SUSP_PER_1000",
-  "Median Age": "MED_AGE",
+  "Median Age of School Community": "MED_AGE",
   "Median Homesale Price": "MED_HOMESALE_PRICE",
   "Median Household Income": "MED_HOUSEHOLD_INC",
-  //"Racial Demographics": "RACIAL_DEMOGRAPHICS",
+  "Racial Demographics": "RACIAL_DEMOGRAPHICS",
   //"School and Zone BIPOC Comparison": "SCHOOL_ZONE_BIPOC_COMP",
   "Sidewalk Coverage": "SIDEWALK_COVG",
   "Students Per Device": "STUDENTS_PER_DEVICE",
   //"Student-Teacher Ratio": "STUDENT_TEACHER_ELEM",
   //"Students With Disabilities": "DISABLED_PERCENT",
-  "Titles Per Student": "TITLES_PER_STUDENT",
+  "Books Per Student": "TITLES_PER_STUDENT",
   "WiFi Access Points Per Classroom": "WIFI_ACCESS_PTS",
   
 }
@@ -60,16 +60,16 @@ function initializeDropdown() {
     "Funding Per Pupil",
     "Graduation Rate [HS Only]",
     "In-School Suspensions (ISS)",
-    "Median Age",
+    "Median Age of School Community",
     "Median Homesale Price",
     "Median Household Income",
-    //"Racial Demographics",
+    "Racial Demographics",
     //"School and Zone BIPOC Comparison",
     "Sidewalk Coverage",
     "Students Per Device",
     "Student-Teacher Ratio",
     //"Students With Disabilities",
-    "Titles Per Student",
+    "Books Per Student",
     "WiFi Access Points Per Classroom"
   ];
 
@@ -85,21 +85,38 @@ function initializeDropdown() {
 function fetchDataAndDrawChart(selectedStatistic, selectedSchoolType) {
   console.log("Selected Statistic:", selectedStatistic); // Debugging line
   console.log("Selected School Type:", selectedSchoolType); // Debugging line
-  let csvUrl = '';
-  // Determine the URL based on the selected school type
-  switch (selectedSchoolType) {
-    case "Elementary":
-      csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/3a0d041f469685e64ec817c7736cc85ede48f0e2/CSV%20Data%20School%20Stats/ES_stats_23.csv'; 
-      break;
-    case "Middle":
-      csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/9bf837e93801b24d8698c7bb436baea64582b955/CSV%20Data%20School%20Stats/MS_stats_23.csv'; 
-      break;
-    case "High":
-      csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/9bf837e93801b24d8698c7bb436baea64582b955/CSV%20Data%20School%20Stats/HS_stats_23.csv';
-      break;
-    default:
-      console.error("Unexpected school type:", selectedSchoolType);
-      return; // Exit if no matching case
+  if (selectedStatistic === "Racial Demographics") {
+    // Use specific URLs for "Racial Demographics"
+    switch (selectedSchoolType) {
+      case "Elementary":
+        csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b6ddf40cf546acb04927f3e2d9a55ff057f8c3c3/CSV%20Data%20School%20Stats/ES_all%20race%202023.csv'; 
+        break;
+      case "Middle":
+        csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b6ddf40cf546acb04927f3e2d9a55ff057f8c3c3/CSV%20Data%20School%20Stats/MS_all%20race%202023.csv'; 
+        break;
+      case "High":
+        csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/b6ddf40cf546acb04927f3e2d9a55ff057f8c3c3/CSV%20Data%20School%20Stats/HS_all%20race%202023.csv';
+        break;
+      default:
+        console.error("Unexpected school type for Racial Demographics:", selectedSchoolType);
+        return; // Exit if no matching case
+    }
+  } else {
+    // Use original URLs for other statistics
+    switch (selectedSchoolType) {
+      case "Elementary":
+        csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/3a0d041f469685e64ec817c7736cc85ede48f0e2/CSV%20Data%20School%20Stats/ES_stats_23.csv'; 
+        break;
+      case "Middle":
+        csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/9bf837e93801b24d8698c7bb436baea64582b955/CSV%20Data%20School%20Stats/MS_stats_23.csv'; 
+        break;
+      case "High":
+        csvUrl = 'https://raw.githubusercontent.com/dgreene12/dpsdashboard/9bf837e93801b24d8698c7bb436baea64582b955/CSV%20Data%20School%20Stats/HS_stats_23.csv';
+        break;
+      default:
+        console.error("Unexpected school type:", selectedSchoolType);
+        return; // Exit if no matching case
+    }
   }
 
   // Adjust the column mapping for the Student-Teacher Ratio based on the school type
@@ -118,18 +135,68 @@ function fetchDataAndDrawChart(selectedStatistic, selectedSchoolType) {
     }
   }
 
+  function processRacialDemographicsData(data) {
+    const schools = {};
+    // Aggregate data by school
+    data.forEach(row => {
+      if (!schools[row.school]) {
+        schools[row.school] = {};
+      }
+      schools[row.school][row.race] = parseFloat(row.number);
+    });
+  
+    const chartData = {
+      labels: Object.keys(schools),
+      datasets: []
+    };
+  
+    const races = ["Asian", "Black/African American", "Hispanic/Latino", "Indigenous", "White"];
+    races.forEach(race => {
+      const dataset = {
+        label: race,
+        data: [],
+        backgroundColor: getRaceColor(race), // Function to assign color based on race
+        stack: 'Stack 0'
+      };
+      Object.values(schools).forEach(school => {
+        dataset.data.push(school[race] || 0); // Add 0 if race is not present for a school
+      });
+      chartData.datasets.push(dataset);
+    });
+  
+    return chartData;
+  }
+  
+  function getRaceColor(race) {
+    const colors = {
+      "Asian": "#FF4500", // Orange Red
+      "Black/African American": "#FFD700", // Gold (Yellow)
+      "Hispanic/Latino": "#32CD32", // Lime Green
+      "Indigenous": "#1E90FF", // Dodger Blue
+      "White": "#9400D3" // Dark Violet
+    };
+    return colors[race] || "#808080"; // Default color if race not found
+  }
+
   Papa.parse(csvUrl, {
     download: true,
     header: true,
     dynamicTyping: true,
     complete: function(results) {
-      const column = columnMapping[selectedStatistic]; // Use the adjusted mapping here
-      if (!column) {
-        console.error("Data column for selected statistic not found:", selectedStatistic);
-        return;
+      if (selectedStatistic === "Racial Demographics") {
+        // Special processing for Racial Demographics
+        const chartData = processRacialDemographicsData(results.data);
+        createStackedBarChart(chartData);
+      } else {
+        // Existing logic for other statistics
+        const column = columnMapping[selectedStatistic];
+        if (!column) {
+          console.error("Data column for selected statistic not found:", selectedStatistic);
+          return;
+        }
+        const chartData = processDataForChart(results.data, column, selectedStatistic);
+        createChart(chartData);
       }
-      const chartData = processDataForChart(results.data, column, selectedStatistic);
-      createChart(chartData);
     }
   });
 }
@@ -172,6 +239,26 @@ function createChart(chartData) {
       scales: {
         y: { beginAtZero: true },
         x: { display: true }
+      },
+      plugins: { legend: { display: true } },
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+}
+
+function createStackedBarChart(chartData) {
+  var ctx = document.getElementById('myChart').getContext('2d');
+  if (window.myChartInstance) {
+    window.myChartInstance.destroy();
+  }
+  window.myChartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: chartData,
+    options: {
+      scales: {
+        x: { stacked: true },
+        y: { stacked: true, beginAtZero: true }
       },
       plugins: { legend: { display: true } },
       responsive: true,
